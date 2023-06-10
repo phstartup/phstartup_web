@@ -24,6 +24,10 @@ function index(props) {
                 <Collections
                     title="Arise+ Cohort 9 by QBO & Arise+ Philippines"
                 />
+
+                <Collections
+                    title="The Final Pitch Season 9"
+                />
             </div>
         </div>
     );
