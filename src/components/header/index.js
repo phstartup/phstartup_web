@@ -1,4 +1,5 @@
 import React from 'react';
+import String from '@/util/String'
 
 const menu = [{
     title: 'Startups',
@@ -35,7 +36,7 @@ function index(props) {
                 display: 'flex',
                 justifyContent: 'center'
             }}>
-                <b>phstartup.org</b>
+                <h3><b>{String.app_name}</b></h3>
             </div>
             <div style={{
                 height: 100,
