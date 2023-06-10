@@ -12,7 +12,11 @@ function btn(props) {
             float: 'left',
             backgroundColor: Color.gray,
             borderRadius: 10
-        }}>
+        }}
+        onClick={() => {
+            props.onPress()
+        }}
+        >
             {
                 props.title
             }

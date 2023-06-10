@@ -35,7 +35,6 @@ function index(props) {
                 paddingLeft: 100
             }}>
                 <h1 style={{
-                    fontSize: 60
                 }}>Prosperna</h1>
                 <div style={{
                     float: 'left',
@@ -51,7 +50,12 @@ function index(props) {
                             float: 'left'
                         }}
                         />
-                    <Button title="More details"/>
+                    <Button
+                        title="More details"
+                        onPress={() => {
+                            alert('hello')
+                        }}
+                        />
                 </div>
                 
             </div>
