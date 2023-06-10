@@ -29,7 +29,7 @@ function index(props) {
             width: '100%',
             background: Color.background
         }}
-        className='header'
+            className='header'
         >
             <div style={{
                 width: '20%',
@@ -44,26 +44,45 @@ function index(props) {
             </div>
             <div style={{
                 height: 100,
-                width: '80%',
+                width: '70%',
                 float: 'left',
                 flexDirection: 'row',
                 alignContent: 'center',
                 alignItems: 'center',
-                display: 'flex'
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginRight: 100
             }}>
-            {
-                menu && menu.map((item) => (
-                    <span style={{
-                        paddingLeft: 20,
-                        paddingRight: 20
-                    }}
-                    className='href-link'>
-                        {
-                            item.title
-                        }
-                    </span>
-                ))
-            }
+                <span>
+                    {
+                        menu && menu.map((item) => (
+                            <span style={{
+                                paddingLeft: 20,
+                                paddingRight: 20
+                            }}
+                                className='href-link'>
+                                {
+                                    item.title
+                                }
+                            </span>
+                        ))
+                    }
+                </span>
+                <span>
+                    {
+                        ['Login', 'Register'].map((item) => (
+                            <span style={{
+                                paddingLeft: 20,
+                                paddingRight: 20
+                            }}
+                                className='href-link'>
+                                {
+                                    item
+                                }
+                            </span>
+                        ))
+                    }
+                </span>
             </div>
         </div>
     );
