@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Home from '@/pages/home'
 import { connect } from 'react-redux';
 import { Color } from '@/util/Color';
+
+import Routes from '@/routes/index'
 function app(props) {
   const { user, token, activity, isLoading } = props.state;
   return (
@@ -31,7 +33,7 @@ function app(props) {
           {
             // not logged in
             (!user && !isLoading && !token) && (
-              <Home></Home>
+              <Routes/>
             )
           }
     </main>

@@ -1,3 +1,5 @@
 export default{
-    app_name: 'phstartup.org'
+    app_name: 'phstartup.org',
+    api_url: 'test',
+    host: 'phstartup.org'
 }

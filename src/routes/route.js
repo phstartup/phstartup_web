@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Helper from 'common/Helper';
-import CommonApi from 'services/commonApi'
+import String from '@/util/String';
+import CommonApi from '@/services/commonApi'
 function RouteWrapper({
   component: Component,
   isPrivate,
@@ -36,16 +36,16 @@ function RouteWrapper({
 
   // Route is private and the user is not logged in
   if (isPrivate && !user && !token) {
-    return <Redirect to="/" />
+    return <Navigate to="/" />
   }
 
   // Route is public and the user is logged in
 
   if (!isPrivate && user && token) {
-    return <Redirect to="/dashboard" />
+    return <Navigate to="/dashboard" />
   }
 
-  return <Route {...rest} component={Component} />;
+  return <Route {...rest} element={<Component/>} />;
 }
 
 RouteWrapper.propTypes = {
@@ -60,7 +60,7 @@ RouteWrapper.defaultProps = {
 const mapStateToProps = (state) => ({ state: state });
 
 const mapDispatchToProps = (dispatch) => {
-  const { actions } = require('reduxhandler');
+  const { actions } = require('@/reduxhandler');
   return {
     login: (user, token) => dispatch(actions.login(user, token)),
     setIsLoading: (flag) => dispatch(actions.setIsLoading(flag)),

@@ -22,7 +22,7 @@ function app() {
     <Provider store={store}>
 
       <PersistGate loading={null} persistor={persistor}>
-        <MainApp />
+          <MainApp />
       </PersistGate>
     </Provider>
   )
