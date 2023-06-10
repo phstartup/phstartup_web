@@ -1,5 +1,6 @@
 import React from 'react';
 import String from '@/util/String'
+import Color from '@/util/Color'
 
 const menu = [{
     title: 'Startups',
@@ -26,7 +27,10 @@ function index(props) {
             height: 100,
             float: 'left',
             width: '100%',
-        }}>
+            background: Color.background
+        }}
+        className='header'
+        >
             <div style={{
                 width: '20%',
                 height: 100,

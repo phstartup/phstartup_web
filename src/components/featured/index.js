@@ -12,7 +12,8 @@ function index(props) {
             width: '100%',
             height: '80vh',
             float: 'left',
-            position: 'relative'
+            position: 'relative',
+            marginTop: 100
         }}>
             <div style={{
                 float: 'left',
