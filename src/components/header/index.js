@@ -56,7 +56,8 @@ function index(props) {
                     <span style={{
                         paddingLeft: 20,
                         paddingRight: 20
-                    }}>
+                    }}
+                    className='href-link'>
                         {
                             item.title
                         }

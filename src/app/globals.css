@@ -37,3 +37,18 @@ h3{
   position: fixed;
   z-index: 9999;
 }
+
+.href-link:hover{
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cursor-pointer:hover{
+  cursor: pointer;
+}
+
+.small-video-thumbnail:hover{
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: solid 5px #fff;
+}

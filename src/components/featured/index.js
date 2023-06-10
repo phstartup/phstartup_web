@@ -50,6 +50,7 @@ function index(props) {
                             fontSize: 60,
                             float: 'left'
                         }}
+                        className='cursor-pointer'
                         />
                     <Button
                         title="More details"

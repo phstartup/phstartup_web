@@ -37,7 +37,7 @@ function collectionSmall(props) {
             }}>
             {
                 sample && sample.map((item) => (
-                    <Thumbnail />
+                    <Thumbnail title={item.title}/>
                 ))
             }
             </div>

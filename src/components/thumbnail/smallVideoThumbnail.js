@@ -8,8 +8,11 @@ function smallVideoThumbnail(props) {
             width: '24%',
             float: 'left',
             height: 200,
-            marginRight: 25
-        }}>
+            marginRight: 25,
+            position: 'relative'
+        }}
+        className='small-video-thumbnail'
+        >
             <Image
                 src={SampleImage}
                 style={{
@@ -17,6 +20,14 @@ function smallVideoThumbnail(props) {
                     height: '100%'
                 }}
                 />
+            <div style={{
+                position: 'absolute',
+                bottom: 10,
+                paddingLeft: 10,
+                paddingRight: 10
+            }}>
+                <p>{props.title}</p>
+            </div>
         </div>
     );
 }

@@ -16,6 +16,7 @@ function btn(props) {
         onClick={() => {
             props.onPress()
         }}
+        className='cursor-pointer'
         >
             {
                 props.title
