@@ -1,4 +1,4 @@
-import Helper from '@/util/String';
+import Helper from '@/utils/String';
 const types = {
   LOGOUT: 'LOGOUT',
   LOGIN: 'LOGIN',

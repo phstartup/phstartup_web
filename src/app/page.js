@@ -1,9 +1,7 @@
 import React from 'react';
-import Header from '@/components/header'
 import Featured from '@/components/featured'
 import Collections from '@/components/thumbnail/collectionSmall'
-import Footer from '@/components/footer'
-import String from '@/util/String'
+import String from '@/utils/String'
 
 export const metadata = {
     title: String.app_name
@@ -15,7 +13,6 @@ export default function Page(props) {
             width: '100%',
             float: 'left'
         }}>
-            <Header />
             <Featured />
             <div style={{
                 float: 'left',
@@ -35,7 +32,6 @@ export default function Page(props) {
                     title="The Final Pitch Season 9"
                 />
             </div>
-            <Footer />
         </div>
     );
 }

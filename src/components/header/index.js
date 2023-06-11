@@ -1,6 +1,6 @@
 import React from 'react';
-import String from '@/util/String'
-import Color from '@/util/Color'
+import String from '@/utils/String'
+import Color from '@/utils/Color'
 
 const menu = [{
     title: 'Startups',

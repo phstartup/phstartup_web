@@ -1,5 +1,5 @@
 import React from 'react';
-import Color from '@/util/Color'
+import Color from '@/utils/Color'
 function btn(props) {
     return (
         <div style={{
