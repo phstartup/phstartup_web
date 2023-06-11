@@ -116,6 +116,7 @@ function index(props) {
                                     </div>
                                 ))
                             }
+                            <div className='mt-[50px] w-full float-left'>
                             {
                                 ['Login', 'Register'].map((item) => (
                                     <div
@@ -130,6 +131,7 @@ function index(props) {
                                     </div>
                                 ))
                             }
+                            </div>
                         </div>
                     )
                 }
