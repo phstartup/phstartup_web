@@ -3,7 +3,6 @@ const types = {
   LOGOUT: 'LOGOUT',
   LOGIN: 'LOGIN',
   UPDATE_USER: 'UPDATE_USER',
-  SET_IS_LOADING: 'SET_IS_LOADING',
   SET_ACTIVE_NAV: 'SET_ACTIVE_NAV'
 };
 
@@ -16,9 +15,6 @@ export const actions = {
   },
   updateUser(user) {
     return {type: types.UPDATE_USER, user};
-  },
-  setIsLoading(isLoading) {
-    return { type: types.SET_IS_LOADING, isLoading };
   },
   setActiveNav(nav){
     return {type: types.SET_ACTIVE_NAV, nav}
@@ -49,11 +45,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         user,
       };
-    case types.SET_IS_LOADING:
-      return {
-        ...state,
-        isLoading: isLoading
-      }
     case types.SET_ACTIVE_NAV:
       return {
         ...state,
