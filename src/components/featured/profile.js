@@ -38,7 +38,7 @@ function index(props) {
                     />
                 </div>
                 <div className='lg:bottom-[60px] 2xl:bottom-[60px] sm:bottom-0 md:bottom-0 xs:bottom-0 absolute w-full lg:px-[100px] 2xl:px-[100px] sm:px-[20px] xs:px-[20px] md:px-[20px]'>
-                    <div className='float-left flex items-center content-center justify-between w-full'>
+                    <div className='float-left flex justify-between w-full'>
                         <div>
                             <span className='lg:text-6xl 2xl:text-6xl sm:text-2xl xs:text-2xl md:text-2xl w-full float-left'>Prosperna</span>
                             <span className='lg:text-2xl 2xl:text-2xl sm:text-lg xs:text-lg md:text-lg w-full float-left'>Seed Round - Finance</span>
