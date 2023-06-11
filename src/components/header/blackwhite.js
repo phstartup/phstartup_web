@@ -39,14 +39,14 @@ function index(props) {
             >
                 <div className='lg:block xl:block 2xl:block sm:hidden md:hidden xs:hidden'>
                     <div
-                        className='w-1/4 h-[100px] float-left content-center items-center flex href-link px-[100px]'
+                        className='w-1/4 h-[100px] bg-black dark:bg-white float-left content-center items-center flex href-link px-[100px]'
                     >
                         <Link href={'/'}>
-                            <b className='text-3xl'>{String.app_name}</b>
+                            <b className='text-3xl text-white dark:text-black'>{String.app_name}</b>
                         </Link>
                     </div>
                     <div
-                        className='h-[100px] w-3/4 float-left flex flex-row content-center items-center justify-between pr-[100px]'
+                        className='h-[100px] w-3/4 bg-white dark:bg-black  float-left flex flex-row content-center items-center justify-between pr-[100px]'
                     >
                         <div>
                             {
