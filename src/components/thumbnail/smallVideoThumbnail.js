@@ -7,7 +7,7 @@ function smallVideoThumbnail(props) {
     const router = useRouter();
     return (
         <div
-        className='float-left w-3/12 h-[200px] mr-10 small-video-thumbnail relative cursor-pointer'
+        className='float-left lg:w-[23%] 2xl:w-[23%] xs:w-[48%] sm:w-[48%] md:w-[48%] lg:h-[200px] 2xl:h-[200px] sm:h-[150px] md:h-[200px] xs:h-[150px] mr-[2%] small-video-thumbnail relative cursor-pointer mb-10'
         onClick={() => {
             router.push('/profile')
         }}
