@@ -4,7 +4,7 @@ import String from '@/utils/String'
 import Link from 'next/link';
 import { Disclosure, Transition } from '@headlessui/react';
 import { SvgIcon } from '@mui/material';
-import { LightMode, MenuOutlined } from '@mui/icons-material';
+import { LightMode, MenuOutlined, Search } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import useColorMode from '@/hooks/useColorMode';
 
@@ -60,8 +60,17 @@ function index(props) {
                                     </Link>
                                 ))
                             }
+                            <SvgIcon
+                                component={Search}
+                                onClick={() => {
+                                    router.push('/search')
+                                }}
+                                className='cursor-pointer'
+                            />
                         </div>
                         <div>
+
+
                             {
                                 ['Login', 'Register'].map((item) => (
                                     <Link
@@ -77,7 +86,7 @@ function index(props) {
                                 component={LightMode}
                                 onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}
                                 className='cursor-pointer'
-                                />
+                            />
                         </div>
                     </div>
                 </div>
@@ -107,39 +116,53 @@ function index(props) {
                                 menu && menu.map((item) => (
                                     <div
                                         className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px]'
-                                        onClick={()=> {
+                                        onClick={() => {
                                             router.push('/' + item.title)
+                                            setToggle(!toggle)
                                         }}
-                                        >
+                                    >
                                         {
                                             item.title
                                         }
                                     </div>
                                 ))
                             }
+                            <div
+                                className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px]'
+                                onClick={() => {
+                                    router.push('/search')
+                                    setToggle(!toggle)
+                                }}
+                            >
+                                Search
+                            </div>
                             <div className='mt-[50px] w-full float-left'>
-                            {
-                                ['Login', 'Register'].map((item) => (
-                                    <div
-                                        className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px]'
-                                        onClick={()=> {
-                                            router.push('/' + item)
-                                        }}
+                                {
+                                    ['Login', 'Register'].map((item) => (
+                                        <div
+                                            className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px]'
+                                            onClick={() => {
+                                                router.push('/' + item)
+                                                setToggle(!toggle)
+                                            }}
                                         >
-                                        {
-                                            item
-                                        }
-                                    </div>
-                                ))
-                            }
-                             <div
-                                        className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px]'
-                                        onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}
-                                        >
-                                        {
-                                           colorMode == 'dark' ? 'Light Mode' : 'Dark Mode'  
-                                        }
-                                    </div>
+                                            {
+                                                item
+                                            }
+                                        </div>
+                                    ))
+                                }
+                                <div
+                                    className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px]'
+                                    onClick={() => {
+                                        setColorMode(colorMode === "light" ? "dark" : "light")
+                                        setToggle(!toggle)
+                                    }}
+                                >
+                                    {
+                                        colorMode == 'dark' ? 'Light Mode' : 'Dark Mode'
+                                    }
+                                </div>
                             </div>
                         </div>
                     )

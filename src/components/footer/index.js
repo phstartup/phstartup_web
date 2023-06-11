@@ -8,8 +8,8 @@ function index(props) {
             <span>
                 A non-profit organization.
             </span>
-            <span>
-                Contributors
+            <span className='cursor-pointer hover:font-bold' >
+               Be A Contributor
             </span>
         </div>
     );
