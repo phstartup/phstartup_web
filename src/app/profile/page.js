@@ -7,14 +7,23 @@ import String from '@/utils/String'
 function page(props) {
     return (
         <div
-        className='w-full float-left'
+            className='w-full float-left'
         >
             <Featured />
             <div
-                className='float-left w-full px-[100px] pr-[100px]'
+                className='float-left'
             >
                 <Collections
                     title="Team"
+                />
+
+                <Collections
+                    title="Achievements"
+                />
+
+
+                <Collections
+                    title="On the news"
                 />
             </div>
         </div>
