@@ -2,7 +2,9 @@
 import React from 'react';
 import Image from 'next/image'
 import SampleImage from '@/assets/sample.png'
+import { useRouter } from 'next/navigation';
 function smallVideoThumbnail(props) {
+    const router = useRouter();
     return (
         <div style={{
             width: '24%',
@@ -12,6 +14,9 @@ function smallVideoThumbnail(props) {
             position: 'relative'
         }}
         className='small-video-thumbnail'
+        onClick={() => {
+            router.push('/profile')
+        }}
         >
             <Image
                 src={SampleImage}
