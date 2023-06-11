@@ -1,6 +1,7 @@
 import React from 'react';
 import String from '@/utils/String'
 import Color from '@/utils/Color'
+import Link from 'next/link';
 
 const menu = [{
     title: 'Startups',
@@ -39,8 +40,12 @@ function index(props) {
                 alignItems: 'center',
                 display: 'flex',
                 justifyContent: 'center'
-            }}>
+            }}
+            className='href-link'
+            >
+                <Link href={'/'}>
                 <h3><b>{String.app_name}</b></h3>
+                </Link>
             </div>
             <div style={{
                 height: 100,
@@ -56,30 +61,32 @@ function index(props) {
                 <span>
                     {
                         menu && menu.map((item) => (
-                            <span style={{
+                            <Link style={{
                                 paddingLeft: 20,
                                 paddingRight: 20
                             }}
+                                href={'/' + item.title}
                                 className='href-link'>
                                 {
                                     item.title
                                 }
-                            </span>
+                            </Link>
                         ))
                     }
                 </span>
                 <span>
                     {
                         ['Login', 'Register'].map((item) => (
-                            <span style={{
+                            <Link style={{
                                 paddingLeft: 20,
                                 paddingRight: 20
                             }}
+                                href={'/' + item}
                                 className='href-link'>
                                 {
                                     item
                                 }
-                            </span>
+                            </Link>
                         ))
                     }
                 </span>
