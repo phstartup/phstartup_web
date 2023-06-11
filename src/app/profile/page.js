@@ -7,7 +7,7 @@ import String from '@/utils/String'
 function page(props) {
     return (
         <div
-            className='w-full float-left'
+            className='w-full float-left bg-white dark:bg-black text-black dark:text-black'
         >
             <Featured />
             <div

@@ -3,10 +3,10 @@ import React from 'react';
 
 export default function Page() {
     return (
-        <div style={{
-            width: '100%',
-            float: 'left'
-        }}>
+        <div className='bg-white dark:bg-black text-black dark:text-white'>
+            <p>
+                Hello there
+            </p>
         </div>
     );
 }
