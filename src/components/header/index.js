@@ -27,13 +27,13 @@ function index(props) {
         <div style={{
             background: Color.background
         }}
-            className='header float-left w-full h-[100px]'
+            className='z-[999px] float-left w-full h-[100px] fixed'
         >
             <div
             className='w-1/4 h-[100px] float-left content-center items-center flex href-link px-[100px]'
             >
                 <Link href={'/'}>
-                <h3><b>{String.app_name}</b></h3>
+                <b className='text-3xl'>{String.app_name}</b>
                 </Link>
             </div>
             <div

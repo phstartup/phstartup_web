@@ -22,7 +22,7 @@ function collectionSmall(props) {
             <div
                 className='float-left w-full pt-[20px] pb-[20px]'
             >
-                <h3>{props.title}</h3>
+                <span className='text-2xl'>{props.title}</span>
             </div>
             <div
                 className='w-full overflow-x-scroll float-left flex flex-nowrap'

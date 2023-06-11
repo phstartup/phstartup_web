@@ -25,8 +25,7 @@ function index(props) {
             <div
             className='w-full absolute bottom-10 left-0 px-[100px]'
             >
-                <h1 style={{
-                }}>Prosperna</h1>
+                <span className='text-6xl'>Prosperna</span>
                 <div
                 className='left w-full flex items-center content-center'
                 >
