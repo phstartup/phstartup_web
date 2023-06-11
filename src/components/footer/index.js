@@ -6,7 +6,7 @@ function index(props) {
             className='h-[100px] flex content-center items-center float-left px-[100px] pr-[100px] justify-between w-full'
         >
             <span>
-                A non-profit organization. Contact us to contribute.
+                A non-profit organization.
             </span>
             <span>
                 Contributors
