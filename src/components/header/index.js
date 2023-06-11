@@ -132,6 +132,14 @@ function index(props) {
                                     </div>
                                 ))
                             }
+                             <div
+                                        className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px]'
+                                        onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}
+                                        >
+                                        {
+                                           colorMode == 'dark' ? 'Light Mode' : 'Dark Mode'  
+                                        }
+                                    </div>
                             </div>
                         </div>
                     )
