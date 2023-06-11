@@ -27,23 +27,23 @@ function index(props) {
                 />
             </div>
             <div
-                className='w-full h-full absolute top-0 left-0 px-[10px] lg:px-[100px]]'
+                className='w-full h-full absolute top-0 left-0'
             >
                 <div
                     className='left w-full h-full flex items-center content-center justify-center'
                 >
                     <SvgIcon
                         component={PlayCircle}
-                        className='text-[140px] float-left cursor-pointer'
+                        className='lg:text-[140px] 2xl:text-[140px] sm:text-[100px] md:text-[100px] xs:text-[100px] float-left cursor-pointer'
                     />
                 </div>
-                <div className='bottom-[60px] absolute w-full  2xl:px-[100px]'>
+                <div className='lg:bottom-[60px] 2xl:bottom-[60px] sm:bottom-0 md:bottom-0 xs:bottom-0 absolute w-full lg:px-[100px] 2xl:px-[100px] sm:px-[20px] xs:px-[20px] md:px-[20px]'>
                     <div className='float-left flex items-center content-center justify-between w-full'>
                         <div>
-                            <span className='lg:text-6xl 2xl:text-6xl sm:text-3xl xs:text-3xl md:text-3xl w-full float-left'>Prosperna</span>
-                            <span className='text-2xl w-full float-left'>Seed Round - Finance</span>
+                            <span className='lg:text-6xl 2xl:text-6xl sm:text-2xl xs:text-2xl md:text-2xl w-full float-left'>Prosperna</span>
+                            <span className='lg:text-2xl 2xl:text-2xl sm:text-lg xs:text-lg md:text-lg w-full float-left'>Seed Round - Finance</span>
                         </div>
-                        <span className='text-2xl text-right'>Doing Fund Raising</span>
+                        <span className='lg:text-2xl 2xl:text-2xl sm:text-lg xs:text-lg md:text-lg text-right'>Doing Fund Raising</span>
                     </div>
                 </div>
 
