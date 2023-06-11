@@ -1,5 +1,5 @@
 import React from 'react';
-import Featured from '@/components/featured'
+import Featured from '@/components/featured/profile'
 import Collections from '@/components/thumbnail/collectionSmall'
 import String from '@/utils/String'
 
