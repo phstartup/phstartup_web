@@ -8,11 +8,17 @@ function index(props) {
             alignContent: 'center',
             alignItems: 'center',
             float: 'left',
-            marginLeft: 100
+            paddingLeft: 100,
+            paddingRight: 100,
+            justifyContent: 'space-between',
+            width: '100%'
         }}>
-            <p>
+            <span>
                 A non-profit organization. Contact us to contribute.
-            </p>
+            </span>
+            <span>
+                Contributors
+            </span>
         </div>
     );
 }
