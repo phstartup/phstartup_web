@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '@/components/header'
 import Featured from '@/components/featured'
 import Collections from '@/components/thumbnail/collectionSmall'
+import Footer from '@/components/footer'
 
 function index(props) {
     return (
@@ -29,6 +30,7 @@ function index(props) {
                     title="The Final Pitch Season 9"
                 />
             </div>
+            <Footer />
         </div>
     );
 }
