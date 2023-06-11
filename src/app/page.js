@@ -9,17 +9,11 @@ export const metadata = {
 
 export default function Page(props) {
     return (
-        <div style={{
-            width: '100%',
-            float: 'left'
-        }}>
+        <div className='w-full float-left'>
             <Featured />
-            <div style={{
-                float: 'left',
-                width: '90%',
-                marginLeft: 100,
-                marginBottom: 100
-            }}>
+            <div
+            className='float-left'
+            >
                 <Collections
                     title="Most visited startups"
                 />

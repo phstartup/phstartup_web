@@ -11,10 +11,10 @@ function index(props) {
         <div style={{
             marginTop: 100
         }}
-        className='float-left w-screen relative h-4/5'
+        className='float-left w-full relative lg:h-[80vh] 2xl:h-[80vh] sm:h-[60vh] md:h-[60vh]'
         >
             <div
-            className='float-left w-screen h-4/5'
+            className='float-left lg:h-[80vh] 2xl:h-[80vh] w-full sm:h-[60vh] md:h-[60vh]'
             >
                 <Image
                     src={SampleImage}
@@ -23,15 +23,15 @@ function index(props) {
                 />
             </div>
             <div
-            className='w-full absolute bottom-10 left-0 px-[100px]'
+            className='w-full absolute lg:bottom-10 2xl:bottom-10 left-0 px-[10px] lg:px-[100px]] 2xl:px-[100px] sm:bottom-1 xs:bottom-1 md:bottom-1'
             >
-                <span className='text-6xl'>Prosperna</span>
+                <span className='lg:text-6xl 2xl:text-6xl sm:text-3xl xs:text-3xl md:text-3xl'>Prosperna</span>
                 <div
                 className='left w-full flex items-center content-center'
                 >
                     <SvgIcon
                         component={PlayCircle}
-                        className='text-6xl float-let cursor-pointer'
+                        className='text-6xl float-left cursor-pointer'
                         />
                     <Button
                         title="More details"

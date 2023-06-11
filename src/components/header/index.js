@@ -32,9 +32,9 @@ function index(props) {
             <div style={{
                 background: Color.background
             }}
-                className='z-[999px] float-left w-full h-[100px] fixed'
+                className='z-50 float-left w-full h-[100px] fixed'
             >
-                <div className='hidden lg:block xl:block 2xl:block'>
+                <div className='lg:block xl:block 2xl:block sm:hidden md:hidden xs:hidden'>
                     <div
                         className='w-1/4 h-[100px] float-left content-center items-center flex href-link px-[100px]'
                     >
@@ -73,7 +73,7 @@ function index(props) {
                         </div>
                     </div>
                 </div>
-                <div className='hidden sm:block md:block xs:block'>
+                <div className='sm:block md:block xs:block lg:hidden 2xl:hidden'>
                     <div
                         className='w-full h-[100px] float-left content-center items-center flex href-link justify-between px-[20px] pr-[20px] '
                     >
