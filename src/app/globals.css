@@ -25,16 +25,3 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-
-h3{
-  font-size: 24px;
-}
-
-.href-link:hover{
-  font-weight: bold;
-}
-
-.small-video-thumbnail:hover{
-  font-weight: bold;
-  border-bottom: solid 5px #fff;
-}

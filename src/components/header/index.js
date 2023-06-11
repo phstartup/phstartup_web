@@ -1,12 +1,12 @@
 "use client"
 import React, { useState } from 'react';
 import String from '@/utils/String'
-import Color from '@/utils/Color'
 import Link from 'next/link';
 import { Disclosure, Transition } from '@headlessui/react';
 import { SvgIcon } from '@mui/material';
-import { MenuOutlined } from '@mui/icons-material';
+import { LightMode, MenuOutlined } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
+import useColorMode from '@/hooks/useColorMode';
 
 const menu = [{
     title: 'Startups',
@@ -30,13 +30,12 @@ const menu = [{
 function index(props) {
     const [toggle, setToggle] = useState(false)
     const router = useRouter()
+    const [colorMode, setColorMode] = useColorMode();
 
     return (
         <Disclosure as="nav">
-            <div style={{
-                background: Color.background
-            }}
-                className='z-50 float-left w-full h-[100px] fixed'
+            <div
+                className='bg-white dark:bg-black z-50 float-left w-full h-[100px] fixed text-black dark:text-white'
             >
                 <div className='lg:block xl:block 2xl:block sm:hidden md:hidden xs:hidden'>
                     <div
@@ -74,6 +73,11 @@ function index(props) {
                                     </Link>
                                 ))
                             }
+                            <SvgIcon
+                                component={LightMode}
+                                onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}
+                                className='cursor-pointer'
+                                />
                         </div>
                     </div>
                 </div>
@@ -97,10 +101,7 @@ function index(props) {
                 </div>
                 {
                     toggle && (
-                        <div className='w-full h-[calc(100vh-100px)] absolute mt-[100px] px-[20px] pr-[20px]'
-                            style={{
-                                background: Color.background
-                            }}
+                        <div className='w-full h-[calc(100vh-100px)] absolute mt-[100px] px-[20px] pr-[20px] bg-white dark:bg-black'
                         >
                             {
                                 menu && menu.map((item) => (

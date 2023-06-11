@@ -8,7 +8,7 @@ function btn(props) {
         onClick={() => {
             props.onPress()
         }}
-        className='px-[40px] pr-[40px] h-[60px] cursor-pointer content-center items-center float-left flex rounded-lg'
+        className='px-[40px] pr-[40px] h-[60px] cursor-pointer content-center items-center float-left flex rounded-lg text-white'
         >
             {
                 props.title

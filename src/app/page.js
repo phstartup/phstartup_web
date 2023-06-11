@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function Page(props) {
     return (
-        <div className='w-full float-left'>
+        <div className='w-full float-left bg-white dark:bg-black text-black dark:text-white'>
             <Featured />
             <div
             className='float-left'
