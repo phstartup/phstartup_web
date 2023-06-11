@@ -1,11 +1,12 @@
 "use client"
-import React from 'react';
+import React, { useState } from 'react';
 import String from '@/utils/String'
 import Color from '@/utils/Color'
 import Link from 'next/link';
 import { Disclosure, Transition } from '@headlessui/react';
 import { SvgIcon } from '@mui/material';
 import { MenuOutlined } from '@mui/icons-material';
+import { useRouter } from 'next/navigation';
 
 const menu = [{
     title: 'Startups',
@@ -27,6 +28,9 @@ const menu = [{
     route: '/events'
 }]
 function index(props) {
+    const [toggle, setToggle] = useState(false)
+    const router = useRouter()
+
     return (
         <Disclosure as="nav">
             <div style={{
@@ -85,9 +89,50 @@ function index(props) {
                         <SvgIcon
                             component={MenuOutlined}
                             className='cursor-pointer'
+                            onClick={() => {
+                                setToggle(!toggle)
+                            }}
                         />
                     </div>
                 </div>
+                {
+                    toggle && (
+                        <div className='w-full h-[calc(100vh-100px)] absolute mt-[100px] px-[20px] pr-[20px]'
+                            style={{
+                                background: Color.background
+                            }}
+                        >
+                            {
+                                menu && menu.map((item) => (
+                                    <div
+                                        className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px]'
+                                        onClick={()=> {
+                                            router.push('/' + item.title)
+                                        }}
+                                        >
+                                        {
+                                            item.title
+                                        }
+                                    </div>
+                                ))
+                            }
+                            {
+                                ['Login', 'Register'].map((item) => (
+                                    <div
+                                        className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px]'
+                                        onClick={()=> {
+                                            router.push('/' + item)
+                                        }}
+                                        >
+                                        {
+                                            item
+                                        }
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    )
+                }
             </div>
         </Disclosure>
     );
