@@ -11,9 +11,8 @@ function smallVideoThumbnail(props) {
             float: 'left',
             height: 200,
             marginRight: 25,
-            position: 'relative'
         }}
-        className='small-video-thumbnail'
+        className='small-video-thumbnail relative cursor-pointer'
         onClick={() => {
             router.push('/profile')
         }}
@@ -26,11 +25,12 @@ function smallVideoThumbnail(props) {
                 }}
                 />
             <div style={{
-                position: 'absolute',
                 bottom: 10,
                 paddingLeft: 10,
                 paddingRight: 10
-            }}>
+            }}
+            className='absolute'
+            >
                 <p>{props.title}</p>
             </div>
         </div>

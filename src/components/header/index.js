@@ -66,7 +66,7 @@ function index(props) {
                                 paddingRight: 20
                             }}
                                 href={'/' + item.title}
-                                className='href-link'>
+                                className='href-link cursor-pointer'>
                                 {
                                     item.title
                                 }
@@ -82,7 +82,7 @@ function index(props) {
                                 paddingRight: 20
                             }}
                                 href={'/' + item}
-                                className='href-link'>
+                                className='href-link cursor-pointer'>
                                 {
                                     item
                                 }
