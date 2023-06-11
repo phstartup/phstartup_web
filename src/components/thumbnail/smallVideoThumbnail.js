@@ -6,30 +6,19 @@ import { useRouter } from 'next/navigation';
 function smallVideoThumbnail(props) {
     const router = useRouter();
     return (
-        <div style={{
-            width: '24%',
-            float: 'left',
-            height: 200,
-            marginRight: 25,
-        }}
-        className='small-video-thumbnail relative cursor-pointer'
+        <div
+        className='float-left w-3/12 h-[200px] mr-10 small-video-thumbnail relative cursor-pointer'
         onClick={() => {
             router.push('/profile')
         }}
         >
             <Image
                 src={SampleImage}
-                style={{
-                    width: '100%',
-                    height: '100%'
-                }}
+                alt='Sample Image'
+                className='w-full h-full'
                 />
-            <div style={{
-                bottom: 10,
-                paddingLeft: 10,
-                paddingRight: 10
-            }}
-            className='absolute'
+            <div
+            className='absolute px-1 py-1 bottom-1'
             >
                 <p>{props.title}</p>
             </div>

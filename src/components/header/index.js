@@ -25,48 +25,26 @@ const menu = [{
 function index(props) {
     return (
         <div style={{
-            height: 100,
-            float: 'left',
-            width: '100%',
             background: Color.background
         }}
-            className='header'
+            className='header float-left w-full h-[100px]'
         >
-            <div style={{
-                width: '20%',
-                height: 100,
-                float: 'left',
-                alignContent: 'center',
-                alignItems: 'center',
-                display: 'flex',
-                justifyContent: 'center'
-            }}
-            className='href-link'
+            <div
+            className='w-1/4 h-[100px] float-left content-center items-center flex href-link px-[100px]'
             >
                 <Link href={'/'}>
                 <h3><b>{String.app_name}</b></h3>
                 </Link>
             </div>
-            <div style={{
-                height: 100,
-                width: '70%',
-                float: 'left',
-                flexDirection: 'row',
-                alignContent: 'center',
-                alignItems: 'center',
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginRight: 100
-            }}>
+            <div
+            className='h-[100px] w-3/4 float-left flex flex-row content-center items-center justify-between pr-[100px]'
+            >
                 <span>
                     {
                         menu && menu.map((item) => (
-                            <Link style={{
-                                paddingLeft: 20,
-                                paddingRight: 20
-                            }}
+                            <Link
                                 href={'/' + item.title}
-                                className='href-link cursor-pointer'>
+                                className='href-link cursor-pointer px-[20px] pr-[20px]'> 
                                 {
                                     item.title
                                 }
@@ -77,12 +55,9 @@ function index(props) {
                 <span>
                     {
                         ['Login', 'Register'].map((item) => (
-                            <Link style={{
-                                paddingLeft: 20,
-                                paddingRight: 20
-                            }}
+                            <Link
                                 href={'/' + item}
-                                className='href-link cursor-pointer'>
+                                className='href-link cursor-pointer px-[20px] pr-[20px]'>
                                 {
                                     item
                                 }

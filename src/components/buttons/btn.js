@@ -3,20 +3,12 @@ import Color from '@/utils/Color'
 function btn(props) {
     return (
         <div style={{
-            paddingLeft: 40,
-            paddingRight: 40,
-            height: 60,
-            display: 'flex',
-            alignContent: 'center',
-            alignItems: 'center',
-            float: 'left',
-            backgroundColor: Color.gray,
-            borderRadius: 10
+            backgroundColor: Color.gray
         }}
         onClick={() => {
             props.onPress()
         }}
-        className='cursor-pointer'
+        className='px-[40px] pr-[40px] h-[60px] cursor-pointer content-center items-center float-left flex rounded-lg'
         >
             {
                 props.title

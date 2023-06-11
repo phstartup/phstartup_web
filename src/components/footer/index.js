@@ -2,17 +2,9 @@ import React from 'react';
 
 function index(props) {
     return (
-        <div style={{
-            height: 100,
-            display: 'flex',
-            alignContent: 'center',
-            alignItems: 'center',
-            float: 'left',
-            paddingLeft: 100,
-            paddingRight: 100,
-            justifyContent: 'space-between',
-            width: '100%'
-        }}>
+        <div
+            className='h-[100px] flex content-center items-center float-left px-[100px] pr-[100px] justify-between w-full'
+        >
             <span>
                 A non-profit organization. Contact us to contribute.
             </span>

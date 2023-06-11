@@ -6,21 +6,17 @@ import String from '@/utils/String'
 
 function page(props) {
     return (
-        <div style={{
-            width: '100%',
-            float: 'left'
-        }}>
+        <div
+        className='w-full float-left'
+        >
             <Featured />
-            <div style={{
-                float: 'left',
-                width: '90%',
-                marginLeft: 100,
-                marginBottom: 100
-            }}>
+            <div
+                className='float-left w-full px-[100px] pr-[100px]'
+            >
                 <Collections
                     title="Team"
                 />
-                </div>
+            </div>
         </div>
     );
 }

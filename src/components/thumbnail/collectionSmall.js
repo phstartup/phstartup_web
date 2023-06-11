@@ -16,30 +16,22 @@ const sample = [{
 }]
 function collectionSmall(props) {
     return (
-        <div style={{
-            float: 'left',
-            width: '100%',
-        }}>
-            <div style={{
-                float: 'left',
-                width: '100%',
-                paddingTop: 20,
-                paddingBottom: 20
-            }}>
+        <div
+            className='float-left w-full'
+        >
+            <div
+                className='float-left w-full pt-[20px] pb-[20px]'
+            >
                 <h3>{props.title}</h3>
             </div>
-            <div style={{
-                width: '100%',
-                overflowX: 'scroll',
-                float: 'left',
-                display: 'flex',
-                flexWrap: 'nowrap'
-            }}>
-            {
-                sample && sample.map((item) => (
-                    <Thumbnail title={item.title}/>
-                ))
-            }
+            <div
+                className='w-full overflow-x-scroll float-left flex flex-nowrap'
+            >
+                {
+                    sample && sample.map((item) => (
+                        <Thumbnail title={item.title} />
+                    ))
+                }
             </div>
         </div>
     );

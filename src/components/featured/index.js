@@ -9,48 +9,30 @@ import Button from '@/components/buttons/btn.js'
 function index(props) {
     return (
         <div style={{
-            width: '100%',
-            height: '80vh',
-            float: 'left',
-            position: 'relative',
             marginTop: 100
-        }}>
-            <div style={{
-                float: 'left',
-                width: '100%',
-                height: '80vh',
-            }}>
+        }}
+        className='float-left w-screen relative h-4/5'
+        >
+            <div
+            className='float-left w-screen h-4/5'
+            >
                 <Image
                     src={SampleImage}
-                    style={{
-                        width: '100%',
-                        height: '100%'
-                    }}
+                    className='w-full h-full'
+                    alt='Sample Image'
                 />
             </div>
-            <div style={{
-                position:'absolute',
-                width: '100%',
-                bottom: '10vh',
-                left: 0,
-                paddingLeft: 100
-            }}>
+            <div
+            className='w-full absolute bottom-10 left-0 px-[100px]'
+            >
                 <h1 style={{
                 }}>Prosperna</h1>
-                <div style={{
-                    float: 'left',
-                    width: '100%',
-                    display: 'flex',
-                    alignContent: 'center',
-                    alignItems: 'center'
-                }}>
+                <div
+                className='left w-full flex items-center content-center'
+                >
                     <SvgIcon
                         component={PlayCircle}
-                        style={{
-                            fontSize: 60,
-                            float: 'left'
-                        }}
-                        className='cursor-pointer'
+                        className='text-6xl float-let cursor-pointer'
                         />
                     <Button
                         title="More details"
