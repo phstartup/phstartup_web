@@ -2,6 +2,8 @@ import React from 'react';
 import Featured from '@/components/featured'
 import Collections from '@/components/thumbnail/collectionSmall'
 import String from '@/utils/String'
+import Header from '@/components/header'
+import Footer from '@/components/footer'
 
 export const metadata = {
     title: String.app_name
@@ -10,9 +12,11 @@ export const metadata = {
 export default function Page(props) {
     return (
         <div className='w-full float-left bg-white dark:bg-black text-black dark:text-white'>
+
+            <Header />
             <Featured />
             <div
-            className='float-left'
+                className='float-left'
             >
                 <Collections
                     title="Most visited startups"
@@ -26,6 +30,8 @@ export default function Page(props) {
                     title="The Final Pitch Season 9"
                 />
             </div>
+
+            <Footer />
         </div>
     );
 }

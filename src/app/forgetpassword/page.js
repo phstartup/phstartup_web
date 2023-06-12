@@ -3,11 +3,14 @@ import React from 'react';
 import TextField from '@/components/form/text'
 import Button from '@/components/buttons/btnRounded'
 import { useRouter } from 'next/navigation';
+import Header from '@/components/header/blackwhite'
+import Footer from '@/components/footer'
 
 function page(props) {
     const router = useRouter();
     return (
         <div className='bg-white dark:bg-black w-full h-[100vh] float-left'>
+            <Header />
             <div className='bg-black dark:bg-white h-[100vh] float-left text-white dark:text-black lg:w-1/4 2xl:w-1/4  sm:w-full md:w-full xs:w-full'>
                 <section className='mt-[250px] text-center lg:px-[20px] 2xl:px-[20px] sm:px-[50px] xs:px-[50px] md:px-[50px]'>
                     <p className='text-lg text-white dark:text-black mb-[50px]'>
@@ -48,6 +51,8 @@ function page(props) {
                     </section>
                 </div>
             </div>
+
+            <Footer />
         </div>
     );
 }
