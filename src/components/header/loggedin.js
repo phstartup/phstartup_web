@@ -69,7 +69,7 @@ function loggedin(props) {
             </div>
             {
                 toggle && (
-                    <div className='w-full h-[calc(100vh-80px)] absolute mt-[80px] px-[20px] pr-[20px] bg-white dark:bg-black'
+                    <div className='w-full h-[calc(100vh-80px)] absolute mt-[80px] px-[20px] pr-[20px] bg-white dark:bg-gray-800'
                     >
                         {
                             menu && menu.map((item) => (
