@@ -26,11 +26,11 @@ function page(props) {
                     className='lg:w-[85%] min-h-[100vh] 2xl:w-[85%] sm:w-full xs:w-full md:w-full float-left p-[20px] mt-[80px] lg:ml-[15%] 2xl:ml-[15%]'>
                     <div className='w-full float-left lg:flex 2xl:flex justify-between'>
                         <LineChart />
-                        <TableChart title="Startup 2023" data={data} header={['Location', 'Total', 'Percentage']}/>
+                        <TableChart title="Startup 2023" data={data} header={['Location', 'Total', 'Percentage']} rightTitle={100} footerTitle="View Report"/>
                     </div>
                     <div className='w-full float-left lg:flex 2xl:flex justify-between'>
-                        <TableChart title="Investors 2023" data={data} header={['Location', 'Total', 'Percentage']}/>
-                        <TableChart title="Initiatives 2023" data={data} header={['Location', 'Total', 'Percentage']}/>
+                        <TableChart title="Investors 2023" data={data} header={['Location', 'Total', 'Percentage']} rightTitle={100} footerTitle="View Report"/>
+                        <TableChart title="Initiatives 2023" data={data} header={['Location', 'Total', 'Percentage']} rightTitle={100} footerTitle="View Report"/>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './header'
+import Footer from './footer'
 
 function body(props) {
     return (
@@ -8,8 +9,8 @@ function body(props) {
                 border: 'solid 1px #eee'
             }}
             class="mx-auto lg:w-[49%] 2xl:w-[49%] sm:w-full xs:w-full md:w-full h-[400px] float-left bg-white rounded-[10px] px-[20px] mb-[20px]">
-            <Header title={props.title} />
-            <div className='w-full float-left h-[calc(400px - 80px)]'>
+            <Header title={props.title} rightTitle={props.rightTitle}/>
+            <div className='w-full float-left h-[280px]'>
                 <div style={{
                     borderBottom: 'solid 1px #eee'
                 }}
@@ -52,6 +53,7 @@ function body(props) {
                 }
 
             </div>
+            <Footer title={props.footerTitle}/>
         </div>
     );
 }
