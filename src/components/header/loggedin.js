@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Logo from './logo';
 import Link from 'next/link';
 import { SvgIcon } from '@mui/material';
-import { LightMode, MenuOutlined, Search } from '@mui/icons-material';
+import { DarkMode, LightMode, MenuOutlined, Search } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import useColorMode from '@/hooks/useColorMode';
 import String from '@/utils/String'
@@ -17,6 +17,9 @@ function loggedin(props) {
     const [colorMode, setColorMode] = useColorMode();
     return (
         <div
+            style={{
+                borderBottom: 'solid 1px #eee'
+            }}
             className='z-50 float-left w-full h-[80px] fixed bg-white dark:bg-black'
         >
             <div className='lg:block xl:block 2xl:block sm:hidden md:hidden xs:hidden'>
@@ -44,7 +47,7 @@ function loggedin(props) {
                             />
                         </div>
                         <SvgIcon
-                            component={LightMode}
+                            component={colorMode == 'light' ? DarkMode: LightMode}
                             onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}
                             className='cursor-pointer float-left'
                         />
