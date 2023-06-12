@@ -26,8 +26,8 @@ function sidebar(props) {
                 ))
             }
             <div className='absolute bottom-[100px] left-0 flex items-center content-center h-[50px] justify-center w-full'>
-                <SvgIcon component={HandshakeRounded}/>
-                <SvgIcon component={SecurityOutlined} className='ml-[10px]'/>
+                <SvgIcon component={HandshakeRounded} className='cursor-pointer'/>
+                <SvgIcon component={SecurityOutlined} className='ml-[10px] cursor-pointer'/>
             </div>
         </div>
     );
