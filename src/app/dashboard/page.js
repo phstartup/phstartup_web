@@ -3,6 +3,17 @@ import Header from '@/components/header/loggedin'
 import Sidebar from '@/components/sidebar/sidebar'
 import LineChart from '@/components/charts/line'
 import TableChart from '@/components/charts/table'
+const data = [{
+    title: 'Manila',
+    value: 500,
+    percentage: '60%',
+    color: 'bg-blue-600'
+}, {
+    title: 'Cebu',
+    value: 40,
+    percentage: '40%',
+    color: 'bg-red-600'
+}]
 function page(props) {
     return (
         <div className='float-left w-full min-h-full bg-white dark:bg-black text-black dark:text-white'>
@@ -15,11 +26,11 @@ function page(props) {
                     className='lg:w-[85%] min-h-[100vh] 2xl:w-[85%] sm:w-full xs:w-full md:w-full float-left p-[20px] mt-[80px] lg:ml-[15%] 2xl:ml-[15%]'>
                     <div className='w-full float-left lg:flex 2xl:flex justify-between'>
                         <LineChart />
-                        <TableChart title="Startup 2023"/>
+                        <TableChart title="Startup 2023" data={data} header={['Location', 'Total', 'Percentage']}/>
                     </div>
                     <div className='w-full float-left lg:flex 2xl:flex justify-between'>
-                        <TableChart title="Investors 2023"/>
-                        <TableChart title="Initiatives 2023"/>
+                        <TableChart title="Investors 2023" data={data} header={['Location', 'Total', 'Percentage']}/>
+                        <TableChart title="Initiatives 2023" data={data} header={['Location', 'Total', 'Percentage']}/>
                     </div>
                 </div>
             </div>
