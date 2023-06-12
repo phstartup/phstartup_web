@@ -33,7 +33,7 @@ export default{
     {
         title: 'My Company',
         icon: House,
-        route: 'my_business'
+        route: 'mycompany'
     },
     {
         title: 'Events',
