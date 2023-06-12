@@ -17,10 +17,7 @@ function loggedin(props) {
     const [colorMode, setColorMode] = useColorMode();
     return (
         <div
-            style={{
-                borderBottom: 'solid 1px #eee'
-            }}
-            className='z-50 float-left w-full h-[80px] fixed bg-white dark:bg-black'
+            className='z-50 float-left w-full h-[80px] fixed bg-white dark:bg-gray-800'
         >
             <div className='lg:block xl:block 2xl:block sm:hidden md:hidden xs:hidden'>
                 <div

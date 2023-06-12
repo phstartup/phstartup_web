@@ -16,9 +16,9 @@ const data = [{
 }]
 function page(props) {
     return (
-        <div className='float-left w-full min-h-full bg-white dark:bg-black text-black dark:text-white'>
+        <div className='float-left w-full min-h-full bg-white dark:bg-gray-900 text-black dark:text-white'>
             <Header />
-            <div className='w-full min-h-[100vh] bg-gray-100 float-left relative'>
+            <div className='w-full min-h-[100vh] bg-gray-100 dark:bg-gray-900 float-left relative'>
                 <div className='lg:block 2xl:block sm:hidden xs:hidden md:hidden w-[15%] min-h-[100vh] fixed float-left'>
                     <Sidebar />
                 </div>
