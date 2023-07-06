@@ -18,7 +18,7 @@ function page(props) {
 	return (
 		<div className='w-full h-[100vh] float-left'>
 			{/* <Header /> */}
-			<div className='bg-black dark:bg-white h-[100vh] float-left text-black dark:text-white lg:w-1/4 2xl:w-[1/4] sm:w-full md:w-full xs:w-full'>
+			<div className='bg-black dark:bg-white h-[100vh] float-left text-white dark:text-black lg:w-1/4 2xl:w-[1/4] sm:w-full md:w-full xs:w-full'>
 				<section className='mt-[250px] text-center lg:px-[20px] 2xl:px-[20px] sm:px-[50px] xs:px-[50px] md:px-[50px]'>
 					<p className='text-lg text-black dark:text-white font-bold'>
 						Login
@@ -32,7 +32,7 @@ function page(props) {
 					</span>
 					<Button
 						title="Register"
-						style={" bg-black dark:bg-white text-white dark:text-black "}
+						style={" bg-white dark:bg-black text-black dark:text-white "}
 						onClick={() => {
 							console.log('[asdfasdfasdf]')
 							router.push('/register')
