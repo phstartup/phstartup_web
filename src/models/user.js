@@ -2,7 +2,7 @@ const { PrismaClient, Prisma } = require('@prisma/client')
 export default class User {
     async registerAccountOnly(user) {
         const prisma = new PrismaClient();
-        const isExist = await prisma.user.findFirst({
+        const isExist = await prisma.users.findFirst({
             where: {
                 OR: [
                     {
@@ -18,7 +18,7 @@ export default class User {
             return 'Already used.'
         }
 
-        let data = Prisma.userCreateInput
+        let data = Prisma.usersCreateInput
         data = {
             username: user.username,
             code: user.username,
@@ -46,7 +46,7 @@ export default class User {
 
         const prisma = new PrismaClient();
 
-        let data = Prisma.userCreateInput
+        let data = Prisma.usersCreateInput
         data = {
             username: user.email,
             code: user.email,
@@ -59,7 +59,7 @@ export default class User {
             updated_at: new Date()
         }
         try {
-            let accountCreated = await prisma.user.create({
+            let accountCreated = await prisma.users.create({
                 data: data
             });
 
@@ -67,14 +67,14 @@ export default class User {
                 // Create Information
                 let iData = Prisma.user_informationsCreateInput
                 iData = {
-                    account_id: accountCreated.id,
+                    user_id: accountCreated.id,
                     first_name: profile.given_name ? profile.given_name : '',
                     last_name: profile.family_name ? profile.family_name : '',
                     profile: profile.picture,
                     created_at: new Date(),
                     updated_at: new Date()
                 }
-                await prisma.account_information.create({
+                await prisma.user_informations.create({
                     data: iData
                 })
 
@@ -96,7 +96,7 @@ export default class User {
     async auth(user, account, profile) {
         const prisma = new PrismaClient();
 
-        const isExist = await prisma.user.findUnique({
+        const isExist = await prisma.users.findUnique({
             where: {
                 email: user.email
             }

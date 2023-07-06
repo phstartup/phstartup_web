@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 function GoogleBtn(props) {
     return (
-        <div className={Style.btn + ' ' + props.style}>
+        <div className={Style.btn + ' border border-gray-100 dark:bg-gray-900 ' + props.style}>
             <Image 
                 src={GoogleIcon}
                 height={20}

@@ -1,71 +1,151 @@
 "use client"
-import React from 'react';
+import React, {useState} from 'react';
 import TextField from '@/components/form/text'
 import Button from '@/components/buttons/btnRounded'
 import { useRouter } from 'next/navigation';
-import Header from '@/components/header/blackwhite'
-import Footer from '@/components/footer'
+import String from '@/utils/String'
+import Right from '@/components/auth/Right';
+import Social from '@/components/auth/Social';
+import Api from '@/lib/api';
 
 function page(props) {
-    const router = useRouter();
-    return (
-        <div className='bg-white dark:bg-black w-full h-[100vh] float-left'>
+	const router = useRouter();
+	const [username, setUsername] = useState(null)
+	const [errorUsername, setErrorUsername] = useState(null)
+	const [email, setEmail] = useState(null)
+	const [errorEmail, setErrorEmail] = useState(null)
+	const [password, setPassword] = useState(null)
+	const [errorPassword, setErrorPassword] = useState(null)
+	const [cpassword, setCPassword] = useState(null)
+	const [errorcPassword, setErrorCPassword] = useState(null)
+	const [loading, setLoading] = useState(false)
 
-            <Header />
-            <div className='bg-black dark:bg-white h-[100vh] float-left text-white dark:text-black lg:w-1/4 2xl:w-1/4  sm:w-full md:w-full xs:w-full'>
-                <section className='mt-[250px] text-center lg:px-[20px] 2xl:px-[20px] sm:px-[50px] xs:px-[50px] md:px-[50px]'>
-                    <p className='text-lg text-white dark:text-black mb-[50px]'>
-                        Register
-                    </p>
-                    <TextField
-                        type="text"
-                        placeholder="Email Address"
-                    />
+	const validate = () => {
+		submit()
+	}
 
-                    <TextField
-                        type="password"
-                        placeholder="Password"
-                    />
+	const submit = async () => {
+		let api = new Api()
+		let data = {
+			username,
+			email,
+			password
+		}
+		await api.post('/api/register', data, (response) => {
+			console.log({
+				response
+			})
+		}, (error) => {
+			console.log({
+				error
+			})
+		})
+	}
+	return (
+		<div className='w-full h-[100vh] float-left'>
+			{/* <Header /> */}
+			<div className='bg-white dark:bg-black h-[100vh] float-left text-black dark:text-white lg:w-1/4 2xl:w-[20%] sm:w-full md:w-full xs:w-full'>
+				<section className='mt-[100px] text-center lg:px-[20px] 2xl:px-[20px] sm:px-[50px] xs:px-[50px] md:px-[50px]'>
+					<p className='text-lg text-black dark:text-white font-bold'>
+						Register
+					</p>
 
-                    <TextField
-                        type="password"
-                        placeholder="Confirm Password"
-                    />
+					<Social label="Signup" type="signup" />
 
-                    <Button
-                        title="Register"
-                        onClick={() => {
-                            //
-                        }}
-                    />
+					<span className='w-full font-bold text-lg float-left mb-[20px]'>
+						Or
+					</span>
+					<TextField
+						type="text"
+						placeholder="Username"
+						value={username}
+						onChange={(username, errorUsername) => {
+							setUsername(username)
+							setErrorUsername(errorUsername)
+						}}
+						validation={{
+							type: 'text_without_space',
+							size: 2,
+							column: 'Username',
+							error: errorUsername
+						}}
+					/>
 
-                    <span className='w-full h-[50px] float-left mt-[50px]'>
-                        Have an account?
-                        <span
-                            onClick={() => {
-                                router.push('/login')
-                            }}
-                            className='font-bold cursor-pointer px-2'>Login</span>
-                    </span>
-                </section>
-            </div>
-            <div className='bg-white dark:bg-black h-[100vh] float-left text-black dark:text-white lg:w-3/4 2xl:w-3/4 sm:w-full md:w-full xs:w-full'>
-                <div className='flex items-center content-center h-[100vh] w-full px-[50px]'>
-                    <section>
-                        <p className='text-6xl text-black dark:text-white font-bold w-full float-left'>Let's Build the Startup Ecosystem in the Philippines</p>
-                        <ul className='text-2xl text-black dark:text-white w-full float-left mt-[50px]'>
-                            <li className='float-left w-full'>Share your Deck and build your profile </li>
-                            <li className='float-left w-full'>Grow your network easily</li>
-                            <li className='float-left w-full'>Find a match</li>
-                            <li className='float-left w-full'>Join events</li>
-                        </ul>
-                    </section>
-                </div>
-            </div>
+					<TextField
+						type="email"
+						placeholder="Email Address"
+						value={email}
+						onChange={(email, errorEmail) => {
+							setEmail(email)
+							setErrorEmail(errorEmail)
+						}}
+						validation={{
+							type: 'text_without_space',
+							size: 2,
+							column: 'Email',
+							error: errorEmail
+						}}
+					/>
 
-            <Footer />
-        </div>
-    );
+					<TextField
+						type="password"
+						placeholder="Password"
+						value={password}
+						onChange={(password, errorPassword) => {
+							setPassword(password)
+							setErrorPassword(errorPassword)
+						}}
+						validation={{
+							type: 'text_without_space',
+							column: 'Password',
+							size: 6,
+							error: errorPassword
+						}}
+					/>
+
+					<TextField
+						type="password"
+						placeholder="Confirm Password"
+						value={cpassword}
+						onChange={(cpassword, errorcPassword) => {
+							setCPassword(cpassword)
+							setErrorCPassword(errorcPassword)
+						}}
+						validation={{
+							type: 'text_without_space',
+							column: 'Confirm Password',
+							size: 6,
+							error: errorcPassword
+						}}
+					/>
+
+					<Button
+						title="Create Account"
+						style={" bg-green-400 text-white"}
+						onClick={() => {
+							validate()
+						}}
+					/>
+
+					<span className='w-full h-[50px] float-left mt-[20px]'>
+						Already have an account?
+
+					</span>
+					<Button
+						title="Login"
+						style={" bg-black text-white"}
+						onClick={() => {
+							router.push('/login')
+						}}
+					/>
+				</section>
+			</div>
+			<Right
+				title="Open & Free Startup Community"
+				list={["Share your Pitch Deck", "Grow your network", "Validate your ideas", "and more"]}
+			/>
+		</div>
+	);
 }
 
 export default page;
