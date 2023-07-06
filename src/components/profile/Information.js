@@ -23,7 +23,7 @@ function Information(props) {
                     src={session?.user?.image}
                     width={200}
                     height={200}
-                    className='rounded-[100px] cursor-pointer border-2 border-green-500 dark:border-green-500'
+                    className='rounded-[100px] cursor-pointer border-2 bg-black dark:bg-white'
                     alt={session?.user?.name}
                 />
             </div>

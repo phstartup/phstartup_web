@@ -22,7 +22,7 @@ function MFA(props) {
 
                 <span className='float-left'>
                     <Button
-                        style={' bg-green-400 text-white'}
+                        style={' bg-black dark:bg-white text-white dark:text-gray-900'}
                         title="Add"
                         onPress={() => {
                         }}
