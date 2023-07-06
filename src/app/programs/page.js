@@ -55,18 +55,19 @@ function page(props) {
                     programs && programs.map((item, index) => (
                         <div
                             key={index}
-                            className='lg:w-[24%] xl:w-[24%] 2xl:w-[24%] md:w-[49%] sm:w-[100%] xs:w-[100%] lg:ml-[1%] 2xl:ml-[1%] xl:ml-[1%] md:ml-[1%] float-left h-[350px] border border-gray-200 dark:border-gray-700 hover:cursor-pointer hover:border hover:border-black mb-[20px]'>
+                            className='lg:w-[24%] rounded-2xl xl:w-[24%] 2xl:w-[24%] md:w-[49%] sm:w-[100%] xs:w-[100%] lg:ml-[1%] 2xl:ml-[1%] xl:ml-[1%] md:ml-[1%] float-left h-[350px] border border-gray-200 dark:border-gray-700 hover:cursor-pointer hover:border hover:border-black mb-[20px]'>
 
                             <div className='w-full h-[250px] float-left overflow-hidden'>
                                 <Image
                                     src={item.image}
                                     height={'100%'}
                                     width={'100%'}
+                                    className='rounded-2xl'
                                     alt={item.title}
                                 />
                             </div>
 
-                            <div className='w-full h-[100px] bg-white dark:bg-gray-800 float-left p-[20px] text-justify'>
+                            <div className='rounded-b-2xl w-full h-[100px] bg-white dark:bg-gray-800 float-left p-[20px] text-justify'>
                                 <span className='text-sm font-bold w-full float-left'>
                                     {
                                         item.title
