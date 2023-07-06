@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import useColorMode from '@/hooks/useColorMode';
 import String from '@/utils/String'
 import Profile from '@/assets/profile.png'
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 
 const menu = String.loggedInMenu
 function loggedin(props) {
@@ -108,8 +108,13 @@ function loggedin(props) {
                                     <div
                                         className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px] text-sm'
                                         onClick={() => {
-                                            router.push('/' + item.toLowerCase())
-                                            setToggle(!toggle)
+                                            signOut({
+                                                callbackUrl: `${window.location.origin}`
+                                            })
+                                            setTimeout(() => {
+                                                setToggle(!toggle)
+                                            })
+                                            
                                         }}
                                     >
                                         {
