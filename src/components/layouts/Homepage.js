@@ -47,7 +47,7 @@ function Homepage({ children }) {
                     (!loading && session) && (
                         <div className='w-full float-left'>
                             <Header />
-                            <div className='w-full min-h-[100vh] bg-gray-100 dark:bg-black float-left relative'>
+                            <div className='w-full min-h-[100vh] bg-gray-100 dark:bg-gray-900 float-left relative'>
                                 <div className='lg:block 2xl:block sm:hidden xs:hidden md:hidden w-[15%] min-h-[100vh] fixed float-left'>
                                     <Sidebar />
                                 </div>

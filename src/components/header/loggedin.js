@@ -21,7 +21,7 @@ function loggedin(props) {
         return (
             <div
                 onClick={() => {
-                    router.push('/profile')
+                    router.push('/settings')
                 }}
                 className='h-[30px] w-[30px] mr-[10px] float-left'>
                 <img
@@ -36,7 +36,7 @@ function loggedin(props) {
     }
     return (
         <div
-            className='z-50 float-left w-full h-[80px] fixed bg-white dark:bg-black border-b-[1px] border-b-gray-200  dark:border-b-gray-700'
+            className='z-50 float-left w-full h-[80px] fixed bg-white dark:bg-gray-800 border-b-[1px] border-b-gray-200  dark:border-b-gray-700'
         >
             <div className='lg:block xl:block 2xl:block sm:hidden md:hidden xs:hidden'>
                 <div

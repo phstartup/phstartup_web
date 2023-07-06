@@ -84,7 +84,7 @@ function page(props) {
 					</span>
 					<Button
 						title="Register"
-						style={" dark:bg-white bg-black text-white dark:text-gray-900"}
+						style={" bg-black dark:bg-white text-white dark:text-black "}
 						onClick={() => {
 							console.log('[asdfasdfasdf]')
 							router.push('/register')

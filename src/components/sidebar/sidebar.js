@@ -13,7 +13,7 @@ function Sidebar(props) {
     const router = useRouter()
     return (
         <div
-            className={`w-full float-left min-h-[100vh] mt-[80px] relative bg-white dark:bg-black border-r-[1px] border-r-gray-200 dark:border-r-gray-700`}>
+            className={`w-full float-left min-h-[100vh] mt-[80px] relative bg-white dark:bg-gray-800 border-r-[1px] border-r-gray-200 dark:border-r-gray-700`}>
             {
                 menu && menu.map((item, index) => (
                     <div

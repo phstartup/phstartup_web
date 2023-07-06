@@ -6,7 +6,7 @@ function btnRounded(props) {
 			onClick={() => {
 				props.onClick()
 			}}
-			className={'text-white w-full h-[50px] cursor-pointer content-center items-center float-left flex rounded-[25px] dark:text-white justify-center hover:cursor-pointer hover:font-bold ' + props.style}
+			className={'w-full h-[50px] cursor-pointer content-center items-center float-left flex rounded-[25px] justify-center hover:cursor-pointer hover:font-bold ' + props.style}
 		>
 			{
 				props.title
