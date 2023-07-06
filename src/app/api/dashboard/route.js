@@ -1,13 +1,13 @@
 export async function GET(request) {
     const data = [
       {
-        title: "Bag",
+        title: "Manila",
         value: 500,
         percentage: "80%",
         color: "bg-green-200",
       },
       {
-        title: "Shoes",
+        title: "Cebu",
         value: 40,
         percentage: "90%",
         color: "bg-red-100",

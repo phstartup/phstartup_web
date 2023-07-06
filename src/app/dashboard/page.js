@@ -40,17 +40,17 @@ function page(props) {
         !loading && (
           <div className="w-full float-left lg:flex 2xl:flex justify-between">
             <TableChart
-              title="Orders"
+              title="Total Startups"
               data={fData}
-              header={["Product", "Total", "Percentage"]}
+              header={["Province", "Total", "Percentage"]}
               rightTitle={100}
               footerTitle="View Report"
             />
 
             <TableChart
-              title="Sales"
+              title="Funding"
               data={fData}
-              header={["Product", "Total", "Percentage"]}
+              header={["Province", "Total", "Percentage"]}
               rightTitle={100}
               footerTitle="View Report"
             />
