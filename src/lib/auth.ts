@@ -4,6 +4,7 @@ import FacebookProvider from "next-auth/providers/facebook"
 import GithubProvider from "next-auth/providers/github"
 import { PrismaClient, Prisma } from "@prisma/client"
 import User from "../models/user"
+// import { useSession } from "next-auth/react"
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -29,6 +30,10 @@ export const authOptions: NextAuthOptions = {
       let newUser = new User();
       let result = await newUser.auth(user, account, profile)
       if(result){
+        // const { update: sessionUpdate } = useSession()
+        // sessionUpdate({
+        //   data: result
+        // })
         return true
       }else{
         return false

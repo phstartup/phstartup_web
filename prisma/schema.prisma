@@ -38,3 +38,21 @@ model user_informations{
   updated_at DateTime
   deleted_at DateTime?
 }
+
+
+model companies{
+  id BigInt @id @default(autoincrement())
+  user_id BigInt
+  name String
+  industries String
+  address String
+  website String
+  email_address String ?
+  contact_number String ?
+  apps String?
+  employees String?
+  status String @default("not_verified")
+  created_at DateTime
+  updated_at DateTime
+  deleted_at DateTime?
+}

@@ -47,7 +47,7 @@ const programs = [{
 }]
 function page(props) {
     return (
-        <div className='w-full float-left'>
+        <div className='w-full float-left mt-[50px]'>
             <Breadcrumbs title="Accelerator Programs" />
 
             <div className='w-full float-left mt-[20px]'>

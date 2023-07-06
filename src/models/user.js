@@ -104,11 +104,10 @@ export default class User {
 
         if (!isExist) {
             // register here
-            let result = await this.register(user, account, profile)
-            return result ? true : false
+            return await this.register(user, account, profile)
         } else {
             // update token
-            return true
+            return isExist
         }
     }
 }

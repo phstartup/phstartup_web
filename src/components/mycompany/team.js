@@ -45,7 +45,7 @@ function Team(props) {
         <div className={Style.cardContainer}>
             <div className='flex w-full items-center content-center justify-between'>
 
-                <span className='text-lg font-bold'>Team</span>
+                <span className='text-lg font-bold'>Founders / Executives</span>
                 <span>
                     <Button
                         style={' bg-black dark:bg-white text-white dark:text-gray-900'}

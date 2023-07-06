@@ -5,6 +5,9 @@ import Profile from '@/assets/profile.png'
 import Sample from '@/assets/sample.png'
 import Image from 'next/image';
 import Button from '@/components/buttons/btn'
+import Filter from '@/components/form/Filter';
+import TextInput from '@/components/form/text'
+
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { SvgIcon } from '@mui/material';
 
@@ -49,9 +52,17 @@ const programs = [{
     description: 'Learn and be mentored from successful startup founders',
     image: Sample
 }]
+
+
+const availableStatuses = ['Manila', 'Cebu', 'Davao'];
 function page(props) {
 
-    const renderPagination= () => {
+
+    const handleFilter = (status) => {
+        setFilter(status)
+    }
+
+    const renderPagination = () => {
         return (
             <div
                 className="float-right mt-[20px]"
@@ -73,10 +84,30 @@ function page(props) {
             </div>
         )
     }
+
+    const renderFilter = () => {
+        return (
+            <div className='w-full float-left lg:flex xl:flex 2xl:flex justify-between mt-[20px]'>
+                <div className='lg:w-[40%] xl:w-[40%] 2xl:w-[40%]'>
+                    <TextInput
+                        type="text"
+                        placeholder="Search"
+                    />
+                </div>
+                <Filter availableStatuses={availableStatuses} onFilter={handleFilter} />
+            </div>
+        )
+    }
     return (
-        <div className='w-full float-left'>
+        <div className='w-full float-left mt-[50px]'>
             <Breadcrumbs title="Startup Events" />
 
+
+            <div className='w-full float-left mt-[20px]'>
+                {
+                    renderFilter()
+                }
+            </div>
             <div className='w-full float-left mt-[20px]'>
                 {
                     programs && programs.map((item, index) => (
