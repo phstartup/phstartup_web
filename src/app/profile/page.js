@@ -9,11 +9,8 @@ import Footer from '@/components/footer'
 function page(props) {
     return (
         <div
-            className='w-full float-left bg-white dark:bg-black text-black dark:text-black'
+            className='w-full float-left'
         >
-
-            <Header />
-            <Featured />
             <div
                 className='float-left'
             >

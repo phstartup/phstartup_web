@@ -28,7 +28,7 @@ function loggedin(props) {
                     src={session?.user?.image}
                     width={30}
                     height={30}
-                    className='rounded-[15px] cursor-pointer border-2 border-green-500 dark:border-green-500'
+                    className='rounded-[15px] cursor-pointer border-2 border-black dark:border-white'
                     alt={session?.user?.name}
                 />
             </div>
@@ -36,7 +36,7 @@ function loggedin(props) {
     }
     return (
         <div
-            className='z-50 float-left w-full h-[80px] fixed bg-white dark:bg-gray-800 border-b-[1px] border-b-gray-200  dark:border-b-gray-700'
+            className='z-50 float-left w-full h-[80px] fixed bg-white dark:bg-black border-b-[1px] border-b-gray-200  dark:border-b-gray-700'
         >
             <div className='lg:block xl:block 2xl:block sm:hidden md:hidden xs:hidden'>
                 <div
