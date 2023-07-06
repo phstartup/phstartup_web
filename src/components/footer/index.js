@@ -1,18 +1,23 @@
+"use client"
 import React from 'react';
+import Logo from '@/components/header/logo'
+import String from '@/utils/String'
+import { SvgIcon } from '@mui/material';
+import { Facebook, Instagram, LinkedIn, Twitter, YouTube } from '@mui/icons-material';
+import { useRouter } from 'next/navigation';
+import Style from '@/utils/Style';
 
-function index(props) {
+useRouter
+
+const cards = 'lg:w-1/3 2x:w-1/3 xl:w-1/3 md:w-full sm:w-full xs:w-full float-left'
+function Index(props) {
+    const router = useRouter();
     return (
         <div
-            className='bg-white dark:bg-black text-black dark:text-white h-[100px] flex content-center items-center float-left px-[100px] pr-[100px] justify-between w-full'
+            className={'float-left min-h-[500px] overflow-hidden bg-white dark:bg-purple text-gray-700 dark:text-white w-full pb-[50px] ' + Style.padding}
         >
-            <span>
-                A non-profit organization.
-            </span>
-            <span className='cursor-pointer hover:font-bold' >
-               Be A Contributor
-            </span>
         </div>
     );
 }
 
-export default index;
+export default Index;

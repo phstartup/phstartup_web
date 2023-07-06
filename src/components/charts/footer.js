@@ -6,7 +6,7 @@ import React from 'react';
 function footer(props) {
     return (
         <div className='w-full float-left h-[60px] items-center content-center'>
-            <span className='float-right cursor-pointer text-blue-600'>
+            <span className='float-right cursor-pointer text-green-400'>
                 <span className='text-xs font-bold'>
                     {props.title}
                 </span>

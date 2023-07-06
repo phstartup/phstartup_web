@@ -5,7 +5,9 @@ import Footer from './footer'
 function body(props) {
     return (
         <div
-            class="mx-auto lg:w-[49%] 2xl:w-[49%] sm:w-full xs:w-full md:w-full h-[400px] float-left bg-white dark:bg-gray-800 rounded-[10px] px-[20px] mb-[20px] border-1 border-b-gray-200 dark:border-gray-600">
+    className="
+        mx-auto
+        lg:w-[49%] 2xl:w-[49%] sm:w-full xs:w-full md:w-full h-[400px] float-left bg-white dark:bg-gray-800 rounded-[10px] px-[20px] mb-[20px] border-1 border-b-gray-200 dark:border-gray-600 lg:px-[20px] sm:px-[10px]">
             <Header title={props.title} rightTitle={props.rightTitle}/>
             <div className='w-full float-left h-[280px]'>
                 <div
@@ -34,9 +36,9 @@ function body(props) {
                                     item.value
                                 }
                             </span>
-                            <div class="w-[60px]">
-                                <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                                    <div class={"text-[6px] font-medium text-blue-100 text-center p-0.5 leading-none rounded-full " + item.color} style={{
+                            <div className="w-[60px]">
+                                <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+                                    <div className={"text-[6px] font-medium text-green-500 text-center p-0.5 leading-none rounded-full " + item.color} style={{
                                         width: item.percentage
                                     }}>{item.percentage}</div>
                                 </div>
