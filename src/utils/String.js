@@ -36,7 +36,7 @@ export default {
             route: 'mycompany'
         },
         {
-            title: 'Accelerator Programs',
+            title: 'Programs',
             icon: Rocket,
             route: 'programs'
         },
