@@ -1,5 +1,5 @@
 "use client"
-import { CalendarMonth, CasesOutlined, Dashboard, House, Person, Person2Outlined, PieChart } from '@mui/icons-material';
+import { CalendarMonth, CasesOutlined, Dashboard, House, Person, Person2Outlined, PieChart, Rocket } from '@mui/icons-material';
 export default{
     app_name: 'phstartup.org',
     api_url: 'test',
@@ -36,7 +36,12 @@ export default{
         route: 'mycompany'
     },
     {
-        title: 'Events',
+        title: 'Accelerator Programs',
+        icon: Rocket,
+        route: 'programs'
+    },
+    {
+        title: 'Startup Events',
         icon: CalendarMonth,
         route: 'events'
     },
