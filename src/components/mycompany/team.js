@@ -44,14 +44,25 @@ function Team(props) {
     return (
         <div className={Style.cardContainer}>
             <div className='flex w-full items-center content-center justify-between'>
+
                 <span className='text-lg font-bold'>Team</span>
-                <Button
-                    style={' bg-black dark:bg-white text-white dark:text-gray-900'}
-                    title="Add"
-                    onPress={() => {
-                        setCreateFlag(true)
-                    }}
-                />
+                <span>
+                    <Button
+                        style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                        title="Add"
+                        onPress={() => {
+                            setCreateFlag(true)
+                        }}
+                    />
+
+                    <Button
+                        style={' bg-gray-400 dark:bg-gray-900 text-white dark:text-white ml-[10px]'}
+                        title="Invite"
+                        onPress={() => {
+                            setCreateFlag(true)
+                        }}
+                    />
+                </span>
             </div>
 
             <div className='w-full float-left text-sm mt-[20px]'>
