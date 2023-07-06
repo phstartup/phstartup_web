@@ -6,7 +6,7 @@ import Modal from '@/components/modal/index'
 import TextInput from '@/components/form/text';
 import TextArea from '@/components/form/textarea'
 
-function Milestones(props) {
+function Team(props) {
     const [createFlag, setCreateFlag] = useState(false)
 
     const renderContent = () => {
@@ -29,7 +29,7 @@ function Milestones(props) {
                 </div>
 
                 <div className='w-full float-left text-sm mt-[20px]'>
-                    <h1 className='text-sm mb-[20px]'>Tags</h1>
+                    <h1 className='text-sm mb-[20px]'>Video Link(Optional)</h1>
                     <TextInput
                         type="text"
                         placeholder="tags"
@@ -44,7 +44,7 @@ function Milestones(props) {
     return (
         <div className={Style.cardContainer}>
             <div className='flex w-full items-center content-center justify-between'>
-                <span className='text-lg font-bold'>Achievements</span>
+                <span className='text-lg font-bold'>Team</span>
                 <Button
                     style={' bg-black dark:bg-white text-white dark:text-gray-900'}
                     title="Add"
@@ -60,7 +60,7 @@ function Milestones(props) {
             {
                 createFlag && (
                     <Modal
-                        title="Add Achievement"
+                        title="Add A Team Member"
                         onClose={() => {
                             setCreateFlag(!createFlag)
                         }}
@@ -92,4 +92,4 @@ function Milestones(props) {
     );
 }
 
-export default Milestones;
+export default Team;
