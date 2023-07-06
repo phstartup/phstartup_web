@@ -27,7 +27,7 @@ function Information(props) {
                         placeholder="Startup Name"
                     />
                 </div>
-                <div className='w-full float-left text-sm mt-[20px]'>
+                <div className='w-full float-left text-sm'>
                     <h1 className='text-sm mb-[20px]'>Short description</h1>
                     <TextArea
                         type="text"

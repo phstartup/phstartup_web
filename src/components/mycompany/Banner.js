@@ -3,6 +3,7 @@ import React from 'react';
 import Style from '@/utils/Style';
 import Profile from '@/assets/profile.png'
 import Image from 'next/image';
+import Button from '@/components/buttons/btn'
 
 function Banner(props) {
 
@@ -27,8 +28,14 @@ function Banner(props) {
     return (
         <div className={Style.cardContainerWithoutPadding + " mb-[20px]"}>
             <div className='w-full float-left text-sm mt-[20px] min-h-[400px] overflow-hidden relative'>
-                <div className='w-full float-left h-[400px]'>
-
+                <div className='w-full float-left h-[400px] flex items-center content-center justify-center'>
+                    <Button
+                        style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                        title="Upload Banner"
+                        onPress={() => {
+                            //
+                        }}
+                    />
                 </div>
                 <div>
                     {
