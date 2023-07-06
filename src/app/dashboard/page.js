@@ -23,7 +23,7 @@ function page(props) {
         setTimeout(() => {
           setLoading(false)
         }, 1000)
-        
+
       })
     }
 
@@ -31,6 +31,28 @@ function page(props) {
   }, [])
 
   const { data: session } = useSession()
+
+  const renderData = () => {
+    return (
+      <div className="w-full float-left lg:flex 2xl:flex justify-between">
+        <TableChart
+          title="Total Startups"
+          data={fData}
+          header={["Province", "Total", "Percentage"]}
+          rightTitle={100}
+          footerTitle="View Report"
+        />
+
+        <TableChart
+          title="Funding"
+          data={fData}
+          header={["Province", "Total", "Percentage"]}
+          rightTitle={100}
+          footerTitle="View Report"
+        />
+      </div>
+    )
+  }
   return (
     <div className="w-full float-left">
       <div className="w-full float-left mb-[20px]">
@@ -38,22 +60,21 @@ function page(props) {
       </div>
       {
         !loading && (
-          <div className="w-full float-left lg:flex 2xl:flex justify-between">
-            <TableChart
-              title="Total Startups"
-              data={fData}
-              header={["Province", "Total", "Percentage"]}
-              rightTitle={100}
-              footerTitle="View Report"
-            />
+          <div className="w-full float-left mt-[50px]">
+            <div className="float-left w-full">
+              <h1 className="text-lg font-bold mb-[20px]">Your Startup Updates</h1>
+              {
+                renderData()
+              }
+            </div>
 
-            <TableChart
-              title="Funding"
-              data={fData}
-              header={["Province", "Total", "Percentage"]}
-              rightTitle={100}
-              footerTitle="View Report"
-            />
+            <div className="float-left w-full">
+              <h1 className="text-lg font-bold mb-[20px]">PH Startup Updates</h1>
+              {
+                renderData()
+              }
+            </div>
+
           </div>
         )
       }

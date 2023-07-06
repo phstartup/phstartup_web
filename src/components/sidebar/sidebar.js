@@ -4,7 +4,7 @@ import { SvgIcon } from '@mui/material';
 import { Tooltip, Button } from "@material-tailwind/react";
 import React from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { HandshakeRounded, Logout, SecurityOutlined, Settings } from '@mui/icons-material';
+import { HandshakeRounded, Logout, Person3, SecurityOutlined, Settings } from '@mui/icons-material';
 import Style from '@/utils/Style';
 import { signOut } from 'next-auth/react';
 const menu = String.loggedInMenu
@@ -30,6 +30,13 @@ function Sidebar(props) {
                 ))
             }
             <div className='absolute bottom-[100px] left-0 flex items-center content-center h-[50px] justify-center w-full'>
+                <Tooltip content="Application Contributors">
+                    <SvgIcon
+                        onClick={() => {
+                            router.push('/contributors')
+                        }}
+                        component={Person3} className='cursor-pointer' />
+                </Tooltip>
                 <Tooltip content="Terms & Conditions">
                     <SvgIcon
                         onClick={() => {
