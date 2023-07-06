@@ -1,12 +1,15 @@
 import React from 'react';
 import Breadcrumbs from '@/components/breadcrumbs/Simple'
+import SimpleComingSoon from '@/components/soon/Simple';
 function page(props) {
     return (
         <div className='w-full float-left'>
-            <Breadcrumbs title="Match"/>
 
             <div className='w-full float-left mt-[20px]'>
-               <h1 className='text-6xl'>Coming Soon!</h1>
+                <SimpleComingSoon 
+                    title="Find A Match"
+                    description="Allow a startup / founders to connect with the right investors, co-founders, accelerators and more"
+                />
             </div>
         </div>
     );
