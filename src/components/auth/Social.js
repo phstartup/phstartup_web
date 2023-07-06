@@ -16,20 +16,18 @@ function Social(props) {
                 }}
                 className='w-full float-left'>
                 <GoogleBtn
-                    style="bg-white dark:text-gray-700"
                     label={props.label + " as Google"}
                     />
             </div>
 
-            {/* <div
+            <div
                 onClick={() => {
                     handler('facebook')
                 }}
                 className='w-full float-left mt-[20px]'>
                 <FacebookBtn
-                    style="bg-white dark:text-gray-700"
                     label={props.label + " as Facebook"} />
-            </div> */}
+            </div>
         </div>
     );
 }

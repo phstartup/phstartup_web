@@ -18,65 +18,13 @@ function page(props) {
 	return (
 		<div className='w-full h-[100vh] float-left'>
 			{/* <Header /> */}
-			<div className='bg-white dark:bg-black h-[100vh] float-left text-black dark:text-white lg:w-1/4 2xl:w-[20%] sm:w-full md:w-full xs:w-full'>
-				<section className='mt-[150px] text-center lg:px-[20px] 2xl:px-[20px] sm:px-[50px] xs:px-[50px] md:px-[50px]'>
+			<div className='bg-black dark:bg-white h-[100vh] float-left text-black dark:text-white lg:w-1/4 2xl:w-[1/4] sm:w-full md:w-full xs:w-full'>
+				<section className='mt-[250px] text-center lg:px-[20px] 2xl:px-[20px] sm:px-[50px] xs:px-[50px] md:px-[50px]'>
 					<p className='text-lg text-black dark:text-white font-bold'>
 						Login
 					</p>
 
 					<Social label="Continue" type="signin"
-					/>
-
-					<span className='w-full font-bold text-lg float-left mb-[20px]'>
-						Or
-					</span>
-
-					<TextField
-						type="text"
-						placeholder="Username or Email Address"
-						value={username}
-						onChange={(username, errorUsername) => {
-							setUsername(username)
-							setErrorUsername(errorUsername)
-						}}
-						validation={{
-							type: 'text_without_space',
-							size: 2,
-							column: 'Username',
-							error: errorUsername
-						}}
-					/>
-
-					<TextField
-						type="password"
-						placeholder="********"
-						value={password}
-						onChange={(password, errorPassword) => {
-							setPassword(password)
-							setErrorPassword(errorPassword)
-						}}
-						validation={{
-							type: 'text_without_space',
-							column: 'Password',
-							size: 6,
-							error: errorPassword
-						}}
-					/>
-
-					<span
-						onClick={() => {
-							router.push('/forgetpassword')
-						}}
-						className='w-full h-[50px] float-left hover:font-bold cursor-pointer mt-[20px]'>
-						Forget your password?
-					</span>
-					<Button
-						title="Login"
-						style={" bg-green-400 text-white"}
-						onClick={() => {
-							console.log("hello")
-							localStorage.setItem('token', '123123131')
-						}}
 					/>
 
 					<span className='w-full h-[50px] float-left mt-[20px]'>

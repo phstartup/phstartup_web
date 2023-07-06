@@ -5,7 +5,7 @@ import Style from '@/utils/Style';
 
 function FacebookBtn(props) {
     return (
-        <div className={Style.btn + ' ' + props.style}>
+        <div className={Style.btn + ' border border-gray-100 dark:bg-white text-white dark:text-black'}>
             <SvgIcon
                 component={FacebookOutlined}
                 className='text-blue-800'

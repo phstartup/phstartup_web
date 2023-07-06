@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '@/components/header/loggedin'
 import NotLoggedInHeader from '@/components/header'
+import BlackAndWhiteHeader from '@/components/header/blackwhite'
 import Sidebar from '@/components/sidebar/sidebar'
 import { getSession, signIn, useSession } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
@@ -14,6 +15,11 @@ const protectedPages = [
     '/jobs',
     '/events',
     '/mycompany'
+]
+
+const loginRegiser = [
+    '/login',
+    '/register'
 ]
 
 function Homepage({ children }) {
@@ -62,9 +68,21 @@ function Homepage({ children }) {
                     )
                 }
                 {
-                    (!loading && !session) && (
+                    (!loading && !session && !loginRegiser.includes(pathname)) && (
                         <div className='w-full float-left bg-white dark:bg-black text-black dark:text-white min-h-[100px]'>
                             <NotLoggedInHeader />
+                            <div className='w-full float-left'>
+                                {
+                                    children
+                                }
+                            </div>
+                        </div>
+                    )
+                }
+                {
+                    (!loading && !session && loginRegiser.includes(pathname))  && (
+                        <div className='w-full float-left bg-white dark:bg-black text-black dark:text-white min-h-[100px]'>
+                            <BlackAndWhiteHeader />
                             <div className='w-full float-left'>
                                 {
                                     children
