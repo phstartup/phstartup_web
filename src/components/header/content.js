@@ -15,7 +15,7 @@ function content(props) {
     const [colorMode, setColorMode] = useColorMode();
     return (
         <div
-            className='bg-white dark:bg-purple-700 z-50 float-left w-full h-[100px] fixed text-black dark:text-white'
+            className='bg-white dark:bg-black z-50 float-left w-full h-[100px] fixed text-black dark:text-white'
         >
             <div className='lg:block xl:block 2xl:block sm:hidden md:hidden xs:hidden'>
                 <div

@@ -7,17 +7,36 @@ import { DarkMode, LightMode, MenuOutlined, Search } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import useColorMode from '@/hooks/useColorMode';
 import String from '@/utils/String'
-import Image from 'next/image'
 import Profile from '@/assets/profile.png'
+import { useSession } from 'next-auth/react';
 
 const menu = String.loggedInMenu
 function loggedin(props) {
     const [toggle, setToggle] = useState(false)
     const router = useRouter()
     const [colorMode, setColorMode] = useColorMode();
+    const { data: session } = useSession();
+
+    const renderProfile = () => {
+        return (
+            <div
+                onClick={() => {
+                    router.push('/profile')
+                }}
+                className='h-[30px] w-[30px] mr-[10px] float-left'>
+                <img
+                    src={session?.user?.image}
+                    width={30}
+                    height={30}
+                    className='rounded-[15px] cursor-pointer border-2 border-green-500 dark:border-green-500'
+                    alt={session?.user?.name}
+                />
+            </div>
+        )
+    }
     return (
         <div
-            className='z-50 float-left w-full h-[80px] fixed bg-white dark:bg-gray-800'
+            className='z-50 float-left w-full h-[80px] fixed bg-white dark:bg-gray-800 border-b-[1px] border-b-gray-200  dark:border-b-gray-700'
         >
             <div className='lg:block xl:block 2xl:block sm:hidden md:hidden xs:hidden'>
                 <div
@@ -32,19 +51,13 @@ function loggedin(props) {
                     </div>
                     <div className='h-[80px] flex content-center items-center'>
                         <span className='href-link cursor-pointer px-[20px] pr-[20px] text-sm float-left font-bold'>
-                            Hi Kennette!
+                            Hi {session?.user.name}!
                         </span>
-                        <div className='h-[30px] w-[30px] mr-[10px] float-left'>
-                            <Image
-                                src={Profile}
-                                width={'30px'}
-                                height={'30px'}
-                                className='rounded-[15px]'
-                                alt='Sample Image'
-                            />
-                        </div>
+                        {
+                            renderProfile()
+                        }
                         <SvgIcon
-                            component={colorMode == 'light' ? DarkMode: LightMode}
+                            component={colorMode == 'light' ? DarkMode : LightMode}
                             onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}
                             className='cursor-pointer float-left'
                         />
@@ -53,18 +66,23 @@ function loggedin(props) {
             </div>
             <div className='sm:block md:block xs:block lg:hidden 2xl:hidden'>
                 <div
-                    className='w-full h-[80px] float-left content-center items-center flex href-link justify-between px-[20px] pr-[20px] '
+                    className='w-full h-[80px] float-left href-link px-[20px] pr-[20px] flex items-center content-center justify-between'
                 >
-                    <span>
+                    <div className='w-3/4'>
                         <Logo />
-                    </span>
-                    <SvgIcon
-                        component={MenuOutlined}
-                        className='cursor-pointer'
-                        onClick={() => {
-                            setToggle(!toggle)
-                        }}
-                    />
+                    </div>
+                    <div>
+                        {
+                            renderProfile()
+                        }
+                        <SvgIcon
+                            component={MenuOutlined}
+                            className='cursor-pointer'
+                            onClick={() => {
+                                setToggle(!toggle)
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
             {
@@ -73,8 +91,13 @@ function loggedin(props) {
                     >
                         {
                             menu && menu.map((item) => (
-                                <div className='w-full float-left h-[60px] flex items-center content-center hover:font-bold cursor-pointer'>
-                                    <SvgIcon component={item.icon} className='text-gray-500'/>
+                                <div
+                                    onClick={() => {
+                                        router.push('/' + item.route)
+                                        setToggle(!toggle)
+                                    }}
+                                    className='w-full float-left h-[60px] flex items-center content-center hover:font-bold cursor-pointer'>
+                                    <SvgIcon component={item.icon} className='text-gray-500' />
                                     <span className='text-sm ml-[10px]'>{item.title}</span>
                                 </div>
                             ))

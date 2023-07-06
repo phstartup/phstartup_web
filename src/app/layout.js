@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
     <html
     >
       <head>
-          <title>Fitin</title>
+          <title>phstartup.org</title>
       </head>
       <body className={inter.className}>
         <SessionProvider>

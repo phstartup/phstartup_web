@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import Featured from '@/components/featured'
 import Collections from '@/components/thumbnail/collectionSmall'
@@ -5,9 +6,6 @@ import String from '@/utils/String'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 
-export const metadata = {
-    title: String.app_name
-}
 
 export default function Page(props) {
     return (

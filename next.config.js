@@ -7,11 +7,6 @@ const nextConfig = {
         "@mui/icons-material": {
             transform: "@mui/icons-material/{{member}}"
         }
-    },
-    experimental: {
-        modern: true,
-        dynamicImports: true,
-        css: true
     }
 }
 

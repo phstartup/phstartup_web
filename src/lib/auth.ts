@@ -2,7 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import FacebookProvider from "next-auth/providers/facebook"
 import { PrismaClient, Prisma } from "@prisma/client"
-import Account from "../models/account"
+import User from "../models/user"
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -17,8 +17,8 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async signIn({ user, account, profile }) {
-      let newAccount = new Account();
-      let result = await newAccount.auth(user, account, profile)
+      let newUser = new User();
+      let result = await newUser.auth(user, account, profile)
       if(result){
         return true
       }else{

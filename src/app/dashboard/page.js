@@ -1,42 +1,85 @@
-import React from 'react';
-import Header from '@/components/header/loggedin'
-import Sidebar from '@/components/sidebar/sidebar'
-import LineChart from '@/components/charts/line'
-import TableChart from '@/components/charts/table'
-const data = [{
-    title: 'Manila',
-    value: 500,
-    percentage: '60%',
-    color: 'bg-blue-600'
-}, {
-    title: 'Cebu',
-    value: 40,
-    percentage: '40%',
-    color: 'bg-red-600'
-}]
+"use client";
+import React, { useEffect, useState } from "react";
+import TableChart from "@/components/charts/table";
+import Breadcrumbs from '@/components/breadcrumbs/Simple'
+import { useSession } from "next-auth/react";
+import Api from '@/lib/api';
+let api = new Api()
 function page(props) {
-    return (
-        <div className='float-left w-full min-h-full bg-white dark:bg-gray-900 text-black dark:text-white'>
-            <Header />
-            <div className='w-full min-h-[100vh] bg-gray-100 dark:bg-gray-900 float-left relative'>
-                <div className='lg:block 2xl:block sm:hidden xs:hidden md:hidden w-[15%] min-h-[100vh] fixed float-left'>
-                    <Sidebar />
-                </div>
-                <div
-                    className='lg:w-[85%] min-h-[100vh] 2xl:w-[85%] sm:w-full xs:w-full md:w-full float-left p-[20px] mt-[80px] lg:ml-[15%] 2xl:ml-[15%]'>
-                    <div className='w-full float-left lg:flex 2xl:flex justify-between'>
-                        <LineChart />
-                        <TableChart title="Startup 2023" data={data} header={['Location', 'Total', 'Percentage']} rightTitle={100} footerTitle="View Report"/>
-                    </div>
-                    <div className='w-full float-left lg:flex 2xl:flex justify-between'>
-                        <TableChart title="Investors 2023" data={data} header={['Location', 'Total', 'Percentage']} rightTitle={100} footerTitle="View Report"/>
-                        <TableChart title="Initiatives 2023" data={data} header={['Location', 'Total', 'Percentage']} rightTitle={100} footerTitle="View Report"/>
-                    </div>
-                </div>
-            </div>
+  const [fData, setFData] = useState([])
+  const [loading, setLoading] = useState(true)
 
-        </div>
-    );
+  useEffect(() => {
+    const getData = async () => {
+      await api.get('/api/dashboard', (response) => {
+        setFData(response)
+        setTimeout(() => {
+          setLoading(false)
+        }, 1000)
+      }, (error) => {
+        console.log({
+          error
+        })
+        setTimeout(() => {
+          setLoading(false)
+        }, 1000)
+        
+      })
+    }
+
+    getData()
+  }, [])
+
+  const { data: session } = useSession()
+  return (
+    <div className="w-full float-left">
+      <div className="w-full float-left mb-[20px]">
+        <Breadcrumbs title={'Hi ' + session?.user?.name + ', Good Day!'} />
+      </div>
+      {
+        !loading && (
+          <div className="w-full float-left lg:flex 2xl:flex justify-between">
+            <TableChart
+              title="Orders"
+              data={fData}
+              header={["Product", "Total", "Percentage"]}
+              rightTitle={100}
+              footerTitle="View Report"
+            />
+
+            <TableChart
+              title="Sales"
+              data={fData}
+              header={["Product", "Total", "Percentage"]}
+              rightTitle={100}
+              footerTitle="View Report"
+            />
+          </div>
+        )
+      }
+      {
+        loading && (
+          <div className="w-full float-left lg:flex 2xl:flex justify-between">
+            <div role="status" className="max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
+              <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2.5"></div>
+              <div className="w-48 h-2 mb-10 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+              <div className="flex items-baseline mt-4 space-x-6">
+                <div className="w-full bg-gray-200 rounded-t-lg h-72 dark:bg-gray-700"></div>
+                <div className="w-full h-56 bg-gray-200 rounded-t-lg dark:bg-gray-700"></div>
+                <div className="w-full bg-gray-200 rounded-t-lg h-72 dark:bg-gray-700"></div>
+                <div className="w-full h-64 bg-gray-200 rounded-t-lg dark:bg-gray-700"></div>
+                <div className="w-full bg-gray-200 rounded-t-lg h-80 dark:bg-gray-700"></div>
+                <div className="w-full bg-gray-200 rounded-t-lg h-72 dark:bg-gray-700"></div>
+                <div className="w-full bg-gray-200 rounded-t-lg h-80 dark:bg-gray-700"></div>
+              </div>
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        )
+      }
+
+    </div>
+  );
 }
 
 export default page;
