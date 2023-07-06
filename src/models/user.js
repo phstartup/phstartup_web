@@ -1,4 +1,6 @@
 const { PrismaClient, Prisma } = require('@prisma/client')
+import Helper from '@/lib/helper';
+let helper = new Helper()
 export default class User {
     async registerAccountOnly(user) {
         const prisma = new PrismaClient();
@@ -11,10 +13,10 @@ export default class User {
                     {
                         email: user.email
                     }
-                  ]
+                ]
             }
         })
-        if(isExist){
+        if (isExist) {
             return 'Already used.'
         }
 
@@ -108,6 +110,21 @@ export default class User {
         } else {
             // update token
             return isExist
+        }
+    }
+
+    async get(user) {
+        const prisma = new PrismaClient();
+        const isExist = await prisma.users.findUnique({
+            where: {
+                email: user.email
+            }
+        })
+        if (!isExist) {
+            return null
+        } else {
+            const userrWithoutPassword = helper.exclude(isExist, ['password', 'remember_token', 'id'])
+            return helper.stringify(userrWithoutPassword)
         }
     }
 }

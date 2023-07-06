@@ -30,10 +30,6 @@ export const authOptions: NextAuthOptions = {
       let newUser = new User();
       let result = await newUser.auth(user, account, profile)
       if(result){
-        // const { update: sessionUpdate } = useSession()
-        // sessionUpdate({
-        //   data: result
-        // })
         return true
       }else{
         return false
@@ -48,9 +44,18 @@ export const authOptions: NextAuthOptions = {
       // }
       return token;
     },
-    async session({ session, token, user }) {
+    async session({ session }) {
       // session.loggedUser = token.loggedUser;
       // return session;
+
+      let newUser = new User();
+      let result = await newUser.get(session.user)
+      if(result){
+        session.user = {
+          ...session.user,
+          ...JSON.parse(result)
+        }
+      }
       return session;
     },
   },

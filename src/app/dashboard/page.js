@@ -33,6 +33,10 @@ function page(props) {
 
   const { data: session } = useSession()
 
+  console.log({
+    dashboard: session
+  })
+
 
   const renderLoading = () => {
     return (
