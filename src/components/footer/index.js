@@ -14,7 +14,7 @@ function Index(props) {
     const router = useRouter();
     return (
         <div
-            className={'float-left min-h-[500px] overflow-hidden bg-white dark:bg-purple text-gray-700 dark:text-white w-full pb-[50px] ' + Style.padding}
+            className={'float-left min-h-[500px] overflow-hidden bg-white dark:bg-black text-gray-700 dark:text-white w-full pb-[50px] ' + Style.padding}
         >
         </div>
     );
