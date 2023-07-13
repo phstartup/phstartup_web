@@ -10,49 +10,48 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model users{
-  id BigInt @id @default(autoincrement())
-  code String @unique
-  username String @unique
-  email String @unique
-  password String?
-  account_type Int
-  email_verified_at DateTime ?
-  status String
-  remember_token String?
-  created_at DateTime
-  updated_at DateTime
-  deleted_at DateTime?
+model users {
+  id                BigInt    @id @default(autoincrement())
+  code              String    @unique
+  username          String    @unique
+  email             String    @unique
+  password          String?
+  account_type      Int
+  email_verified_at DateTime?
+  status            String
+  remember_token    String     @unique
+  created_at        DateTime
+  updated_at        DateTime
+  deleted_at        DateTime?
 }
 
-model user_informations{
-  id BigInt @id @default(autoincrement())
-  user_id BigInt
-  first_name String ?
-  last_name String ?
-  gender String ?
-  phone_number String ?
-  address String ? 
-  profile String ?
-  created_at DateTime
-  updated_at DateTime
-  deleted_at DateTime?
+model user_informations {
+  id           BigInt    @id @default(autoincrement())
+  user_id      BigInt
+  first_name   String?
+  last_name    String?
+  gender       String?
+  phone_number String?
+  address      String?
+  profile      String?
+  created_at   DateTime
+  updated_at   DateTime
+  deleted_at   DateTime?
 }
 
-
-model companies{
-  id BigInt @id @default(autoincrement())
-  user_id BigInt
-  name String
-  industries String
-  address String
-  website String
-  email_address String ?
-  contact_number String ?
-  apps String?
-  employees String?
-  status String @default("not_verified")
-  created_at DateTime
-  updated_at DateTime
-  deleted_at DateTime?
+model companies {
+  id             BigInt    @id @default(autoincrement())
+  user_id        BigInt
+  name           String
+  industries     String
+  address        String
+  website        String
+  email_address  String?
+  contact_number String?
+  apps           String?
+  employees      String?
+  status         String    @default("not_verified")
+  created_at     DateTime
+  updated_at     DateTime
+  deleted_at     DateTime?
 }

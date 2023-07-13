@@ -3,7 +3,7 @@ import GoogleProvider from "next-auth/providers/google"
 import FacebookProvider from "next-auth/providers/facebook"
 import GithubProvider from "next-auth/providers/github"
 import { PrismaClient, Prisma } from "@prisma/client"
-import User from "../models/user"
+import User from "../controllers/user"
 // import { useSession } from "next-auth/react"
 
 export const authOptions: NextAuthOptions = {

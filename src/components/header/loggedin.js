@@ -1,36 +1,61 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from './logo';
 import Link from 'next/link';
 import { SvgIcon } from '@mui/material';
-import { DarkMode, LightMode, MenuOutlined, Search } from '@mui/icons-material';
+import { DarkMode, Face6, LightMode, MenuOutlined, Person3Rounded, Search } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import useColorMode from '@/hooks/useColorMode';
 import String from '@/utils/String'
 import Profile from '@/assets/profile.png'
-import { useSession, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
+import config from '@/config';
 
-const menu = String.loggedInMenu
 function loggedin(props) {
     const [toggle, setToggle] = useState(false)
     const router = useRouter()
     const [colorMode, setColorMode] = useColorMode();
     const { data: session } = useSession();
+    const [menu, setMenu] = useState([])
+
+    useEffect(() => {
+        let actType = parseInt(session?.user?.account_type)
+
+        if (actType == config.admin) {
+            setMenu(String.adminMenu)
+        }else{
+            setMenu(String.merchantMenu)
+        }
+    }, [])
 
     const renderProfile = () => {
         return (
             <div
                 onClick={() => {
-                    router.push('/settings')
+                    router.push('/profile')
                 }}
                 className='h-[30px] w-[30px] mr-[10px] float-left'>
-                <img
-                    src={session?.user?.image}
-                    width={30}
-                    height={30}
-                    className='rounded-[15px] cursor-pointer border-2 border-black dark:border-white'
-                    alt={session?.user?.name}
-                />
+                {
+                    (session?.user?.information && session.user.information.profile) ? (
+                        <img
+                            src={session.user.information.profile}
+                            width={30}
+                            height={30}
+                            className='rounded-[15px] cursor-pointer border-2 border-green-500 dark:border-green-500'
+                            alt={session?.user?.name}
+                        />
+                    ) : (
+                        <div className='h-[30px] w-[30px] rounded-[15px] bg-green-400 dark:bg-white float-left cursor-pointer'>
+                            <SvgIcon component={Face6}
+                                className='text-white dark:text-black'
+                                style={{
+                                    fontSize: 30
+                                }}
+                            />
+                        </div>
+                    )
+                }
+
             </div>
         )
     }
@@ -108,13 +133,8 @@ function loggedin(props) {
                                     <div
                                         className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px] text-sm'
                                         onClick={() => {
-                                            signOut({
-                                                callbackUrl: `${window.location.origin}`
-                                            })
-                                            setTimeout(() => {
-                                                setToggle(!toggle)
-                                            })
-                                            
+                                            router.push('/' + item.toLowerCase())
+                                            setToggle(!toggle)
                                         }}
                                     >
                                         {

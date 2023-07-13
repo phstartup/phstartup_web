@@ -21,4 +21,10 @@ export default class Helper {
             Object.entries(user).filter(([key]) => !keys.includes(key))
         );
     }
+
+    codeGenerator(prefix, length = null) {
+        var crypto = require("crypto");
+        var str = crypto.randomBytes(length ? length : 60).toString('hex');
+        return prefix + '-' + str
+    }
 }
