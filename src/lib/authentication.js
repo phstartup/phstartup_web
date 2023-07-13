@@ -1,4 +1,4 @@
-import User from "@/controllers/user";
+import Account from "@/controllers/user";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { compare } from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -51,8 +51,8 @@ export const authOptions = {
     },
     callbacks: {
         async signIn({ user, account, profile }) {
-            let newUser = new User();
-            let result = await newUser.auth(user, account, profile)
+            let newAccount = new Account();
+            let result = await newAccount.auth(user, account, profile)
             if (result) {
                 return true
             } else {
@@ -60,34 +60,36 @@ export const authOptions = {
             }
         },
         jwt: async ({ token, user, account }) => {
+            console.log('JWTS TOKEN', token);
+            console.log('JWTS ACCOUNT', account);
+            console.log('JWTS USER', user);
             if (user) {
                 const helper = new Helper()
                 // const cipher = await helper.cipherText(JSON.stringify(token))
                 token.account_type = user.account_type
-                token.accessToken = user.access_token;
+                token.accessToken = account.provider == 'google' ? account.access_token : user.access_token;
             }
             return token
         },
-        session: async ({ session, token, account }) => {
-            let newUser = new User();
-
-            console.log({
-                token,
-                session,
-                account
-            })
-
-            let result = await newUser.get(session.user)
-            if (result) {
-                await newUser.updateToken(JSON.parse(result), token.accessToken)
-                session.accessToken = token.accessToken;
-                session.user = {
-                    ...session.user,
-                    ...JSON.parse(result)
+        session: async ({ session, token }) => {
+            let newAccount = new Account();
+            console.log('[]', token);
+            if (Date.now() / 1000 > token?.exp) {
+                return Promise.reject({
+                    error: new Error("Token Expired. Please log in again to get a new refresh token."),
+                })
+            } else {
+                let result = await newAccount.get(session.user)
+                if (result) {
+                    await newAccount.updateToken(JSON.parse(result), token.accessToken)
+                    session.accessToken = token.accessToken;
+                    session.user = {
+                        ...session.user,
+                        ...JSON.parse(result)
+                    }
                 }
+                return session
             }
-            return session
-
         }
     }
 }
