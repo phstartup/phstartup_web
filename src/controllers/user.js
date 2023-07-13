@@ -153,6 +153,10 @@ export default class User {
             remember_token: token,
             updated_at: new Date()
         }
+
+        console.log({
+            updateData
+        })
         return await prisma.users.update({
             where: {
                 email: user.email

@@ -3,7 +3,7 @@ import Breadcrumbs from '@/components/breadcrumbs/Simple'
 
 function page(props) {
     return (
-        <div className='w-full float-left'>
+        <div className='w-full float-left bg-white dark:bg-gray-800 p-[20px] rounded-lg'>
             <Breadcrumbs title="Privacy Policy" />
             <div className='w-full float-left mt-[50px] text-justify text-sm'>
                 <p>
