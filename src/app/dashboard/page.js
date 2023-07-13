@@ -9,34 +9,29 @@ let api = new Api()
 function page(props) {
   const [fData, setFData] = useState([])
   const [loading, setLoading] = useState(true)
+  const { data: session } = useSession()
 
   useEffect(() => {
-    const getData = async () => {
-      await api.get('/api/dashboard', (response) => {
-        setFData(response)
-        setTimeout(() => {
-          setLoading(false)
-        }, 1000)
-      }, (error) => {
-        console.log({
-          error
-        })
-        setTimeout(() => {
-          setLoading(false)
-        }, 1000)
-
-      })
-    }
-
     getData()
   }, [])
 
-  const { data: session } = useSession()
 
-  console.log({
-    dashboard: session
-  })
+  const getData = async () => {
+    await api.get('/api/dashboard', session?.accessToken, (response) => {
+      setFData(response)
+      setTimeout(() => {
+        setLoading(false)
+      }, 1000)
+    }, (error) => {
+      console.log({
+        error
+      })
+      setTimeout(() => {
+        setLoading(false)
+      }, 1000)
 
+    })
+  }
 
   const renderLoading = () => {
     return (
