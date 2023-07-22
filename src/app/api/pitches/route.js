@@ -47,11 +47,7 @@ export async function POST(req) {
     if (body.id) {
         // update
         let result = await controller.update(
-            {
-                where: {
-                    id: id
-                }
-            },
+            body.id,
             {
                 user_id: mwareAccount.id,
                 type,

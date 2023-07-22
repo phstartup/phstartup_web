@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Style from '@/utils/Style';
 import { SvgIcon } from '@mui/material';
-import { Add, PlayCircle } from '@mui/icons-material';
+import { Add, Edit, PlayCircle } from '@mui/icons-material';
 import Modal from '@/components/modal/index'
 import Button from '@/components/buttons/btn'
 import TextInput from '@/components/form/text';
@@ -21,6 +21,7 @@ function Pitches(props) {
     const [type, setType] = useState(null)
     const [btnLoading, setBtnLoading] = useState(false)
     const [pData, setPData] = useState([])
+    const [pitch, setPitch] = useState(null)
 
     useEffect(() => {
         let data = props.data
@@ -34,7 +35,7 @@ function Pitches(props) {
         if (item == null) return
         setBtnLoading(true)
         await api.post('/api/pitches', { ...item }, session?.accessToken, (response) => {
-            
+
             setTimeout(() => {
                 setBtnLoading(false)
                 setCreateFlag(false)
@@ -53,6 +54,7 @@ function Pitches(props) {
     const validate = () => {
         if (!props.data) return
         submit({
+            id: pitch ? pitch.id : null,
             url,
             type,
             company_id: props.data.id
@@ -142,32 +144,49 @@ function Pitches(props) {
                     {
                         pData.map((item) => (
                             <div
-                                onClick={() => {
-                                    if (item.url == null) {
-                                        setType(item.type)
-                                        setTimeout(() => {
-                                            setCreateFlag(true)
-                                        }, 100)
-                                    }else{
-                                        // play here
-                                    }
 
-                                }}
                                 className='w-[30%] h-[200px] border border-gray-200 dark:border-gray-700 rounded-2xl flex items-center justify-center content-center hover:cursor-pointer hover:border hover:border-black'>
 
                                 <div className='w-full text-center'>
                                     <span className='w-full float-left text-6xl font-bold'>
                                         {
                                             item.url ? (
-                                                <SvgIcon
-                                                    component={PlayCircle}
-                                                    style={{
-                                                        fontSize: 50
-                                                    }}
-                                                />
+                                                <span>
+                                                    <SvgIcon
+                                                        component={PlayCircle}
+                                                        style={{
+                                                            fontSize: 50
+                                                        }}
+
+                                                        onClick={() => {
+                                                        }}
+                                                    />
+                                                    <SvgIcon
+                                                        component={Edit}
+                                                        style={{
+                                                            fontSize: 50
+                                                        }}
+                                                        className='text-red-400 ml-[20px]'
+                                                        onClick={() => {
+                                                            setPitch(item)
+                                                            setUrl(item.url)
+                                                            setType(item.type)
+                                                            setTimeout(() => {
+                                                                setCreateFlag(true)
+                                                            }, 1000)
+                                                            
+                                                        }}
+                                                    />
+                                                </span>
                                             ) : (
                                                 <SvgIcon
                                                     component={Add}
+                                                    onClick={() => {
+                                                        setType(item.type)
+                                                        setTimeout(() => {
+                                                            setCreateFlag(true)
+                                                        }, 100)
+                                                    }}
                                                     style={{
                                                         fontSize: 50
                                                     }}
