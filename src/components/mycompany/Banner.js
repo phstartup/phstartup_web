@@ -7,20 +7,43 @@ import Button from '@/components/buttons/btn'
 
 function Banner(props) {
 
-
+    console.log({
+        data: props.data
+    })
     const renderProfile = () => {
         return (
             <div
                 onClick={() => {
                 }}
-                className='h-[200px] w-[200px] mr-[10px] absolute bottom-0 left-0'>
-                <Image
-                    src={Profile}
-                    width={200}
-                    height={200}
-                    className='rounded-[100px] cursor-pointer border-2 bg-black dark:bg-white'
-                    alt={"Profile"}
-                />
+                className='h-[200px] mr-[10px] absolute bottom-0 left-0'>
+                <div className='float-left w-full'>
+                    <div className='float-left'>
+                        <Image
+                            src={Profile}
+                            width={200}
+                            height={200}
+                            className='rounded-[100px] cursor-pointer border-2 bg-black dark:bg-white'
+                            alt={"Profile"}
+                        />
+                    </div>
+
+                    {
+                        props.data && (
+                            <div className='float-left h-[200px] flex items-center content-center'>
+                                <span className='ml-[20px]'>
+                                    <h1 className='font-bold text-4xl'>{props.data.name}</h1>
+                                    <span className='text-sm'>
+                                        {
+                                            props.data.description
+                                        }
+                                    </span>
+                                </span>
+                            </div>
+                        )
+                    }
+
+                </div>
+
             </div>
         )
     }

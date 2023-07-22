@@ -35,7 +35,7 @@ function loggedin(props) {
         if (actType == config.admin) {
             setMenu(String.adminMenu)
         } else {
-            setMenu(String.merchantMenu)
+            setMenu(String.loggedInMenu)
         }
     }, [])
 

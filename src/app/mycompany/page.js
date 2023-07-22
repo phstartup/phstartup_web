@@ -40,7 +40,7 @@ function page(props) {
             {
                 !loading && (
                     <div className='w-full float-left mt-[20px]'>
-                        <Banner />
+                        <Banner data={data}/>
                         <Information data={data} />
                         <Team />
                         <Pitches />

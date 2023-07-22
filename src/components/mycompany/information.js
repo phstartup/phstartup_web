@@ -32,10 +32,6 @@ function Information(props) {
     const [btnLoading, setBtnLoading] = useState(false)
 
     useEffect(() => {
-
-        console.log({
-            data: props.data
-        })
         if (props.data) {
             let data = props.data
             setName(data.name)
@@ -54,9 +50,6 @@ function Information(props) {
         if (item == null) return
         setBtnLoading(true)
         await api.post('/api/companies', { ...item }, session?.accessToken, (response) => {
-            console.log({
-                response
-            })
             setTimeout(() => {
                 setBtnLoading(false)
             }, 1000)
