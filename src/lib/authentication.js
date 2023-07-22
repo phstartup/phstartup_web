@@ -70,7 +70,6 @@ export const authOptions = {
         },
         session: async ({ session, token }) => {
             let newAccount = new Account();
-            console.log('[]', token);
             if (Date.now() / 1000 > token?.exp) {
                 return Promise.reject({
                     error: new Error("Token Expired. Please log in again to get a new refresh token."),

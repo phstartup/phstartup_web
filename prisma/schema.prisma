@@ -32,7 +32,7 @@ model user_informations {
   gender       String?
   phone_number String?
   address      String?
-  profile      String?
+  profile      String?   @db.LongText
   created_at   DateTime
   updated_at   DateTime
   deleted_at   DateTime?

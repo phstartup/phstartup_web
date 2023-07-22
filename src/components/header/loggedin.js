@@ -15,9 +15,9 @@ import CustomNotifications from '@/components/notifications'
 
 
 const dropdownMenu = [{
-    title: 'Profile',
+    title: 'Settings',
     icon: Settings,
-    route: '/profile'
+    route: '/settings'
 }]
 
 function loggedin(props) {

@@ -115,7 +115,7 @@ export default class User {
 
             if (accountCreated) {
                 // Create Information
-                let iData = Prisma.account_informationCreateInput
+                let iData = Prisma.user_informationsCreateInput
                 iData = {
                     user_id: accountCreated.id,
                     first_name: profile.given_name ? profile.given_name : '',
@@ -124,7 +124,7 @@ export default class User {
                     created_at: new Date(),
                     updated_at: new Date()
                 }
-                await prisma.account_information.create({
+                await prisma.user_informations.create({
                     data: iData
                 })
 
@@ -148,9 +148,6 @@ export default class User {
             updated_at: new Date()
         }
 
-        console.log({
-            updateData
-        })
         return await prisma.users.update({
             where: {
                 email: user.email
@@ -167,8 +164,6 @@ export default class User {
                 email: user.email
             }
         })
-
-
 
         if (!isExist) {
             // register here
@@ -220,7 +215,6 @@ export default class User {
             let userWithoutPassword = helper.exclude(isExist, ['password', 'remember_token'])
 
             if (info) {
-                info = helper.exclude(info, ['id', 'user_id'])
                 userWithoutPassword['information'] = info
 
             } else {
