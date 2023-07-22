@@ -4,6 +4,7 @@ import Style from '@/utils/Style';
 import { SvgIcon } from '@mui/material';
 import { Add, Edit, PlayCircle } from '@mui/icons-material';
 import Modal from '@/components/modal/index'
+import ModalVideo from '@/components/modal/Video'
 import Button from '@/components/buttons/btn'
 import TextInput from '@/components/form/text';
 import Select from '@/components/form/Select';
@@ -22,6 +23,7 @@ function Pitches(props) {
     const [btnLoading, setBtnLoading] = useState(false)
     const [pData, setPData] = useState([])
     const [pitch, setPitch] = useState(null)
+    const [viewVideo, setViewVideo] = useState(false)
 
     useEffect(() => {
         let data = props.data
@@ -159,6 +161,10 @@ function Pitches(props) {
                                                         }}
 
                                                         onClick={() => {
+                                                            setPitch(item)
+                                                            setTimeout(() => {
+                                                                setViewVideo(true)
+                                                            }, 100)
                                                         }}
                                                     />
                                                     <SvgIcon
@@ -174,7 +180,7 @@ function Pitches(props) {
                                                             setTimeout(() => {
                                                                 setCreateFlag(true)
                                                             }, 1000)
-                                                            
+
                                                         }}
                                                     />
                                                 </span>
@@ -239,6 +245,19 @@ function Pitches(props) {
                             )
                         }}
                     />
+                )
+            }
+
+            {
+                viewVideo && pitch && (
+                    <ModalVideo
+                        title="Elavator Pitch"
+                        onClose={() => {
+                            setPitch(null)
+                            setViewVideo(false)
+                        }}
+                        url={pitch.url}
+                        />
                 )
             }
         </div>
