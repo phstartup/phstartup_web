@@ -164,7 +164,7 @@ function Pitches(props) {
                                                             setPitch(item)
                                                             setTimeout(() => {
                                                                 setViewVideo(true)
-                                                            }, 100)
+                                                            }, 10)
                                                         }}
                                                     />
                                                     <SvgIcon
@@ -179,7 +179,7 @@ function Pitches(props) {
                                                             setType(item.type)
                                                             setTimeout(() => {
                                                                 setCreateFlag(true)
-                                                            }, 1000)
+                                                            }, 10)
 
                                                         }}
                                                     />
