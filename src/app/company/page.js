@@ -43,7 +43,7 @@ function page(props) {
 
     return (
         <div
-            className='w-full float-left'
+            className='w-full float-left mt-[100px]'
         >
             <div
                 className='float-left w-full'
@@ -52,7 +52,6 @@ function page(props) {
                     !loading && data && (
                         <div className={'w-full float-left mt-[20px] ' + Style.padding}>
                             <Banner data={data} />
-                            <Information data={data} />
                             <Pitches data={data} />
                             <Services data={data} />
                             <Achievements data={data} />

@@ -5,6 +5,7 @@ function collectionSmall(props) {
 
     return (
         <div
+            key={props.key}
             className='float-left w-full lg:px-[100px] 2xl:px-[100px] xs:px-[20px] sm:px-[20px] md:px-[20px]'
         >
             <div

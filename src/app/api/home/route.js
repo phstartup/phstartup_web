@@ -30,7 +30,19 @@ export async function GET(req) {
         return new NextResponse(helper.response(result, 200, null));
     } else {
         let result = await controller.retrieveHome()
-        result = result ? result : null
-        return new NextResponse(helper.response(result, 200, null));
+        let response = {
+            featured: result ? result[0] : null,
+            categories: [{
+                title: 'Recently Added',
+                data: result
+            }, {
+                title: 'QBO Accelerator',
+                data: result
+            }, {
+                title: 'Accelerating Asia',
+                data: result
+            }]
+        }
+        return new NextResponse(helper.response(response, 200, null));
     }
 }

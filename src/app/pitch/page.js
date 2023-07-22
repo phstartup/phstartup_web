@@ -11,6 +11,8 @@ let api = new Api()
 export default function Page(props) {
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState(null)
+    const [featured, setFeatured] = useState(null)
+    const [categories, setCategories] = useState(null)
 
     useEffect(() => {
         getData()
@@ -20,6 +22,15 @@ export default function Page(props) {
     const getData = async () => {
         await api.getNoToken('/api/home', (response) => {
             setData(response.data)
+            if (response.data) {
+                if (response.data.featured) {
+                    setFeatured(response.data.featured)
+                }
+                if (response.data.categories) {
+                    setCategories(response.data.categories)
+                }
+            }
+
             setTimeout(() => {
                 setLoading(false)
             }, 1000)
@@ -35,20 +46,24 @@ export default function Page(props) {
         <div className='w-full float-left text-black dark:text-white'>
 
             <Header />
-            <Featured />
+            {
+                featured  && (
+                    <Featured data={featured}/>
+                )
+            }
+           
             <div
                 className='float-left w-full'
             >
                 {
-                    data && (
+                    categories && categories.length > 0 &&  categories.map((item, index) => (
                         <Collections
-                            title="Most visited startups"
-                            data={data}
+                            title={item.title}
+                            data={item.data}
+                            key={index}
                         />
-                    )
+                    ))
                 }
-
-
             </div>
 
             <Footer />

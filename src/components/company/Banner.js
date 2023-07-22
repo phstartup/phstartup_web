@@ -4,6 +4,7 @@ import Style from '@/utils/Style';
 import { SvgIcon } from '@mui/material';
 import { Photo } from '@mui/icons-material';
 import { useSession } from 'next-auth/react';
+import Button from '@/components/buttons/btn'
 import Api from '@/lib/api';
 let api = new Api()
 
@@ -11,9 +12,13 @@ function Banner(props) {
     const { data: session } = useSession()
     const [logo, setLogo] = useState(null)
     const [banner, setBanner] = useState(null)
+    const [data, setData] = useState(null)
 
 
     useEffect(() => {
+        if (props.data) {
+            setData(props.data)
+        }
         if (props.data && props.data.settings) {
             let options = props.data.settings
             if (options && options.logo) {
@@ -64,14 +69,29 @@ function Banner(props) {
                     {
                         props.data && (
                             <div className='float-left h-[200px] flex items-center content-center company-banner-name'>
-                                <span className='ml-[20px]'>
-                                    <h1 className='font-bold text-4xl'>{props.data.name}</h1>
-                                    <span className='text-sm'>
-                                        {
-                                            props.data.description
-                                        }
+                                <div className='w-full'>
+                                    <span className='ml-[20px] float-left w-full'>
+                                        <h1 className='font-bold text-4xl'>{props.data.name}</h1>
+                                        <span className='text-sm'>
+                                            {
+                                                props.data.description
+                                            }
+                                        </span>
                                     </span>
-                                </span>
+
+                                    {
+                                        data && data.website && (
+                                            <span className='ml-[20px] float-left w-full mt-[20px]'>
+                                                <Button
+                                                    style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                                                    title="View Website"
+                                                    onPress={() => {
+                                                    }}
+                                                />
+                                            </span>
+                                        )
+                                    }
+                                </div>
                             </div>
                         )
                     }
