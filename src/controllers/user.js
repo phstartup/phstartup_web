@@ -50,7 +50,7 @@ export default class User {
     async verifyHeaderToken(token) {
         const prisma = new PrismaClient();
 
-        let result = await prisma.users.findUnique({
+        let result = await prisma.users.findFirst({
             where: {
                 remember_token: token
             }

@@ -31,9 +31,9 @@ function text(props) {
                 onChange={(e) => {
                     validations(e)
                 }}
-                className='w-full h-[50px] rounded-[25px] border-gray-300 dark:border-gray-600 text-black dark:text-white px-[10px] mb-[20px] bg-white dark:bg-gray-900'>
+                className='w-full h-[50px] rounded-[25px] border-gray-300 dark:border-gray-600 text-black dark:text-white px-[10px] bg-white dark:bg-gray-900'>
             </input>
-            <div className='w-full'>
+            <div className='w-full mb-[20px]'>
                 {
                     props.validation && props.validation.error && (
                         <label className='text-red-600'><b>Oops!</b> {props.validation.error}</label>

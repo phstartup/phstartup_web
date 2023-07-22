@@ -4,23 +4,17 @@ export default class UserInformation {
     async create(data) {
         let mData = Prisma.companiesCreateInput
         mData = {
-            account_id: data.account_id,
-            name: data.name,
-            logo: data.logo,
-            address: data.address,
+            ...data,
             created_at: new Date(),
             updated_at: new Date()
         }
 
         const isExist = await prisma.companies.findFirst({
             where: {
-                account_id: data.account_id
+                user_id: data.user_id
             }
         })
 
-        console.log({
-            isExist
-        })
         if (!isExist) {
             let result = await prisma.companies.create({
                 data: mData

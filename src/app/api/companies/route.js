@@ -1,8 +1,8 @@
-import Model from "@/controllers/company"
+import Controller from "@/controllers/company"
 import Helper from "@/lib/helper";
 import { NextResponse } from "next/server";
 let helper = new Helper()
-let model = new Model()
+let controller = new Controller()
 
 
 import Middleware from "@/lib/middleware"
@@ -10,59 +10,76 @@ const middleware = new Middleware();
 
 
 
-export async function GET(req){
+export async function GET(req) {
     const mwareAccount = await middleware.check(req)
-    if(mwareAccount == false){
-      return new Response(helper.response(null, 401, 'Invalid Accessed.'));
+    if (mwareAccount == false) {
+        return new Response(helper.response(null, 401, 'Invalid Accessed.'));
     }
 
 
+    const url = new URL(req.url);
+    const searchParams = new URLSearchParams(url.search)
+    const user_id = searchParams.get('user_id')
 
-    return new NextResponse(helper.response({
-        hello: 'word'
-    }, 200, null));
+    if (user_id) {
+        let result = await controller.retrieve({
+            where: {
+                user_id: user_id
+            }
+        })
+        result = result && result.length > 0 ? result[0] : null
+        return new NextResponse(helper.response(result, 200, null));
+    } else {
+        // let result = await controller.retrieveAdmin()
+        return new NextResponse(helper.response('Hello', 200, null));
+    }
 }
 
 export async function POST(req) {
     const mwareAccount = await middleware.check(req)
-    if(mwareAccount == false){
-      return new Response(helper.response(null, 401, 'Invalid Accessed.'));
+    if (mwareAccount == false) {
+        return new Response(helper.response(null, 401, 'Invalid Accessed.'));
     }
-
 
     const body = await req.json()
 
-    const { name, description, website, email, industries, contact_number, employees} = body
-    if(body.id){
+    const { name, description, category, industries, address, website, email_address, contact_number, settings, status } = body
+    if (body.id) {
         // update
-        let result = await model.create(
+        let result = await controller.create(
             {
                 where: {
                     id: id
                 }
             },
             {
-            user_id: mwareAccount.id,
-            name,
-            industries,
-            website,
-            email,
-            contact_number,
-            employees,
-            apps
-        })
+                user_id: mwareAccount.id,
+                name,
+                description,
+                category,
+                industries,
+                address,
+                website,
+                email_address,
+                contact_number,
+                settings,
+                status
+            })
         return new NextResponse(helper.response(result, 200, null))
-    }else if(user_id, name && description){
+    } else if (user_id, name && description) {
         // create
-        let result = await model.create({
+        let result = await controller.create({
             user_id: mwareAccount.id,
             name,
+            description,
+            category,
             industries,
+            address,
             website,
-            email,
+            email_address,
             contact_number,
-            employees,
-            apps
+            settings,
+            status
         })
         return new NextResponse(helper.response(result, 200, null))
     }

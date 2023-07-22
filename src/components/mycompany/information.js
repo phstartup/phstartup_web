@@ -1,20 +1,36 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Style from '@/utils/Style';
 import Button from '@/components/buttons/btn'
 import TextInput from '@/components/form/text';
 import TextArea from '@/components/form/textarea'
 import Select from '@/components/form/Select';
 import String from '@/utils/String';
-import { useSession  } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
+import Api from '@/lib/api';
 
+let api = new Api()
 function Information(props) {
     const [editFlag, setEditFlag] = useState(false)
-    const { data: session } = useSession()
+    const [name, setName] = useState(null)
+    const [nameError, setNameError] = useState(null)
+    const [description, setDescription] = useState(null)
+    const [descriptionError, setDescriptionError] = useState(null)
+    const [category, setCategory] = useState(null)
+    const [categoryError, setCategoryError] = useState(null)
+    const [industries, setIndustries] = useState(null)
+    const [industriesError, setIndustriesError] = useState(null)
+    const [address, setAddress] = useState(null)
+    const [addressError, setAddressError] = useState(null)
+    const [website, setWebsite] = useState(null)
+    const [websiteError, setWebsiteError] = useState(null)
+    const [emailAddress, setEmailAddress] = useState(null)
+    const [emailAddressError, setEmailAddressError] = useState(null)
+    const [contactNumber, setContactNumber] = useState(null)
+    const [contactNumberError, setContactNumberError] = useState(null)
 
-    console.log({
-        data: session?.data
-    })
+    useEffect(() => {
+    }, [])
 
     const renderFields = () => {
         return (
@@ -24,13 +40,35 @@ function Information(props) {
                     <TextInput
                         type="text"
                         placeholder="Startup Name"
+                        value={name}
+                        onChange={(value, error) => {
+                            setName(value)
+                            setNameError(error)
+                        }}
+                        validation={{
+                            type: 'text',
+                            size: 2,
+                            column: 'Name',
+                            error: nameError
+                        }}
                     />
                 </div>
                 <div className='w-full float-left text-sm'>
                     <h1 className='text-sm mb-[20px]'>Short description</h1>
                     <TextArea
                         type="text"
-                        placeholder="Oxygen type of Clothes"
+                        placeholder="Short description"
+                        value={description}
+                        onChange={(value, error) => {
+                            setDescription(value)
+                            setDescriptionError(error)
+                        }}
+                        validation={{
+                            type: 'text',
+                            size: 2,
+                            column: 'Description',
+                            error: descriptionError
+                        }}
                     />
                 </div>
 
@@ -40,6 +78,17 @@ function Information(props) {
                         type="text"
                         data={String.industries}
                         placeholder="Select Industries"
+                        value={industries}
+                    // onChange={(value, error) => {
+                    //     setDescription(value)
+                    //     setDescriptionError(error)
+                    // }}
+                    // validation={{
+                    //     type: 'text',
+                    //     size: 2,
+                    //     column: 'Description',
+                    //     error: descriptionError
+                    // }}
                     />
                 </div>
 
@@ -47,7 +96,18 @@ function Information(props) {
                     <h1 className='text-sm mb-[20px]'>Website</h1>
                     <TextInput
                         type="text"
-                        placeholder="Address"
+                        placeholder="Website url"
+                        value={website}
+                        onChange={(value, error) => {
+                            setWebsite(value)
+                            setWebsiteError(error)
+                        }}
+                        validation={{
+                            type: 'text',
+                            size: 2,
+                            column: 'Wesite',
+                            error: websiteError
+                        }}
                     />
                 </div>
 
@@ -55,8 +115,19 @@ function Information(props) {
                 <div className='w-full float-left text-sm mt-[20px]'>
                     <h1 className='text-sm mb-[20px]'>Email Address</h1>
                     <TextInput
-                        type="text"
+                        type="email"
                         placeholder="Email Address"
+                        value={emailAddress}
+                        onChange={(value, error) => {
+                            setEmailAddress(value)
+                            setEmailAddressError(error)
+                        }}
+                        validation={{
+                            type: 'email',
+                            size: 2,
+                            column: 'Email Address',
+                            error: emailAddressError
+                        }}
                     />
                 </div>
 
@@ -65,6 +136,17 @@ function Information(props) {
                     <TextInput
                         type="text"
                         placeholder="Contact #"
+                        value={contactNumber}
+                        onChange={(value, error) => {
+                            setContactNumber(value)
+                            setContactNumberError(error)
+                        }}
+                        validation={{
+                            type: 'text',
+                            size: 2,
+                            column: 'Contact Number',
+                            error: contactNumberError
+                        }}
                     />
                 </div>
 
@@ -73,15 +155,44 @@ function Information(props) {
                     <TextInput
                         type="text"
                         placeholder="Address"
+                        value={address}
+                        onChange={(value, error) => {
+                            setAddress(value)
+                            setAddressError(error)
+                        }}
+                        validation={{
+                            type: 'text',
+                            size: 2,
+                            column: 'Startup Address',
+                            error: addressError
+                        }}
                     />
                 </div>
 
-                <div className='w-full float-left text-sm mt-[20px]'>
+                {/* <div className='w-full float-left text-sm mt-[20px]'>
                     <h1 className='text-sm mb-[20px]'>Total Employees</h1>
                     <TextInput
                         type="text"
                         placeholder="Employees"
                     />
+                </div> */}
+
+                <div className='float-left w-full' >
+                    <Button
+                        style={' bg-red-500 text-white mr-[20px]'}
+                        title={"Cancel"}
+                        onPress={() => {
+                            update()
+                        }}
+                    />
+                    <Button
+                        style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                        title={"Save"}
+                        onPress={() => {
+                            update()
+                        }}
+                    />
+
                 </div>
             </div>
         )

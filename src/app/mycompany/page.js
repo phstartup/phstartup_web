@@ -20,7 +20,7 @@ function page(props) {
 
 
     const getData = async () => {
-        await api.get('/api/companies', session?.accessToken, (response) => {
+        await api.get('/api/companies?user_id=' + session.user.id, session?.accessToken, (response) => {
             setData(response)
             setTimeout(() => {
                 setLoading(false)
@@ -37,7 +37,7 @@ function page(props) {
         <div className='w-full float-left'>
             <div className='w-full float-left mt-[20px]'>
                 <Banner />
-                <Information />
+                <Information data={data}/>
                 <Team />
                 <Pitches />
                 <Services />
