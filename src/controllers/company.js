@@ -1,5 +1,6 @@
 import Pitch from './pitch';
 import Service from './Service';
+import Achievement from './Achievement'
 const { PrismaClient, Prisma } = require('@prisma/client')
 const prisma = new PrismaClient();
 export default class UserInformation {
@@ -45,6 +46,13 @@ export default class UserInformation {
 
             let service = new Service()
             result['services'] = await service.retrieve({
+                where: {
+                    company_id: result.company_id
+                }
+            })
+
+            let achievement = new Achievement()
+            result['achievements'] = await achievement.retrieve({
                 where: {
                     company_id: result.company_id
                 }

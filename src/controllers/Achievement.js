@@ -1,15 +1,15 @@
 const { PrismaClient, Prisma } = require('@prisma/client')
 const prisma = new PrismaClient();
-export default class Service {
+export default class Achievement {
     async create(data) {
-        let mData = Prisma.servicesCreateInput
+        let mData = Prisma.achievementsCreateInput
         mData = {
             ...data,
             created_at: new Date(),
             updated_at: new Date()
         }
 
-        let result = await prisma.services.create({
+        let result = await prisma.achievements.create({
             data: mData
         });
         return result;
@@ -22,7 +22,7 @@ export default class Service {
                 deleted_at: null
             }
         }
-        return await prisma.services.findFirst(nCondition)
+        return await prisma.achievements.findFirst(nCondition)
     }
 
     async retrieve(condition) {
@@ -35,16 +35,16 @@ export default class Service {
                 updated_at: 'desc'
             }
         }
-        return await prisma.services.findMany(nCondition)
+        return await prisma.achievements.findMany(nCondition)
     }
 
     async update(id, data) {
-        let updateData = Prisma.servicesUncheckedUpdateInput
+        let updateData = Prisma.achievementsUncheckedUpdateInput
         updateData = {
             ...data,
             updated_at: new Date()
         }
-        return await prisma.services.update({
+        return await prisma.achievements.update({
             where: {
                 id: id
             },
@@ -56,12 +56,12 @@ export default class Service {
     }
 
     async delete(condition) {
-        let updateData = Prisma.servicesUncheckedUpdateInput
+        let updateData = Prisma.achievementsUncheckedUpdateInput
         updateData = {
             updated_at: new Date(),
             deleted_at: new Date()
         }
-        return await prisma.services.update({
+        return await prisma.achievements.update({
             where: {
                 ...condition
             },

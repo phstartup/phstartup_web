@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import Milestones from '@/components/mycompany/milestones';
+import Achievements from '@/components/mycompany/Achievements';
 import Information from '@/components/mycompany/information';
 import Banner from '@/components/mycompany/Banner';
 import Services from '@/components/mycompany/Services'
@@ -45,7 +45,7 @@ function page(props) {
                         <Team />
                         <Pitches data={data} getData={() => getData()}/>
                         <Services data={data} getData={() => getData()}/>
-                        <Milestones />
+                        <Achievements  data={data} getData={() => getData()}/>
                     </div>
                 )
             }

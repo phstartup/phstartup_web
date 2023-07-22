@@ -10,25 +10,25 @@ import { useSession } from 'next-auth/react';
 
 let api = new Api()
 
-function Services(props) {
+function Achievements(props) {
     const { data: session } = useSession()
     const [createFlag, setCreateFlag] = useState(false)
     const [data, setData] = useState(null)
-    const [service, setService] = useState(null)
-    const [services, setServices] = useState(null)
+    const [achievement, setAchievement] = useState(null)
+    const [achievements, setAchievements] = useState(null)
     const [title, setTitle] = useState(null)
     const [titleError, setTitleError] = useState(null)
     const [description, setDescription] = useState(null)
     const [descriptionError, setDescriptionError] = useState(null)
-    const [video, setVideo] = useState(null)
-    const [videoError, setVideoError] = useState(null)
+    const [link, setLink] = useState(null)
+    const [linkError, setLinkError] = useState(null)
     const [btnLoading, setBtnLoading] = useState(false)
 
     useEffect(() => {
         if (props.data) {
             setData(props.data)
             if (props.data.services) {
-                setServices(props.data.services)
+                setAchievements(props.data.achievements)
             }
         }
     }, [])
@@ -37,7 +37,7 @@ function Services(props) {
         if (!session) return
         if (item == null) return
         setBtnLoading(true)
-        await api.post('/api/services', { ...item }, session?.accessToken, (response) => {
+        await api.post('/api/achievements', { ...item }, session?.accessToken, (response) => {
             setTimeout(() => {
                 setBtnLoading(false)
                 setCreateFlag(false)
@@ -56,8 +56,8 @@ function Services(props) {
     const validate = () => {
         if (!props.data) return
         submit({
-            id: service ? service.id : null,
-            video,
+            id: achievement ? achievement.id : null,
+            link,
             title,
             company_id: props.data.id,
             description
@@ -106,20 +106,20 @@ function Services(props) {
                 </div>
 
                 <div className='w-full float-left text-sm mt-[20px]'>
-                    <h1 className='text-sm mb-[20px]'>Video Link(Optional)</h1>
+                    <h1 className='text-sm mb-[20px]'>Link(Optional)</h1>
                     <TextInput
                         type="text"
-                        placeholder="Video Url"
-                        value={video}
+                        placeholder="Link Url"
+                        value={link}
                         onChange={(value, error) => {
-                            setVideo(value)
-                            setVideoError(error)
+                            setLink(value)
+                            setLinkError(error)
                         }}
                         validation={{
                             type: 'text',
                             size: 2,
-                            column: 'Video',
-                            error: videoError
+                            column: 'Link',
+                            error: linkError
                         }}
                     />
                 </div>
@@ -132,7 +132,7 @@ function Services(props) {
     return (
         <div className={Style.cardContainer}>
             <div className='flex w-full items-center content-center justify-between'>
-                <span className='text-lg font-bold'>Services</span>
+                <span className='text-lg font-bold'>Achievements</span>
                 <Button
                     style={' bg-black dark:bg-white text-white dark:text-gray-900'}
                     title="Add"
@@ -144,14 +144,14 @@ function Services(props) {
 
             <div className='w-full float-left text-sm mt-[20px]'>
                 {
-                    data && data.services && data.services.map((item, index) => (
+                    data && data.achievements && data.achievements.map((item, index) => (
                         <div
                             key={index}
                             onClick={() => {
-                                setService(item)
+                                setAchievement(item)
                                 setTitle(item.title)
                                 setDescription(item.description)
-                                setVideo(item.video)
+                                setLink(item.link)
                                 setTimeout(() => {
                                     setCreateFlag(true)
                                 }, 10)
@@ -177,13 +177,13 @@ function Services(props) {
             {
                 createFlag && (
                     <Modal
-                        title={service ? "Update A Service" : "Add A Service"}
+                        title={achievement ? "Update an Achievement" : "Add an Achievement"}
                         onClose={() => {
                             setCreateFlag(false)
-                            setService(null)
+                            setAchievement(null)
                             setTitle(null)
                             setDescription(null)
-                            setVideo(null)
+                            setLink(null)
                         }}
                         content={renderContent}
                         footer={() => {
@@ -194,16 +194,16 @@ function Services(props) {
                                         title="Cancel"
                                         onPress={() => {
                                             setCreateFlag(false)
-                                            setService(null)
+                                            setAchievement(null)
                                             setTitle(null)
                                             setDescription(null)
-                                            setVideo(null)
+                                            setLink(null)
                                         }}
                                     />
 
                                     <Button
                                         style={' bg-black dark:bg-white text-white dark:text-black ml-[20px]'}
-                                        title={service ? 'Update' : "Save"}
+                                        title={achievement ? 'Update' : "Save"}
                                         loading={btnLoading}
                                         onPress={() => {
                                             validate()
@@ -219,4 +219,4 @@ function Services(props) {
     );
 }
 
-export default Services;
+export default Achievements;
