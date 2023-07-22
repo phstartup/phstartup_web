@@ -172,6 +172,7 @@ function Achievements(props) {
                             onClick={() => {
                                 setAchievement(item)
                                 setTitle(item.title)
+                                setFeatured(item.featured)
                                 setDescription(item.description)
                                 setLink(item.link)
                                 setTimeout(() => {
@@ -210,6 +211,7 @@ function Achievements(props) {
                             setAchievement(null)
                             setTitle(null)
                             setDescription(null)
+                            setFeatured(null)
                             setLink(null)
                         }}
                         content={renderContent}
@@ -222,6 +224,7 @@ function Achievements(props) {
                                         onPress={() => {
                                             setCreateFlag(false)
                                             setAchievement(null)
+                                            setFeatured(null)
                                             setTitle(null)
                                             setDescription(null)
                                             setLink(null)

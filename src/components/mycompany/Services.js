@@ -172,6 +172,7 @@ function Services(props) {
                             onClick={() => {
                                 setService(item)
                                 setTitle(item.title)
+                                setFeatured(item.featured)
                                 setDescription(item.description)
                                 setVideo(item.video)
                                 setTimeout(() => {
@@ -209,6 +210,7 @@ function Services(props) {
                         onClose={() => {
                             setCreateFlag(false)
                             setService(null)
+                            setFeatured(null)
                             setTitle(null)
                             setDescription(null)
                             setVideo(null)
@@ -224,6 +226,7 @@ function Services(props) {
                                             setCreateFlag(false)
                                             setService(null)
                                             setTitle(null)
+                                            setFeatured(null)
                                             setDescription(null)
                                             setVideo(null)
                                         }}
