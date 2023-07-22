@@ -37,11 +37,11 @@ function index(props) {
 
             </div>
             <div
-                className='w-full absolute lg:bottom-10 2xl:bottom-10 left-0 px-[10px] lg:px-[100px]] 2xl:px-[100px] sm:bottom-1 xs:bottom-1 md:bottom-1'
+                className='w-full absolute bottom-0 left-0 pt-[20px] pb-[20px] lg:px-[100px] 2xl:px-[100px] profile-card-title text-white'
             >
                 {
                     data && (
-                        <span className='font-bold lg:text-6xl 2xl:text-6xl sm:text-3xl xs:text-3xl md:text-3xl text-black dark:text-white'>
+                        <span className='font-bold lg:text-6xl 2xl:text-6xl sm:text-3xl xs:text-3xl md:text-3xl'>
                             {data.name}
                         </span>
                     )
@@ -54,7 +54,7 @@ function index(props) {
                         data && data.pitches && (
                             <SvgIcon
                                 component={PlayCircle}
-                                className='float-left cursor-pointer text-black dark:text-white'
+                                className='float-left cursor-pointer'
                                 style={{
                                     fontSize: 60
                                 }}
