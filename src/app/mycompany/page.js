@@ -42,7 +42,7 @@ function page(props) {
                     <div className='w-full float-left mt-[20px]'>
                         <Banner data={data} getData={() => getData()}/>
                         <Information data={data} getData={() => getData()}/>
-                        <Team />
+                        {/* <Team /> */}
                         <Pitches data={data} getData={() => getData()}/>
                         <Services data={data} getData={() => getData()}/>
                         <Achievements  data={data} getData={() => getData()}/>
