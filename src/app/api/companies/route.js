@@ -66,7 +66,8 @@ export async function POST(req) {
                     website,
                     email_address,
                     contact_number,
-                    status
+                    status,
+                    settings: JSON.stringify(settings)
                 })
             return new NextResponse(helper.response(result, 200, null))
         }
@@ -84,7 +85,7 @@ export async function POST(req) {
             website,
             email_address,
             contact_number,
-            settings,
+            settings: JSON.stringify(settings),
             status
         })
         return new NextResponse(helper.response(result, 200, null))
