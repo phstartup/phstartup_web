@@ -76,7 +76,10 @@ function Information(props) {
             website,
             email_address: emailAddress,
             contact_number: contactNumber,
-            settings: "{}"
+            settings: {
+                logo: null,
+                banner: null
+            }
         })
     }
     const renderFields = () => {

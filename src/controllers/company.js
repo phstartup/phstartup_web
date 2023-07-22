@@ -36,25 +36,26 @@ export default class UserInformation {
             }
         }
         let result = await prisma.companies.findFirst(nCondition)
+
         if(result){
             let pitch = new Pitch()
             result['pitches'] = await pitch.retrieve({
                 where: {
-                    company_id: result.company_id
+                    company_id: result.id
                 }
             })
 
             let service = new Service()
             result['services'] = await service.retrieve({
                 where: {
-                    company_id: result.company_id
+                    company_id: result.id
                 }
             })
 
             let achievement = new Achievement()
             result['achievements'] = await achievement.retrieve({
                 where: {
-                    company_id: result.company_id
+                    company_id: result.id
                 }
             })
 

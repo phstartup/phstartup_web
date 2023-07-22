@@ -11,7 +11,7 @@ import Api from '@/lib/api';
 let api = new Api()
 
 function Banner(props) {
-    const {data: session} = useSession()
+    const { data: session } = useSession()
     const [createFlag, setCreateFlag] = useState(false)
     const [logo, setLogo] = useState(null)
     const [logoError, setLogoError] = useState(null)
@@ -77,7 +77,7 @@ function Banner(props) {
                         onClick={() => {
                             setCreateFlag(true)
                         }}
-                        >
+                    >
                         {
                             logo ? (
                                 <img
@@ -90,8 +90,8 @@ function Banner(props) {
                             ) : (
                                 <span
                                     className='h-[180px] w-[180px] flex items-center justify-center content-center border border-gray-100 dark:border-gray-700 rounded-[100px]'
-                                    >
-                                    <SvgIcon 
+                                >
+                                    <SvgIcon
                                         style={{
                                             fontSize: 100
                                         }}
@@ -122,11 +122,6 @@ function Banner(props) {
             </div>
         )
     }
-
-
-    console.log({
-        banner
-    })
 
     const renderContent = () => {
         return (
@@ -179,17 +174,25 @@ function Banner(props) {
                 <div className='w-full float-left h-[400px] flex items-center content-center justify-center'
                     style={{
                         backgroundImage: `url(${banner})`,
-                        backgroundRepeat:'no-repeat',
+                        backgroundRepeat: 'no-repeat',
                         backgroundSize: '100%'
                     }}
-                    >
-                    <Button
-                        style={' bg-black dark:bg-white text-white dark:text-gray-900'}
-                        title="Upload Banner"
-                        onPress={() => {
-                            setCreateFlag(true)
-                        }}
-                    />
+                    onClick={() => {
+                        setCreateFlag(true)
+                    }}
+                >
+                    {
+                        !banner && (
+                            <Button
+                                style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                                title="Upload Banner"
+                                onPress={() => {
+                                    setCreateFlag(true)
+                                }}
+                            />
+                        )
+                    }
+
                 </div>
                 <div>
                     {

@@ -43,7 +43,7 @@ export async function POST(req) {
 
     const body = await req.json()
 
-    const { company_id, video, title, description } = body
+    const { company_id, video, title, description, featured } = body
     if (body.id) {
         // update
         let result = await controller.update(
@@ -53,16 +53,18 @@ export async function POST(req) {
                 company_id,
                 title,
                 description,
-                video
+                video,
+                featured
             })
         return new NextResponse(helper.response(result, 200, null))
-    } else if (video && company_id && title && description) {
+    } else if (video && company_id && title && description && featured) {
         let result = await controller.create({
             user_id: mwareAccount.id,
             company_id,
             title,
             description,
-            video
+            video,
+            featured
         })
         return new NextResponse(helper.response(result, 200, null))
     }
