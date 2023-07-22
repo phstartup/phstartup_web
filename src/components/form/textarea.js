@@ -7,9 +7,9 @@ function Textarea(props) {
         const { validation } = props;
         let response = validator.validate(e.target.value, validation, validation.column);
         if (response === true) {
-            this.props.onChange(e.target.value, null)
+            props.onChange(e.target.value, null)
         } else {
-            this.props.onChange(e.target.value, response)
+            props.onChange(e.target.value, response)
         }
     }
 
