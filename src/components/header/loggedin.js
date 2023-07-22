@@ -3,13 +3,22 @@ import React, { useEffect, useState } from 'react';
 import Logo from './logo';
 import Link from 'next/link';
 import { SvgIcon } from '@mui/material';
-import { DarkMode, Face6, LightMode, MenuOutlined, Person3Rounded, Search } from '@mui/icons-material';
+import { Business, DarkMode, Face6, LightMode, MenuOutlined, Notifications, Person3Rounded, Search, Settings } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import useColorMode from '@/hooks/useColorMode';
 import String from '@/utils/String'
 import Profile from '@/assets/profile.png'
 import { useSession } from 'next-auth/react';
 import config from '@/config';
+import { signOut } from 'next-auth/react';
+import CustomNotifications from '@/components/notifications'
+
+
+const dropdownMenu = [{
+    title: 'Profile',
+    icon: Settings,
+    route: '/profile'
+}]
 
 function loggedin(props) {
     const [toggle, setToggle] = useState(false)
@@ -17,24 +26,64 @@ function loggedin(props) {
     const [colorMode, setColorMode] = useColorMode();
     const { data: session } = useSession();
     const [menu, setMenu] = useState([])
+    const [dropdown, setDropdown] = useState(false)
+    const [notifFlag, setNotifFlag] = useState(false)
 
     useEffect(() => {
         let actType = parseInt(session?.user?.account_type)
 
         if (actType == config.admin) {
             setMenu(String.adminMenu)
-        }else{
+        } else {
             setMenu(String.merchantMenu)
         }
     }, [])
+
+    const renderDropdown = () => {
+        return (
+            <div className={"z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-[300px] right-0 top-[60px] dark:bg-gray-800 dark:divide-gray-800 border border-gray-200 dark:border-gray-700 " + (dropdown == false ? 'hidden' : '')}>
+                <div className="px-4 py-4 text-sm text-gray-900 dark:text-white">
+                    <div className='text-lg font-semibold'>Hi {session?.user.name}!</div>
+                    <div className="font-medium truncate">{session?.user?.email}</div>
+                </div>
+                <ul className="text-sm text-gray-700 dark:text-gray-200">
+                    {
+                        dropdownMenu && dropdownMenu.map((item, index) => (
+                            <li
+                                key={index}
+                                onClick={() => {
+                                    router.push(item.route)
+                                }}
+                            >
+                                <span className="block px-4 py-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{item.title}</span>
+                            </li>
+                        ))
+                    }
+
+                </ul>
+                <div className="mb-[20px]">
+                    <span
+                        onClick={() => {
+                            signOut({
+                                callbackUrl: `${window.location.origin}`
+                            })
+                        }}
+                        className="block px-4 cursor-pointer py-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</span>
+                </div>
+            </div>
+
+        )
+    }
 
     const renderProfile = () => {
         return (
             <div
                 onClick={() => {
-                    router.push('/profile')
+                    // router.push('/profile')
+                    setDropdown(!dropdown)
                 }}
-                className='h-[30px] w-[30px] mr-[10px] float-left'>
+                className='h-[30px] w-[30px] mr-[10px] float-left relative'
+            >
                 {
                     (session?.user?.information && session.user.information.profile) ? (
                         <img
@@ -56,6 +105,10 @@ function loggedin(props) {
                     )
                 }
 
+                {
+                    renderDropdown()
+                }
+
             </div>
         )
     }
@@ -74,18 +127,25 @@ function loggedin(props) {
                 >
                     <div>
                     </div>
-                    <div className='h-[80px] flex content-center items-center'>
-                        <span className='href-link cursor-pointer px-[20px] pr-[20px] text-sm float-left font-bold'>
+                    <div className='h-[80px] flex content-center items-center justify-between'>
+                        {/* <span className='href-link cursor-pointer px-[20px] pr-[20px] text-sm float-left font-bold'>
                             Hi {session?.user.name}!
-                        </span>
-                        {
-                            renderProfile()
-                        }
+                        </span> */}
+                        <SvgIcon
+                            component={Notifications}
+                            onClick={() => {
+                                setNotifFlag(!notifFlag)
+                            }}
+                            className='cursor-pointer float-left mr-[20px] ml-[20px]'
+                        />
                         <SvgIcon
                             component={colorMode == 'light' ? DarkMode : LightMode}
                             onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}
-                            className='cursor-pointer float-left'
+                            className='cursor-pointer float-left mr-[20px]'
                         />
+                        {
+                            renderProfile()
+                        }
                     </div>
                 </div>
             </div>
@@ -93,16 +153,23 @@ function loggedin(props) {
                 <div
                     className='w-full h-[80px] float-left href-link px-[20px] pr-[20px] flex items-center content-center justify-between'
                 >
-                    <div className='w-3/4'>
+                    <div className='w-[60%]'>
                         <Logo />
                     </div>
                     <div>
+                        <SvgIcon
+                            component={Notifications}
+                            onClick={() => {
+                                setNotifFlag(!notifFlag)
+                            }}
+                            className='cursor-pointer float-left mr-[20px] ml-[20px]'
+                        />
                         {
                             renderProfile()
                         }
                         <SvgIcon
                             component={MenuOutlined}
-                            className='cursor-pointer'
+                            className='cursor-pointer ml-[20px]'
                             onClick={() => {
                                 setToggle(!toggle)
                             }}
@@ -156,6 +223,15 @@ function loggedin(props) {
                             </div>
                         </div>
                     </div>
+                )
+            }
+            {
+                notifFlag && (
+                    <CustomNotifications 
+                        onClose={() => {
+                            setNotifFlag(false)
+                        }}
+                    />
                 )
             }
         </div>

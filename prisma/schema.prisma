@@ -19,7 +19,7 @@ model users {
   account_type      Int
   email_verified_at DateTime?
   status            String
-  remember_token    String     @unique
+  remember_token    String    @unique
   created_at        DateTime
   updated_at        DateTime
   deleted_at        DateTime?
@@ -43,15 +43,63 @@ model companies {
   id             BigInt    @id @default(autoincrement())
   user_id        BigInt
   name           String
+  description    String
+  category       String
   industries     String
   address        String
   website        String
-  email_address  String?
-  contact_number String?
-  apps           String?
-  employees      String?
+  email_address  String
+  contact_number String
+  settings       String?
   status         String    @default("not_verified")
   created_at     DateTime
   updated_at     DateTime
   deleted_at     DateTime?
+}
+
+model pitches {
+  id         BigInt    @id @default(autoincrement())
+  user_id    BigInt
+  company_id BigInt
+  url        String
+  type       String
+  created_at DateTime
+  updated_at DateTime
+  deleted_at DateTime?
+}
+
+model teams {
+  id         BigInt    @id @default(autoincrement())
+  user_id    BigInt
+  company_id BigInt
+  position   String
+  about      String
+  video      String
+  created_at DateTime
+  updated_at DateTime
+  deleted_at DateTime?
+}
+
+model services {
+  id          BigInt    @id @default(autoincrement())
+  user_id     BigInt
+  company_id  BigInt
+  title       String
+  description String
+  video       String
+  created_at  DateTime
+  updated_at  DateTime
+  deleted_at  DateTime?
+}
+
+model achievements {
+  id          BigInt    @id @default(autoincrement())
+  user_id     BigInt
+  company_id  BigInt
+  title       String
+  description String
+  link        String
+  created_at  DateTime
+  updated_at  DateTime
+  deleted_at  DateTime?
 }

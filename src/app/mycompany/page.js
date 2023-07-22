@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from 'react';
 import Milestones from '@/components/mycompany/milestones';
 import Information from '@/components/mycompany/information';
@@ -6,6 +7,8 @@ import Services from '@/components/mycompany/Services'
 import Pitches from '@/components/mycompany/pitches'
 import Team from '@/components/mycompany/team'
 import { useSession } from 'next-auth/react';
+import Api from '@/lib/api';
+let api = new Api()
 function page(props) {
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
