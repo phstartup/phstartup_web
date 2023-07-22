@@ -46,22 +46,31 @@ export async function POST(req) {
     const { name, description, category, industries, address, website, email_address, contact_number, settings, status } = body
     if (body.id) {
         // update
-        let result = await controller.update(
-            body.id,
-            {
-                user_id: mwareAccount.id,
-                name,
-                description,
-                category,
-                industries,
-                address,
-                website,
-                email_address,
-                contact_number,
-                settings,
-                status
-            })
-        return new NextResponse(helper.response(result, 200, null))
+        if(settings){
+            let result = await controller.update(
+                body.id,
+                {
+                    settings: JSON.stringify(settings)
+                })
+            return new NextResponse(helper.response(result, 200, null))
+        }else{
+            let result = await controller.update(
+                body.id,
+                {
+                    user_id: mwareAccount.id,
+                    name,
+                    description,
+                    category,
+                    industries,
+                    address,
+                    website,
+                    email_address,
+                    contact_number,
+                    status
+                })
+            return new NextResponse(helper.response(result, 200, null))
+        }
+        
     } else if (name && description && category && industries && address && website && email_address && contact_number && settings) {
         // create
         console.log('create here')

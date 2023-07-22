@@ -57,6 +57,8 @@ export default class UserInformation {
                     company_id: result.company_id
                 }
             })
+
+            result['settings'] = JSON.parse(result['settings'])
         }
         return result ? result : null
     }
