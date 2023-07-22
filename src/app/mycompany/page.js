@@ -44,7 +44,7 @@ function page(props) {
                         <Information data={data} getData={() => getData()}/>
                         <Team />
                         <Pitches data={data} getData={() => getData()}/>
-                        <Services />
+                        <Services data={data} getData={() => getData()}/>
                         <Milestones />
                     </div>
                 )

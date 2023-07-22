@@ -85,7 +85,7 @@ model services {
   company_id  String
   title       String    @db.LongText
   description String    @db.LongText
-  video       String    @db.LongText
+  video       String?   @db.LongText
   created_at  DateTime
   updated_at  DateTime
   deleted_at  DateTime?

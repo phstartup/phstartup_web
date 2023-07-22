@@ -1,4 +1,5 @@
 import Pitch from './pitch';
+import Service from './Service';
 const { PrismaClient, Prisma } = require('@prisma/client')
 const prisma = new PrismaClient();
 export default class UserInformation {
@@ -37,6 +38,13 @@ export default class UserInformation {
         if(result){
             let pitch = new Pitch()
             result['pitches'] = await pitch.retrieve({
+                where: {
+                    company_id: result.company_id
+                }
+            })
+
+            let service = new Service()
+            result['services'] = await service.retrieve({
                 where: {
                     company_id: result.company_id
                 }

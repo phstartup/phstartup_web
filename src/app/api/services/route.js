@@ -1,4 +1,4 @@
-import Controller from "@/controllers/pitch"
+import Controller from "@/controllers/Service"
 import Helper from "@/lib/helper";
 import { NextResponse } from "next/server";
 let helper = new Helper()
@@ -43,24 +43,26 @@ export async function POST(req) {
 
     const body = await req.json()
 
-    const { type, company_id, url } = body
+    const { company_id, video, title, description } = body
     if (body.id) {
         // update
         let result = await controller.update(
             body.id,
             {
                 user_id: mwareAccount.id,
-                type,
                 company_id,
-                url
+                title,
+                description,
+                video
             })
         return new NextResponse(helper.response(result, 200, null))
-    } else if (url && company_id && type) {
+    } else if (video && company_id && title && description) {
         let result = await controller.create({
             user_id: mwareAccount.id,
-            type,
             company_id,
-            url
+            title,
+            description,
+            video
         })
         return new NextResponse(helper.response(result, 200, null))
     }
