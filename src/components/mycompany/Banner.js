@@ -135,7 +135,7 @@ function Banner(props) {
                     <h1 className='text-sm mb-[20px]'>Logo</h1>
                     <TextInput
                         type="text"
-                        placeholder="Url"
+                        placeholder="Logo Url"
                         value={logo}
                         onChange={(value, error) => {
                             setLogo(value)
@@ -154,7 +154,7 @@ function Banner(props) {
                     <h1 className='text-sm mb-[20px]'>Banner</h1>
                     <TextInput
                         type="text"
-                        placeholder="Url"
+                        placeholder="Banner URL"
                         value={banner}
                         onChange={(value, error) => {
                             setBanner(value)

@@ -46,7 +46,7 @@ export async function POST(req) {
     const { name, description, category, industries, address, website, email_address, contact_number, settings, status } = body
     if (body.id) {
         // update
-        if(settings){
+        if(settings && !name){
             let result = await controller.update(
                 body.id,
                 {
