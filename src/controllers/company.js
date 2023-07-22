@@ -1,3 +1,4 @@
+import Pitch from './pitch';
 const { PrismaClient, Prisma } = require('@prisma/client')
 const prisma = new PrismaClient();
 export default class UserInformation {
@@ -32,7 +33,16 @@ export default class UserInformation {
                 deleted_at: null
             }
         }
-        return await prisma.companies.findFirst(nCondition)
+        let result = await prisma.companies.findFirst(nCondition)
+        if(result){
+            let pitch = new Pitch()
+            result['pitches'] = await pitch.retrieve({
+                where: {
+                    company_id: result.company_id
+                }
+            })
+        }
+        return result ? result : null
     }
 
     async retrieve(condition) {

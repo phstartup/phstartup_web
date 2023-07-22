@@ -62,5 +62,12 @@ export default {
         value: 'Hotel'
     }, {
         value: 'Restaurant'
+    }],
+    pitches: [{
+        value: '60 Seconds'
+    }, {
+        value: '120 Seconds'
+    }, {
+        value: '300 Seconds'
     }]
 }

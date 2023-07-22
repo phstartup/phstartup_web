@@ -30,6 +30,7 @@ function Information(props) {
     const [contactNumber, setContactNumber] = useState(null)
     const [contactNumberError, setContactNumberError] = useState(null)
     const [btnLoading, setBtnLoading] = useState(false)
+    const [data, setData] = useState(null)
 
     useEffect(() => {
         if (props.data) {
@@ -42,6 +43,7 @@ function Information(props) {
             setWebsite(data.website)
             setEmailAddress(data.email_address)
             setContactNumber(data.contact_number)
+            setData(data)
         }
     }, [])
 
@@ -52,10 +54,12 @@ function Information(props) {
         await api.post('/api/companies', { ...item }, session?.accessToken, (response) => {
             setTimeout(() => {
                 setBtnLoading(false)
+                props.getData()
             }, 1000)
         }, (error) => {
             setTimeout(() => {
                 setBtnLoading(false)
+                props.getData()
             }, 1000)
 
         })
@@ -63,6 +67,7 @@ function Information(props) {
 
     const validate = () => {
         submit({
+            id: data ? data.id : null,
             name,
             description,
             category,

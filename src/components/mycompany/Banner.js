@@ -6,10 +6,6 @@ import Image from 'next/image';
 import Button from '@/components/buttons/btn'
 
 function Banner(props) {
-
-    console.log({
-        data: props.data
-    })
     const renderProfile = () => {
         return (
             <div

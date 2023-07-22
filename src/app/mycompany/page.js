@@ -40,10 +40,10 @@ function page(props) {
             {
                 !loading && (
                     <div className='w-full float-left mt-[20px]'>
-                        <Banner data={data}/>
-                        <Information data={data} />
+                        <Banner data={data} getData={() => getData()}/>
+                        <Information data={data} getData={() => getData()}/>
                         <Team />
-                        <Pitches />
+                        <Pitches data={data} getData={() => getData()}/>
                         <Services />
                         <Milestones />
                     </div>
