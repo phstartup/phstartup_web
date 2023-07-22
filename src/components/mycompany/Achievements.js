@@ -181,12 +181,11 @@ function Achievements(props) {
                             className={'float-left h-[300px] rounded-lg border border-gray-100 dark:border-gray-700 cursor-pointer mb-[20px] lg:w-[24%] xl:w-[24%] 2xl:w-[24%] sm:w-[100%] xs:w-[100%] md:w-[49%] lg:mr-[1%] xl:mr-[1%] 2xl:mr-[1%] md:mr-[1%] xs:mr-[0%] sm:mr-[0%]'}
                         >
                             <div className='w-full float-left h-[200px]'
-                                style={{
-                                    backgroundImage: `url(${item.featured})`,
-                                    backgroundRepeat: 'no-repeat',
-                                    backgroundSize: '100% auto'
-                                }}
                             >
+                                <img
+                                    src={item.featured}
+                                    className='h-[200px] w-full rounded-t-lg'
+                                />
                             </div>
                             <div className='w-full float-left p-[10px] h-[100px] border-t border-gray-100 dark:border-gray-800'>
                                 <span className='w-full float-left text-sm font-bold'>{item.title}</span>
