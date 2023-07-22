@@ -27,13 +27,10 @@ export default class User {
         let data = Prisma.usersCreateInput
         data = {
             username: user.username,
-            code: helper.codeGenerator('act'),
-            // code: user.username,
             password: await hash(user.password, 12),
             email: user.email,
             account_type: 0,
             status: 'not_verified',
-            remember_token: '12321',
             email_verified_at: new Date(),
             created_at: new Date(),
             updated_at: new Date()
@@ -77,7 +74,7 @@ export default class User {
         if (result && result.length > 0) {
             for (let index = 0; index < result.length; index++) {
                 let item = result[index]
-                item = helper.exclude(item, ['remember_token', 'id', 'password'])
+                item = helper.exclude(item, ['remember_token', 'password'])
                 let information = new UserInformation()
                 let info = await information.retrieve({
                     where: {
@@ -103,13 +100,10 @@ export default class User {
         let data = Prisma.usersCreateInput
         data = {
             username: user.email,
-            code: helper.codeGenerator('act'),
-            // code: user.email,
             password: await hash(user.email, 12),
             email: user.email,
             account_type: 0,
             status: 'not_verified',
-            remember_token: '12321',
             email_verified_at: new Date(),
             created_at: new Date(),
             updated_at: new Date()
@@ -223,7 +217,7 @@ export default class User {
                     user_id: isExist.id
                 }
             })
-            let userWithoutPassword = helper.exclude(isExist, ['password', 'remember_token', 'id'])
+            let userWithoutPassword = helper.exclude(isExist, ['password', 'remember_token'])
 
             if (info) {
                 info = helper.exclude(info, ['id', 'user_id'])

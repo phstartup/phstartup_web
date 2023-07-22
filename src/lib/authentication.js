@@ -60,9 +60,6 @@ export const authOptions = {
             }
         },
         jwt: async ({ token, user, account }) => {
-            console.log('JWTS TOKEN', token);
-            console.log('JWTS ACCOUNT', account);
-            console.log('JWTS USER', user);
             if (user) {
                 const helper = new Helper()
                 // const cipher = await helper.cipherText(JSON.stringify(token))

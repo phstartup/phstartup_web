@@ -10,7 +10,7 @@ function page(props) {
 
             <div className='w-full float-left mt-[20px]'>
                 <Information />
-                <Password />
+                {/* <Password /> */}
                 <MFA />
             </div>
         </div>
