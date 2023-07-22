@@ -28,6 +28,45 @@ export default class UserInformation {
         }
     }
 
+    async retrieveHome(condition) {
+        let nCondition = {
+            where: {
+                status: 'verified',
+                deleted_at: null
+            }
+        }
+        let result = await prisma.companies.findMany(nCondition)
+        if (result && result.length > 0) {
+            for (let index = 0; index < result.length; index++) {
+                const item = result[index];
+                let pitch = new Pitch()
+                result[index]['pitches'] = await pitch.retrieve({
+                    where: {
+                        company_id: item.id
+                    }
+                })
+
+                let service = new Service()
+                result[index]['services'] = await service.retrieve({
+                    where: {
+                        company_id: item.id
+                    }
+                })
+
+                let achievement = new Achievement()
+                result[index]['achievements'] = await achievement.retrieve({
+                    where: {
+                        company_id: item.id
+                    }
+                })
+
+                result[index]['settings'] = JSON.parse(item.settings)
+            }
+        }
+
+        return result ? result : null
+    }
+
     async retrieveFirst(condition) {
         let nCondition = {
             where: {
@@ -37,7 +76,7 @@ export default class UserInformation {
         }
         let result = await prisma.companies.findFirst(nCondition)
 
-        if(result){
+        if (result) {
             let pitch = new Pitch()
             result['pitches'] = await pitch.retrieve({
                 where: {

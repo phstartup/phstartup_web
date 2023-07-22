@@ -1,6 +1,6 @@
 export default class Api {
     async post(url, data, token, callback, errorCallback) {
-        if(!token){
+        if (!token) {
             return
         }
         const fetchOptions = {
@@ -22,7 +22,7 @@ export default class Api {
         })
     }
 
-    async postRegister(url, data, callback, errorCallback){
+    async postRegister(url, data, callback, errorCallback) {
         const fetchOptions = {
             method: 'POST',
             headers: {
@@ -42,7 +42,7 @@ export default class Api {
     }
 
     async patch(url, data, token, callback, errorCallback) {
-        if(!token){
+        if (!token) {
             return
         }
 
@@ -66,15 +66,31 @@ export default class Api {
     }
 
     async get(url, token, callback, errorCallback) {
-        if(!token){
+        if (!token) {
             return
         }
         const fetchOptions = {
             method: 'GET',
             headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
-                }
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        }
+        fetch(url, fetchOptions).then(response => response.json()).then(json => {
+            callback(json)
+        }).catch(error => {
+            if (errorCallback) {
+                errorCallback(error)
+            }
+        })
+    }
+
+    async getNoToken(url, callback, errorCallback) {
+        const fetchOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
         }
         fetch(url, fetchOptions).then(response => response.json()).then(json => {
             callback(json)
