@@ -71,9 +71,9 @@ function Banner(props) {
             <div
                 onClick={() => {
                 }}
-                className='h-[200px] absolute bottom-0 left-0'>
+                className='h-[200px] p-[20px]'>
                 <div className='float-left w-full'>
-                    <div className='float-left cursor-pointer'
+                    <div className='float-left cursor-pointer mt-[10px]'
                         onClick={() => {
                             setCreateFlag(true)
                         }}
@@ -82,14 +82,14 @@ function Banner(props) {
                             logo ? (
                                 <img
                                     src={logo}
-                                    width={200}
-                                    height={200}
+                                    width={180}
+                                    height={180}
                                     className='rounded-[100px] cursor-pointer border-2 bg-black dark:bg-white'
                                     alt={"Profile"}
                                 />
                             ) : (
                                 <span
-                                    className='h-[200px] w-[200px] flex items-center justify-center content-center border border-gray-100 dark:border-gray-700 rounded-[100px]'
+                                    className='h-[180px] w-[180px] flex items-center justify-center content-center border border-gray-100 dark:border-gray-700 rounded-[100px]'
                                     >
                                     <SvgIcon 
                                         style={{
