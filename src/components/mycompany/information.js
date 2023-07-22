@@ -11,6 +11,7 @@ import Api from '@/lib/api';
 
 let api = new Api()
 function Information(props) {
+    const {data: session} = useSession()
     const [editFlag, setEditFlag] = useState(false)
     const [name, setName] = useState(null)
     const [nameError, setNameError] = useState(null)
@@ -28,10 +29,58 @@ function Information(props) {
     const [emailAddressError, setEmailAddressError] = useState(null)
     const [contactNumber, setContactNumber] = useState(null)
     const [contactNumberError, setContactNumberError] = useState(null)
+    const [btnLoading, setBtnLoading] = useState(false)
 
     useEffect(() => {
+
+        console.log({
+            data: props.data
+        })
+        if(props.data){
+            let data = props.data
+            setName(data.name)
+            setDescription(data.description)
+            setCategory(data.category)
+            setIndustries(data.industries)
+            setAddress(data.address)
+            setWebsite(data.website)
+            setEmailAddress(data.email_address)
+            setContactNumber(data.contact_number)
+        }
     }, [])
 
+    const submit = async (item) => {
+        if(!session) return
+        if (item == null) return
+        setBtnLoading(true)
+        await api.post('/api/companies', { ...item }, session?.accessToken, (response) => {
+            console.log({
+                response
+            })
+            setTimeout(() => {
+                setBtnLoading(false)
+            }, 1000)
+        }, (error) => {
+            setTimeout(() => {
+                setBtnLoading(false)
+            }, 1000)
+
+        })
+    }
+
+    const validate = () => {
+        submit({
+            name,
+            description,
+            category,
+            industries,
+            address,
+            website,
+            email_address: emailAddress,
+            contact_number: contactNumber,
+            settings: "{}"
+        })
+    }
     const renderFields = () => {
         return (
             <div className='w-full float-left text-sm mt-[20px]'>
@@ -71,24 +120,35 @@ function Information(props) {
                         }}
                     />
                 </div>
+                <div className='w-full float-left text-sm'>
+                    <h1 className='text-sm mb-[20px]'>Initiative Category</h1>
+                    <TextInput
+                        type="text"
+                        placeholder="Category"
+                        value={category}
+                        onChange={(value, error) => {
+                            setCategory(value)
+                            setCategoryError(error)
+                        }}
+                        validation={{
+                            type: 'text',
+                            size: 2,
+                            column: 'Category',
+                            error: categoryError
+                        }}
+                    />
+                </div>
 
                 <div className='w-full float-left text-sm mt-[20px]'>
                     <h1 className='text-sm mb-[20px]'>Industry</h1>
                     <Select
                         type="text"
                         data={String.industries}
+                        selected={industries}
                         placeholder="Select Industries"
-                        value={industries}
-                    // onChange={(value, error) => {
-                    //     setDescription(value)
-                    //     setDescriptionError(error)
-                    // }}
-                    // validation={{
-                    //     type: 'text',
-                    //     size: 2,
-                    //     column: 'Description',
-                    //     error: descriptionError
-                    // }}
+                        onChange={(value) => {
+                            setIndustries(value)
+                        }}
                     />
                 </div>
 
@@ -187,9 +247,10 @@ function Information(props) {
                     />
                     <Button
                         style={' bg-black dark:bg-white text-white dark:text-gray-900'}
-                        title={"Save"}
+                        title={props.data ? 'Update' : "Save"}
+                        loading={btnLoading}
                         onPress={() => {
-                            update()
+                            validate()
                         }}
                     />
 

@@ -22,12 +22,12 @@ export async function GET(req) {
     const user_id = searchParams.get('user_id')
 
     if (user_id) {
-        let result = await controller.retrieve({
+        let result = await controller.retrieveFirst({
             where: {
                 user_id: user_id
             }
         })
-        result = result && result.length > 0 ? result[0] : null
+        result = result ? result : null
         return new NextResponse(helper.response(result, 200, null));
     } else {
         // let result = await controller.retrieveAdmin()
@@ -46,7 +46,7 @@ export async function POST(req) {
     const { name, description, category, industries, address, website, email_address, contact_number, settings, status } = body
     if (body.id) {
         // update
-        let result = await controller.create(
+        let result = await controller.update(
             {
                 where: {
                     id: id
@@ -66,8 +66,9 @@ export async function POST(req) {
                 status
             })
         return new NextResponse(helper.response(result, 200, null))
-    } else if (user_id, name && description) {
+    } else if (name && description && category && industries && address && website && email_address && contact_number && settings) {
         // create
+        console.log('create here')
         let result = await controller.create({
             user_id: mwareAccount.id,
             name,

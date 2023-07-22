@@ -30,7 +30,7 @@ function Sidebar(props) {
                 ))
             }
             <div className='absolute bottom-[100px] left-0 flex items-center content-center h-[50px] justify-center w-full'>
-                <Tooltip content="Application Contributors">
+                <Tooltip content="Contributors">
                     <SvgIcon
                         onClick={() => {
                             router.push('/contributors')

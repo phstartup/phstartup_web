@@ -25,6 +25,16 @@ export default class UserInformation {
         }
     }
 
+    async retrieveFirst(condition) {
+        let nCondition = {
+            where: {
+                ...condition.where,
+                deleted_at: null
+            }
+        }
+        return await prisma.companies.findFirst(nCondition)
+    }
+
     async retrieve(condition) {
         let nCondition = {
             where: {
