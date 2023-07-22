@@ -11,7 +11,7 @@ import Api from '@/lib/api';
 
 let api = new Api()
 function Information(props) {
-    const {data: session} = useSession()
+    const { data: session } = useSession()
     const [editFlag, setEditFlag] = useState(false)
     const [name, setName] = useState(null)
     const [nameError, setNameError] = useState(null)
@@ -36,7 +36,7 @@ function Information(props) {
         console.log({
             data: props.data
         })
-        if(props.data){
+        if (props.data) {
             let data = props.data
             setName(data.name)
             setDescription(data.description)
@@ -50,7 +50,7 @@ function Information(props) {
     }, [])
 
     const submit = async (item) => {
-        if(!session) return
+        if (!session) return
         if (item == null) return
         setBtnLoading(true)
         await api.post('/api/companies', { ...item }, session?.accessToken, (response) => {
@@ -242,7 +242,7 @@ function Information(props) {
                         style={' bg-red-500 text-white mr-[20px]'}
                         title={"Cancel"}
                         onPress={() => {
-                            update()
+                            setEditFlag(!editFlag)
                         }}
                     />
                     <Button
@@ -262,13 +262,18 @@ function Information(props) {
         <div className={Style.cardContainer}>
             <div className='flex w-full items-center content-center justify-between'>
                 <span className='text-lg font-bold'>Statup Details</span>
-                <Button
-                    style={' bg-black dark:bg-white text-white dark:text-gray-900'}
-                    title={editFlag ? "Close" : "Edit"}
-                    onPress={() => {
-                        setEditFlag(!editFlag)
-                    }}
-                />
+                {
+                    !editFlag && (
+                        <Button
+                            style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                            title={editFlag ? "Close" : "Edit"}
+                            onPress={() => {
+                                setEditFlag(!editFlag)
+                            }}
+                        />
+                    )
+                }
+
             </div>
             {
                 editFlag && renderFields()
