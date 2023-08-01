@@ -41,6 +41,12 @@ export async function GET(req) {
             }, {
                 title: 'Accelerating Asia',
                 data: result
+            }, {
+                title: 'DOHE Accelerator',
+                data: result
+            }, {
+                title: 'Research & Developments',
+                data: result
             }]
         }
         return new NextResponse(helper.response(response, 200, null));
