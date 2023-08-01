@@ -129,7 +129,7 @@ function Pitches(props) {
             {
                 viewVideo && pitch && (
                     <ModalVideo
-                        title="Elavator Pitch"
+                        title={pitch.type + ' Pitch Video'}
                         onClose={() => {
                             setPitch(null)
                             setViewVideo(false)
