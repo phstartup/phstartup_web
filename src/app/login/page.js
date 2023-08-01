@@ -42,7 +42,7 @@ function page(props) {
 			</div>
 			<Right
 				title="Open & Free Startup Community"
-				list={["Share your Pitch Deck", "Grow your network", "Validate your ideas", "and more"]}
+				list={["Share your Pitch Deck", "Share your Services", "Grow your network", "Validate your ideas", "and more"]}
 			/>
 		</div>
 	);
