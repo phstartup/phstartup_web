@@ -27,4 +27,23 @@ export default class Helper {
         var str = crypto.randomBytes(length ? length : 60).toString('hex');
         return prefix + '-' + str
     }
+
+    getName(user) {
+        if (user) {
+            if (!user.information) {
+                return user.username
+            } else {
+                let info = user.information
+                if (info.first_name && info.last_name) {
+                    return info.first_name + ' ' + info.last_name
+                } else if (info.first_name) {
+                    return info.first_name
+                } else {
+                    return user.username
+                }
+            }
+        } else {
+            return null
+        }
+    }
 }

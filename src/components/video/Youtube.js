@@ -1,9 +1,6 @@
 import React from 'react';
 
 function Youtube(props) {
-    console.log({
-        props
-    })
     return (
         <div className='w-full float-left'>
             <div
@@ -12,7 +9,7 @@ function Youtube(props) {
                 {
                     props.url && (
                         <iframe
-                            className="embed-responsive-item absolute bottom-0 left-0 right-0 top-0 h-full w-full"
+                            className="embed-responsive-item h-full w-full"
                             src={props.url}
                             allowfullscreen=""
                             data-gtm-yt-inspected-2340190_699="true"
