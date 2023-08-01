@@ -205,7 +205,7 @@ function Achievements(props) {
             {
                 createFlag && (
                     <Modal
-                        title={achievement ? "Update an Achievement" : "Add an Achievement"}
+                        title={achievement ? "Update Achievement" : "Add Achievement"}
                         onClose={() => {
                             setCreateFlag(false)
                             setAchievement(null)
