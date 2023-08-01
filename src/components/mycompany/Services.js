@@ -206,7 +206,7 @@ function Services(props) {
             {
                 createFlag && (
                     <Modal
-                        title={service ? "Update A Service" : "Add A Service"}
+                        title={service ? "Update Service" : "Add Service"}
                         onClose={() => {
                             setCreateFlag(false)
                             setService(null)
