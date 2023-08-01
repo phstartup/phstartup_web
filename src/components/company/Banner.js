@@ -6,13 +6,17 @@ import { Photo } from '@mui/icons-material';
 import { useSession } from 'next-auth/react';
 import Button from '@/components/buttons/btn'
 import Api from '@/lib/api';
+import { useRouter } from 'next/navigation';
+import Modal from '@/components/modal/index'
 let api = new Api()
 
 function Banner(props) {
     const { data: session } = useSession()
+    const router = useRouter()
     const [logo, setLogo] = useState(null)
     const [banner, setBanner] = useState(null)
     const [data, setData] = useState(null)
+    const [vouchModal, setVouchModal] = useState(false)
 
 
     useEffect(() => {
@@ -30,14 +34,24 @@ function Banner(props) {
         }
     }, [])
 
+    const vouchSubmit = () => {
+        if (session && session.user) {
+            // submit here
+            setVouchModal(true)
+        } else {
+            // router.push('/login')
+            setVouchModal(true)
+        }
+    }
+
     const renderProfile = () => {
         return (
             <div
                 onClick={() => {
                 }}
-                className='h-[200px] p-[20px]'>
+                className='h-[200px] w-full'>
                 <div className='float-left w-full'>
-                    <div className='float-left cursor-pointer mt-[10px]'
+                    <div className='float-left cursor-pointer mt-[10px] w-[180px]'
                         onClick={() => {
                             setCreateFlag(true)
                         }}
@@ -68,29 +82,46 @@ function Banner(props) {
 
                     {
                         props.data && (
-                            <div className='float-left h-[200px] flex items-center content-center company-banner-name'>
-                                <div className='w-full'>
+                            <div className='float-left w-[calc(100%-180px)] h-[200px] flex items-center content-center company-banner-name'>
+                                <div className='w-full float-left'>
                                     <span className='ml-[20px] float-left w-full'>
-                                        <h1 className='font-bold text-4xl'>{props.data.name}</h1>
+                                        <h1 className='font-bold text-4xl mb-[20px]'>{props.data.name}</h1>
                                         <span className='text-sm'>
                                             {
                                                 props.data.description
                                             }
                                         </span>
                                     </span>
-
-                                    {
-                                        data && data.website && (
-                                            <span className='ml-[20px] float-left w-full mt-[20px]'>
-                                                <Button
-                                                    style={' bg-black dark:bg-white text-white dark:text-gray-900'}
-                                                    title="View Website"
-                                                    onPress={() => {
-                                                    }}
-                                                />
-                                            </span>
-                                        )
-                                    }
+                                    <span className='w-full float-left flex justify-between ml-[20px]'>
+                                        <span>
+                                            {
+                                                data && data.website && (
+                                                    <span className=' float-left  mt-[20px]'>
+                                                        <Button
+                                                            style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                                                            title="View Website"
+                                                            onPress={() => {
+                                                                window.open(data.website, '_blank')
+                                                            }}
+                                                        />
+                                                    </span>
+                                                )
+                                            }
+                                        </span>
+                                        {
+                                            data && !data.vouch && (
+                                                <span className='float-left mt-[20px]'>
+                                                    <Button
+                                                        style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                                                        title="I can vouch"
+                                                        onPress={() => {
+                                                            vouchSubmit()
+                                                        }}
+                                                    />
+                                                </span>
+                                            )
+                                        }
+                                    </span>
                                 </div>
                             </div>
                         )
@@ -98,6 +129,16 @@ function Banner(props) {
 
                 </div>
 
+            </div>
+        )
+    }
+
+    const renderContent = () => {
+        return (
+            <div className='w-full float-left mb-[20px]'>
+                <div className='w-full float-left text-sm'>
+                    <h1 className='text-sm mb-[20px]'>You successfully vouch for this company.</h1>
+                </div>
             </div>
         )
     }
@@ -122,6 +163,30 @@ function Banner(props) {
                     }
                 </div>
             </div>
+            {
+                vouchModal && (
+                    <Modal
+                        title={"Confirmation"}
+                        onClose={() => {
+                            setVouchModal(false)
+                        }}
+                        content={renderContent}
+                        footer={() => {
+                            return (
+                                <div className='w-full float-left'>
+                                    <Button
+                                        style={' bg-black dark:bg-white text-white dark:text-black'}
+                                        title="Close"
+                                        onPress={() => {
+                                            setVouchModal(false)
+                                        }}
+                                    />
+                                </div>
+                            )
+                        }}
+                    />
+                )
+            }
         </div>
     );
 }
