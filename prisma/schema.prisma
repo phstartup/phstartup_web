@@ -105,3 +105,58 @@ model achievements {
   updated_at  DateTime
   deleted_at  DateTime?
 }
+
+model comments {
+  id            String    @id @default(uuid())
+  user_id       String
+  payload       String
+  payload_value String    @db.LongText
+  content       String    @db.LongText
+  created_at    DateTime
+  updated_at    DateTime
+  deleted_at    DateTime?
+}
+
+model vouches {
+  id            String    @id @default(uuid())
+  user_id       String
+  payload       String
+  payload_value String    @db.LongText
+  content       String    @db.LongText
+  created_at    DateTime
+  updated_at    DateTime
+  deleted_at    DateTime?
+}
+
+model events {
+  id          String    @id @default(uuid())
+  user_id     String
+  company_id  String
+  title       String
+  description String    @db.LongText
+  start_date  DateTime
+  end_date    DateTime
+  link        String    @db.LongText
+  target      String    @db.LongText
+  price       String
+  currency    String
+  created_at  DateTime
+  updated_at  DateTime
+  deleted_at  DateTime?
+}
+
+model programs {
+  id          String    @id @default(uuid())
+  user_id     String
+  company_id  String
+  title       String
+  description String    @db.LongText
+  deadline    DateTime
+  link        String    @db.LongText
+  target      String    @db.LongText
+  price       String
+  currency    String
+  created_at  DateTime
+  updated_at  DateTime
+  deleted_at  DateTime?
+}
