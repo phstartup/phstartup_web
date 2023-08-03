@@ -10,6 +10,7 @@ import TextInput from '@/components/form/text'
 
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { SvgIcon } from '@mui/material';
+import Style from '@/utils/Style';
 
 const programs = [{
     title: 'QBO Arise +',
@@ -99,7 +100,7 @@ function page(props) {
         )
     }
     return (
-        <div className='w-full float-left mt-[50px]'>
+        <div className={`w-full float-left mt-[100px] ` + Style.padding}>
             <Breadcrumbs title="Startup Events" />
 
 
