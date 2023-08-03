@@ -111,6 +111,33 @@ function Banner(props) {
                                                     </span>
                                                 )
                                             }
+                                            {
+                                                data && data.email_address && (
+                                                    <span className=' float-left  mt-[20px] ml-[5px]'>
+                                                        <Button
+                                                            style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                                                            title={data.email_address}
+                                                            onPress={() => {
+                                                                //
+                                                            }}
+                                                        />
+                                                    </span>
+                                                )
+                                            }
+
+                                            {
+                                                data && data.contact_number && (
+                                                    <span className=' float-left  mt-[20px] ml-[5px]'>
+                                                        <Button
+                                                            style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                                                            title={data.contact_number}
+                                                            onPress={() => {
+                                                                //
+                                                            }}
+                                                        />
+                                                    </span>
+                                                )
+                                            }
                                         </span>
                                         {
                                             data && !data.vouch && (
