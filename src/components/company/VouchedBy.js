@@ -23,7 +23,7 @@ function VouchedBy(props) {
         let radius = size / 2
         return (
             <div
-                className={`h-[${size}px] w-[${size}px] mr-[10px] float-left relative`}
+                className={`h-[${size}px] w-[${size}px] rounded-[${radius}px] mr-[10px] float-left relative`}
             >
                 {
                     (user.information && user.information.profile) ? (
@@ -39,7 +39,7 @@ function VouchedBy(props) {
                             <SvgIcon component={Face6}
                                 className='text-white dark:text-black'
                                 style={{
-                                    fontSize: 30
+                                    fontSize: size
                                 }}
                             />
                         </div>
