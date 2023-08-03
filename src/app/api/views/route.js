@@ -1,4 +1,4 @@
-import Controller from "@/controllers/comment"
+import Controller from "@/controllers/view"
 import Helper from "@/lib/helper";
 import { NextResponse } from "next/server";
 let helper = new Helper()
@@ -35,16 +35,14 @@ export async function POST(req) {
             {
                 user_id: mwareAccount.id,
                 payload,
-                payload_value,
-                content
+                payload_value
             })
         return new NextResponse(helper.response(result, 200, null))
     } else if (payload && payload_value && content) {
         let result = await controller.create({
             user_id: mwareAccount.id,
             payload,
-            payload_value,
-            content
+            payload_value
         })
         return new NextResponse(helper.response(result, 200, null))
     }

@@ -160,3 +160,14 @@ model programs {
   updated_at  DateTime
   deleted_at  DateTime?
 }
+
+
+model views {
+  id            String    @id @default(uuid())
+  user_id       String
+  payload       String
+  payload_value String    @db.LongText
+  created_at    DateTime
+  updated_at    DateTime
+  deleted_at    DateTime?
+}
