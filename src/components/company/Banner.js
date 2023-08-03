@@ -5,6 +5,7 @@ import { SvgIcon } from '@mui/material';
 import { Photo } from '@mui/icons-material';
 import { useSession } from 'next-auth/react';
 import Button from '@/components/buttons/btn'
+import TextArea from '@/components/form/textarea'
 import Api from '@/lib/api';
 import { useRouter } from 'next/navigation';
 import Modal from '@/components/modal/index'
@@ -17,6 +18,9 @@ function Banner(props) {
     const [banner, setBanner] = useState(null)
     const [data, setData] = useState(null)
     const [vouchModal, setVouchModal] = useState(false)
+    const [btnLoading, setBtnLoading] = useState(false)
+    const [message, setMessage] = useState(null)
+    const [messageError, setMessageError] = useState(null)
 
 
     useEffect(() => {
@@ -137,7 +141,22 @@ function Banner(props) {
         return (
             <div className='w-full float-left mb-[20px]'>
                 <div className='w-full float-left text-sm'>
-                    <h1 className='text-sm mb-[20px]'>You successfully vouch for this company.</h1>
+                    <h1 className='text-sm mb-[20px]'>Message</h1>
+                    <TextArea
+                        type="text"
+                        placeholder="You something great here..."
+                        value={message}
+                        onChange={(value, error) => {
+                            setMessage(value)
+                            setMessageError(error)
+                        }}
+                        validation={{
+                            type: 'text',
+                            size: 2,
+                            column: 'Message',
+                            error: messageError
+                        }}
+                    />
                 </div>
             </div>
         )
@@ -166,7 +185,7 @@ function Banner(props) {
             {
                 vouchModal && (
                     <Modal
-                        title={"Confirmation"}
+                        title={"Thank you for being kind..."}
                         onClose={() => {
                             setVouchModal(false)
                         }}
@@ -174,11 +193,20 @@ function Banner(props) {
                         footer={() => {
                             return (
                                 <div className='w-full float-left'>
+
                                     <Button
-                                        style={' bg-black dark:bg-white text-white dark:text-black'}
-                                        title="Close"
+                                        style={' bg-red-400 text-white'}
+                                        title="Cancel"
                                         onPress={() => {
                                             setVouchModal(false)
+                                        }}
+                                    />
+
+                                    <Button
+                                        style={' bg-black dark:bg-white text-white dark:text-black ml-[20px]'}
+                                        title={"Submit"}
+                                        loading={btnLoading}
+                                        onPress={() => {
                                         }}
                                     />
                                 </div>

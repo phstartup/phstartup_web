@@ -5,7 +5,6 @@ import { Add, Face6 } from '@mui/icons-material';
 import TextArea from '@/components/form/textarea'
 import Button from '@/components/buttons/btn'
 import Helper from '@/lib/helper';
-import { Nunito } from 'next/font/google';
 let helper = new Helper()
 
 const comments = [{

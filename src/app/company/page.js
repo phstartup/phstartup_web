@@ -5,12 +5,53 @@ import Information from '@/components/company/information';
 import Banner from '@/components/company/Banner';
 import Services from '@/components/company/Services'
 import Pitches from '@/components/company/pitches'
-import Footer from '@/components/footer'
+import VouchedBy from '@/components/company/VouchedBy'
 import Api from '@/lib/api';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Style from '@/utils/Style';
 let api = new Api()
 
+
+const vouched_by = [{
+    created_at: 'July 1, 2023',
+    user: {
+        username: 'kennette',
+        information: {
+            position: 'CEO, Increment Technologies Inc.',
+            first_name: 'Kennette',
+            last_name: 'Canales',
+            profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c'
+        },
+        id: 1
+    },
+    content: 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. '
+}, {
+    created_at: 'July 1, 2023',
+    user: {
+        username: 'kennette',
+        information: {
+            position: 'CEO, Increment Technologies Inc.',
+            first_name: 'Kennette',
+            last_name: 'Canales',
+            profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c'
+        },
+        id: 1
+    },
+    content: 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. '
+}, {
+    created_at: 'July 1, 2023',
+    user: {
+        username: 'kennette',
+        information: {
+            position: 'CEO, Increment Technologies Inc.',
+            first_name: 'Kennette',
+            last_name: 'Canales',
+            profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c'
+        },
+        id: 1
+    },
+    content: 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. '
+}]
 
 function page(props) {
 
@@ -29,7 +70,10 @@ function page(props) {
             return
         }
         await api.getNoToken('/api/home?id=' + id, (response) => {
-            setData(response.data)
+            setData({
+                ...response.data,
+                vouched_by
+            })
             setTimeout(() => {
                 setLoading(false)
             }, 1000)
@@ -54,12 +98,12 @@ function page(props) {
                             <Banner data={data} />
                             <Pitches data={data} />
                             <Services data={data} />
+                            <VouchedBy data={data}/>
                             <Achievements data={data} />
                         </div>
                     )
                 }
             </div>
-            <Footer />
         </div>
     );
 }
