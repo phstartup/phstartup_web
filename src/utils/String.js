@@ -56,6 +56,21 @@ export default {
             route: 'jobs'
         }
     ],
+    categories: [{
+        value: "Startup"
+    }, {
+        value: 'Investor'
+    }, {
+        value: 'Accelerator'
+    }, {
+        value: 'Incubator'
+    }, {
+        value: 'Government'
+    }, {
+        value: 'Events'
+    }, {
+        value: 'Others'
+    }],
     industries: [{
         value: "Finance"
     }, {

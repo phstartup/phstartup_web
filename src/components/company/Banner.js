@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Style from '@/utils/Style';
 import { SvgIcon } from '@mui/material';
-import { Photo } from '@mui/icons-material';
+import { Android, Apple, Facebook, Instagram, LinkedIn, Photo, Twitter } from '@mui/icons-material';
 import { useSession } from 'next-auth/react';
 import Button from '@/components/buttons/btn'
 import TextArea from '@/components/form/textarea'
@@ -21,6 +21,8 @@ function Banner(props) {
     const [btnLoading, setBtnLoading] = useState(false)
     const [message, setMessage] = useState(null)
     const [messageError, setMessageError] = useState(null)
+    const [socialMedias, setSocialMedias] = useState(null)
+    const [mobileApps, setMobileApps] = useState(null)
 
 
     useEffect(() => {
@@ -35,9 +37,14 @@ function Banner(props) {
             if (options && options.banner) {
                 setBanner(options.banner)
             }
+            if (options.mobile_apps) {
+                setMobileApps(options.mobile_apps)
+            }
+            if (options.social_medias) {
+                setSocialMedias(options.social_medias)
+            }
         }
     }, [])
-
     const vouchSubmit = () => {
         if (session && session.user) {
             // submit here
@@ -89,10 +96,100 @@ function Banner(props) {
                             <div className='float-left w-[calc(100%-180px)] h-[200px] flex items-center content-center company-banner-name'>
                                 <div className='w-full float-left'>
                                     <span className='ml-[20px] float-left w-full'>
-                                        <h1 className='font-bold text-4xl mb-[20px]'>{props.data.name}</h1>
+                                        <h1 className='font-bold text-4xl mb-[20px]'>
+                                            {props.data.name}
+                                        </h1>
                                         <span className='text-sm'>
                                             {
                                                 props.data.description
+                                            }
+                                        </span>
+                                        <span>
+                                            {
+                                                socialMedias && (
+                                                    <span className='ml-[20px]'>
+                                                        {
+                                                            socialMedias.facebook && (
+                                                                <SvgIcon
+                                                                    onClick={() => {
+                                                                        window.open(socialMedias.facebook, '_blank')
+                                                                    }}
+                                                                    component={Facebook}
+                                                                />
+                                                            )
+                                                        }
+                                                        {
+                                                            socialMedias.linkedIn && (
+                                                                <SvgIcon
+                                                                    onClick={() => {
+                                                                        window.open(socialMedias.linkedIn, '_blank')
+                                                                    }}
+                                                                    component={LinkedIn}
+                                                                />
+                                                            )
+                                                        }
+
+                                                        {
+                                                            socialMedias.twitter && (
+                                                                <SvgIcon
+                                                                    onClick={() => {
+                                                                        window.open(socialMedias.twitter, '_blank')
+                                                                    }}
+                                                                    component={Twitter}
+                                                                />
+                                                            )
+                                                        }
+
+                                                        {
+                                                            socialMedias.instagram && (
+                                                                <SvgIcon
+                                                                    onClick={() => {
+                                                                        window.open(socialMedias.instagram, '_blank')
+                                                                    }}
+                                                                    component={Instagram}
+                                                                />
+                                                            )
+                                                        }
+
+                                                    </span>
+                                                )
+                                            }
+                                            {
+                                                mobileApps && (
+                                                    <span className='ml-[20px]'>
+                                                        {
+                                                            mobileApps.apple && (
+                                                                <SvgIcon
+                                                                    onClick={() => {
+                                                                        window.open(mobileApps.apple, '_blank')
+                                                                    }}
+                                                                    component={Apple}
+                                                                />
+                                                            )
+                                                        }
+                                                        {
+                                                            mobileApps.android && (
+                                                                <SvgIcon
+                                                                    onClick={() => {
+                                                                        window.open(mobileApps.android, '_blank')
+                                                                    }}
+                                                                    component={Android}
+                                                                />
+                                                            )
+                                                        }
+
+                                                        {
+                                                            mobileApps.huawei && (
+                                                                <SvgIcon
+                                                                    onClick={() => {
+                                                                        window.open(mobileApps.huawei, '_blank')
+                                                                    }}
+                                                                    component={Android}
+                                                                />
+                                                            )
+                                                        }
+                                                    </span>
+                                                )
                                             }
                                         </span>
                                     </span>

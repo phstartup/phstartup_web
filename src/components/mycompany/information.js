@@ -8,6 +8,8 @@ import Select from '@/components/form/Select';
 import String from '@/utils/String';
 import { useSession } from 'next-auth/react';
 import Api from '@/lib/api';
+import { JSONViewer } from 'react-json-editor-viewer';
+import ReactJson from 'react-json-view'
 
 let api = new Api()
 function Information(props) {
@@ -31,6 +33,18 @@ function Information(props) {
     const [contactNumberError, setContactNumberError] = useState(null)
     const [btnLoading, setBtnLoading] = useState(false)
     const [data, setData] = useState(null)
+    const [settings, setSettings] = useState(null)
+    const [mobileApps, setMobileApps] = useState({
+        apple: "https://apple.com",
+        android: 'https://android.google.com',
+        huawei: 'https://huawei.com'
+    })
+    const [socialMedias, setSocialMedias] = useState({
+        facebook: 'https://facebook.com',
+        linkedIn: 'https://linkedin.com',
+        twitter: 'https://twitter.com',
+        instagram: 'https://instagram.com'
+    })
 
     useEffect(() => {
         if (props.data) {
@@ -44,6 +58,11 @@ function Information(props) {
             setEmailAddress(data.email_address)
             setContactNumber(data.contact_number)
             setData(data)
+            setSettings(data.settings)
+            if(data.settings){
+                setSocialMedias(data.settings.social_medias ? data.settings.social_medias : socialMedias)
+                setMobileApps(data.settings.mobile_apps ? data.settings.mobile_apps : mobileApps)
+            }
         }
     }, [])
 
@@ -77,8 +96,9 @@ function Information(props) {
             email_address: emailAddress,
             contact_number: contactNumber,
             settings: {
-                logo: null,
-                banner: null
+                ...settings,
+                social_medias: socialMedias,
+                mobile_apps: mobileApps
             }
         })
     }
@@ -86,7 +106,7 @@ function Information(props) {
         return (
             <div className='w-full float-left text-sm mt-[20px]'>
                 <div className='w-full float-left text-sm'>
-                    <h1 className='text-sm mb-[20px]'>Startup name</h1>
+                    <h1 className='text-sm mb-[20px]'>Company / Startup name</h1>
                     <TextInput
                         type="text"
                         placeholder="Startup Name"
@@ -123,19 +143,13 @@ function Information(props) {
                 </div>
                 <div className='w-full float-left text-sm'>
                     <h1 className='text-sm mb-[20px]'>Initiative Category</h1>
-                    <TextInput
+                    <Select
                         type="text"
-                        placeholder="Category"
-                        value={category}
-                        onChange={(value, error) => {
+                        data={String.categories}
+                        selected={category}
+                        placeholder="Select Category"
+                        onChange={(value) => {
                             setCategory(value)
-                            setCategoryError(error)
-                        }}
-                        validation={{
-                            type: 'text',
-                            size: 2,
-                            column: 'Category',
-                            error: categoryError
                         }}
                     />
                 </div>
@@ -230,6 +244,49 @@ function Information(props) {
                     />
                 </div>
 
+                <div className='w-full float-left text-sm mt-[20px]'>
+                    <h1 className='text-sm mb-[20px]'>Social Media</h1>
+                    <div className='w-full h-[150px] float-left'>
+                        {/* <JSONViewer
+                            data={socialMedias}
+                            collapsible
+                            onChange={(key, value, parent, data) => {
+                                setMobileApps({
+                                    ...mobileApps,
+                                    [key]: value
+                                })
+                            }}
+                            view="dual"
+                            styles={style}
+                        /> */}
+                        <ReactJson
+                            src={socialMedias}
+                            editFlag={true}
+                            onEdit={(e) => {
+                                setSocialMedias({
+                                    ...socialMedias,
+                                    [e.name]: e.new_value
+                                })
+                            }}
+                            />
+                    </div>
+                </div>
+                <div className='w-full float-left text-sm mt-[20px]'>
+                    <h1 className='text-sm mb-[20px]'>Mobile Apps</h1>
+                    <div className='w-full h-[150px] float-left'>
+                        <ReactJson
+                            src={mobileApps}
+                            editFlag={true}
+                            onEdit={(e) => {
+                                setMobileApps({
+                                    ...mobileApps,
+                                    [e.name]: e.new_value
+                                })
+                            }}
+                            />
+                    </div>
+                </div>
+
                 {/* <div className='w-full float-left text-sm mt-[20px]'>
                     <h1 className='text-sm mb-[20px]'>Total Employees</h1>
                     <TextInput
@@ -262,7 +319,7 @@ function Information(props) {
     return (
         <div className={Style.cardContainer}>
             <div className='flex w-full items-center content-center justify-between'>
-                <span className='text-lg font-bold'>Statup Details</span>
+                <span className='text-lg font-bold'>Company / Startup Details</span>
                 {
                     !editFlag && (
                         <Button
