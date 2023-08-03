@@ -43,6 +43,7 @@ model companies {
   user_id        String
   name           String
   description    String    @db.LongText
+  stage          String    @default("pre-seed")
   category       String
   industries     String    @db.LongText
   address        String
