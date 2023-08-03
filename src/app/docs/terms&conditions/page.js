@@ -1,9 +1,13 @@
+'use client'
 import React from 'react';
 import Breadcrumbs from '@/components/breadcrumbs/Simple'
+import { useSession } from 'next-auth/react';
+import Style from '@/utils/Style';
 
 function page(props) {
+    const { data: session } = useSession()
     return (
-        <div className='w-full float-left bg-white dark:bg-gray-800 p-[20px] rounded-lg'>
+        <div className={`w-full float-left p-[20px] rounded-lg mt-[${session && session.user ? '0px': '100px'}] ` + Style.padding}>
             <Breadcrumbs title="Terms & Conditions" />
             <div className='w-full float-left mt-[50px] text-justify text-sm'>
                 <p>I. Introduction</p>

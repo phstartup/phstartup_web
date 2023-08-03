@@ -38,3 +38,20 @@ body {
 .company-banner-name{
   width: calc(100% - 200px);
 }
+
+.document li{
+  margin-bottom: 25px;
+}
+
+.document p{
+  padding-top: 20px;
+}
+
+.document h1{
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.document b{
+  font-weight: bold;
+}

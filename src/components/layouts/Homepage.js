@@ -6,6 +6,7 @@ import BlackAndWhiteHeader from '@/components/header/blackwhite'
 import Sidebar from '@/components/sidebar/sidebar'
 import { getSession, signIn, useSession } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
+import Footer from '@/components/footer'
 
 const protectedPages = [
     '/dashboard',
@@ -76,11 +77,12 @@ function Homepage({ children }) {
                                     children
                                 }
                             </div>
+                            <Footer />
                         </div>
                     )
                 }
                 {
-                    (!loading && !session && loginRegiser.includes(pathname))  && (
+                    (!loading && !session && loginRegiser.includes(pathname)) && (
                         <div className='w-full float-left bg-white dark:bg-black text-black dark:text-white min-h-[100px]'>
                             <BlackAndWhiteHeader />
                             <div className='w-full float-left'>
@@ -88,6 +90,7 @@ function Homepage({ children }) {
                                     children
                                 }
                             </div>
+                            <Footer />
                         </div>
                     )
                 }

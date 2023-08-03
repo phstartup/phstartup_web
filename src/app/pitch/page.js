@@ -65,8 +65,6 @@ export default function Page(props) {
                     ))
                 }
             </div>
-
-            <Footer />
         </div>
     );
 }
