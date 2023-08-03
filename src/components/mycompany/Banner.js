@@ -107,7 +107,12 @@ function Banner(props) {
                             <div className='float-left h-[200px] flex items-center content-center company-banner-name'>
                                 <span className='ml-[20px]'>
                                     <h1 className='font-bold text-4xl'>{props.data.name}</h1>
-                                    <span className='text-sm'>
+                                    <span className='w-full float-left font-semibold'>
+                                        {
+                                            props.data.stage.toUpperCase()
+                                        }
+                                    </span>
+                                    <span className='text-sm w-full'>
                                         {
                                             props.data.description
                                         }

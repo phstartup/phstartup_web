@@ -19,6 +19,8 @@ function Information(props) {
     const [nameError, setNameError] = useState(null)
     const [description, setDescription] = useState(null)
     const [descriptionError, setDescriptionError] = useState(null)
+    const [stage, setStage] = useState(null)
+    const [stageError, setStageError] = useState(null)
     const [category, setCategory] = useState(null)
     const [categoryError, setCategoryError] = useState(null)
     const [industries, setIndustries] = useState(null)
@@ -57,9 +59,10 @@ function Information(props) {
             setWebsite(data.website)
             setEmailAddress(data.email_address)
             setContactNumber(data.contact_number)
+            setStage(data.stage)
             setData(data)
             setSettings(data.settings)
-            if(data.settings){
+            if (data.settings) {
                 setSocialMedias(data.settings.social_medias ? data.settings.social_medias : socialMedias)
                 setMobileApps(data.settings.mobile_apps ? data.settings.mobile_apps : mobileApps)
             }
@@ -89,6 +92,7 @@ function Information(props) {
             id: data ? data.id : null,
             name,
             description,
+            stage,
             category,
             industries,
             address,
@@ -138,6 +142,18 @@ function Information(props) {
                             size: 2,
                             column: 'Description',
                             error: descriptionError
+                        }}
+                    />
+                </div>
+                <div className='w-full float-left text-sm'>
+                    <h1 className='text-sm mb-[20px]'>Company Stage</h1>
+                    <Select
+                        type="text"
+                        data={String.stages}
+                        selected={stage}
+                        placeholder="Select Stage"
+                        onChange={(value) => {
+                            setStage(value)
                         }}
                     />
                 </div>
@@ -268,7 +284,7 @@ function Information(props) {
                                     [e.name]: e.new_value
                                 })
                             }}
-                            />
+                        />
                     </div>
                 </div>
                 <div className='w-full float-left text-sm mt-[20px]'>
@@ -283,7 +299,7 @@ function Information(props) {
                                     [e.name]: e.new_value
                                 })
                             }}
-                            />
+                        />
                     </div>
                 </div>
 

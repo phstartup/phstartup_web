@@ -43,7 +43,7 @@ export async function POST(req) {
 
     const body = await req.json()
 
-    const { name, description, category, industries, address, website, email_address, contact_number, settings, status } = body
+    const { name, description, stage, category, industries, address, website, email_address, contact_number, settings, status } = body
     if (body.id) {
         // update
         if(settings && !name){
@@ -60,6 +60,7 @@ export async function POST(req) {
                     user_id: mwareAccount.id,
                     name,
                     description,
+                    stage,
                     category,
                     industries,
                     address,
@@ -72,13 +73,14 @@ export async function POST(req) {
             return new NextResponse(helper.response(result, 200, null))
         }
         
-    } else if (name && description && category && industries && address && website && email_address && contact_number && settings) {
+    } else if (name && description && stage && category && industries && address && website && email_address && contact_number && settings) {
         // create
         console.log('create here')
         let result = await controller.create({
             user_id: mwareAccount.id,
             name,
             description,
+            stage,
             category,
             industries,
             address,

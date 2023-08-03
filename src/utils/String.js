@@ -84,5 +84,36 @@ export default {
         value: '120 Seconds'
     }, {
         value: '300 Seconds'
+    }],
+    stages: [{
+        value: 'Ideation'
+    }, {
+        value: 'MVP'
+    }, {
+        value: 'Market Validation'
+    }, {
+        value: 'Expansion'
+    }, {
+        value: 'Growing'
+    }, {
+        value: 'Pre-seed'
+    }, {
+        value: 'Seed'
+    }, {
+        value: 'Series A'
+    }, {
+        value: 'Series B'
+    }, {
+        value: 'Series C'
+    }, {
+        value: 'Series D'
+    }, {
+        value: 'Series E'
+    }, {
+        value: 'Series F'
+    }, {
+        value: 'IPO'
+    },{
+        value: 'Exit'
     }]
 }

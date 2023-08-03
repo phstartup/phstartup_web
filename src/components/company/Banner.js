@@ -96,10 +96,15 @@ function Banner(props) {
                             <div className='float-left w-[calc(100%-180px)] h-[200px] flex items-center content-center company-banner-name'>
                                 <div className='w-full float-left'>
                                     <span className='ml-[20px] float-left w-full'>
-                                        <h1 className='font-bold text-4xl mb-[20px]'>
+                                        <h1 className='font-bold text-4xl mb-[10px]'>
                                             {props.data.name}
                                         </h1>
-                                        <span className='text-sm'>
+                                        <span className='w-full float-left font-semibold'>
+                                            {
+                                                props.data.stage.toUpperCase()
+                                            }
+                                        </span>
+                                        <span className='text-sm w-full'>
                                             {
                                                 props.data.description
                                             }
