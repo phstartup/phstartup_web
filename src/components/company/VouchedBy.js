@@ -31,6 +31,9 @@ function VouchedBy(props) {
                             src={user.information.profile}
                             width={size}
                             height={size}
+                            style={{
+                                borderRadius: radius
+                            }}
                             className={`rounded-[${radius}px] cursor-pointer border-2 border-green-500 dark:border-green-500`}
                             alt={user.information.profile}
                         />

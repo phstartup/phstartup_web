@@ -31,6 +31,9 @@ function Team(props) {
                             src={user.information.profile}
                             width={size}
                             height={size}
+                            style={{
+                                borderRadius: radius
+                            }}
                             className={`rounded-[${radius}px] cursor-pointer border-2 border-green-500 dark:border-green-500`}
                             alt={user.information.profile}
                         />
@@ -85,7 +88,7 @@ function Team(props) {
                                         </span>
                                         {
                                             item.information && item.information.social && (
-                                                <span className='float-left w-full'>
+                                                <span className='float-left w-full mt-[10px]'>
                                                     {
                                                         item.information.social.facebook && (
                                                             <SvgIcon
