@@ -105,6 +105,11 @@ function ModalVideo(props) {
                             )
                         }
                     </div>
+                    <div className='w-full float-left px-[20px] mt-[20px]'>
+                        <div className='w-full float-left flex justify-between text-sm font-bold'>
+                            1,000 Views
+                        </div>
+                    </div>
                     <div className='w-full float-left pb-[20px] px-[20px]'>
                         <div className='w-full float-left mt-[20px] mb-[20px] flex justify-between'>
                             <span>
