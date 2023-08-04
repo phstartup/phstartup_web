@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    reactStrictMode: true,
+    distDir: 'dist',
     modularizeImports: {
         "@mui/material": {
             transform: "@mui/material/{{member}}"
