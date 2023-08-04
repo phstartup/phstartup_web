@@ -55,7 +55,7 @@ function content(props) {
                             ['Login', 'Register'].map((item) => (
                                 <span
                                     onClick={() => {
-                                        router.push('/' + item.route)
+                                        router.push('/' + item.toLowerCase())
                                     }}
                                     className='href-link cursor-pointer px-[20px] pr-[20px] text-sm'>
                                     {
