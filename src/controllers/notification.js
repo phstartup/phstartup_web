@@ -37,9 +37,8 @@ export default class Notification {
         if(result && result.length > 0){
             for (let index = 0; index < result.length; index++) {
                 const item = result[index];
-
                 let user = new User()
-                let uResult = user.getByCondition({
+                let uResult = await user.getByCondition({
                     where: {
                         id: item.sender
                     }

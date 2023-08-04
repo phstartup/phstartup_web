@@ -244,7 +244,7 @@ export default class User {
             } else {
                 userWithoutPassword['information'] = null
             }
-            return helper.stringify(userWithoutPassword)
+            return userWithoutPassword
         }
     }
 

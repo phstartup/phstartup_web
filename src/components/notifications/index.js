@@ -1,4 +1,4 @@
-import { Close } from '@mui/icons-material';
+import { Close, Face6 } from '@mui/icons-material';
 import { SvgIcon } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Api from '@/lib/api';
@@ -89,7 +89,7 @@ function Notifications(props) {
                                         renderProfile(item.user)
                                     }
                                 </span>
-                                <span className='font-semibold'>
+                                <span className='font-semibold h-[30px] flex items-center content-center'>
                                     {
                                         helper.getName(item.user)
                                     }
