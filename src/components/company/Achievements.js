@@ -12,7 +12,7 @@ function Achievements(props) {
         if (props.data) {
             setData(props.data)
         }
-    }, [])
+    })
 
 
     return (

@@ -9,7 +9,7 @@ import useColorMode from '@/hooks/useColorMode';
 import String from '@/utils/String'
 
 const menu = String.menu
-function content(props) {
+function Content(props) {
     const [toggle, setToggle] = useState(false)
     const router = useRouter()
     const [colorMode, setColorMode] = useColorMode();
@@ -28,8 +28,9 @@ function content(props) {
                 >
                     <div>
                         {
-                            menu && menu.map((item) => (
+                            menu && menu.map((item, index) => (
                                 <span
+                                    key={index}
                                     onClick={() => {
                                         router.push(item.route)
                                     }}
@@ -52,11 +53,12 @@ function content(props) {
 
 
                         {
-                            ['Login', 'Register'].map((item) => (
+                            ['Login', 'Register'].map((item, index) => (
                                 <span
                                     onClick={() => {
                                         router.push('/' + item.toLowerCase())
                                     }}
+                                    key={index}
                                     className='href-link cursor-pointer px-[20px] pr-[20px] text-sm'>
                                     {
                                         item
@@ -93,8 +95,9 @@ function content(props) {
                     <div className='w-full h-[calc(100vh-100px)] absolute mt-[100px] px-[20px] pr-[20px] bg-white dark:bg-black'
                     >
                         {
-                            menu && menu.map((item) => (
+                            menu && menu.map((item, index) => (
                                 <div
+                                    key={index}
                                     className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px] text-sm'
                                     onClick={() => {
                                         router.push(item.route.toLowerCase())
@@ -118,8 +121,9 @@ function content(props) {
                         </div>
                         <div className='mt-[50px] w-full float-left'>
                             {
-                                ['Login', 'Register'].map((item) => (
+                                ['Login', 'Register'].map((item, index) => (
                                     <div
+                                        key={index}
                                         className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px] text-sm'
                                         onClick={() => {
                                             router.push('/' + item.toLowerCase())
@@ -151,4 +155,4 @@ function content(props) {
     );
 }
 
-export default content;
+export default Content;

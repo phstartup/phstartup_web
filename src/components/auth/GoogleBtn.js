@@ -10,6 +10,7 @@ function GoogleBtn(props) {
                 src={GoogleIcon}
                 height={20}
                 width={20}
+                alt="Google Icon"
             />
             <span className='ml-[10px] text-sm font-semibold'>
                 {

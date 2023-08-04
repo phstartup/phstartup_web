@@ -28,7 +28,7 @@ function Page(props) {
 					/>
 
 					<span className='w-full h-[50px] float-left mt-[20px]'>
-						Don't have an account?
+						Don&apos;t have an account?
 					</span>
 					<Button
 						title="Register"

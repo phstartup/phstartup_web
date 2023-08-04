@@ -144,9 +144,9 @@ function Pitches(props) {
             <div className='w-full float-left text-sm mt-[20px]'>
                 <div className='float-left w-full'>
                     {
-                        pData.map((item) => (
+                        pData.map((item, index) => (
                             <div
-
+                                key={index}
                                 className='lg:w-[32%] xl:w-[32%] 2xl:w-[32%] sm:w-[100%] xs:w-[100%] md:w-[100%] lg:mr-[1%] xl:mr-[1%] 2xl:mr-[1%] md:mr-[0%] xs:mr-[0%] sm:mr-[0%] h-[200px] border border-gray-200 dark:border-gray-700 rounded-2xl flex items-center justify-center content-center hover:cursor-pointer hover:border hover:border-black float-left mb-[20px]'>
 
                                 <div className='w-full text-center'>

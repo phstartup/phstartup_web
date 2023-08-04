@@ -13,7 +13,7 @@ function Page(props) {
 
   useEffect(() => {
     getData()
-  }, [])
+  })
 
 
   const getData = async () => {

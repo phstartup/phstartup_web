@@ -44,7 +44,7 @@ function Banner(props) {
                 setSocialMedias(options.social_medias)
             }
         }
-    }, [])
+    })
     const vouchSubmit = () => {
         if (session && session.user) {
             // submit here

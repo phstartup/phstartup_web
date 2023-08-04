@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import { useRouter } from 'next/navigation';
-function smallVideoThumbnail(props) {
+function SmallVideoThumbnail(props) {
     const router = useRouter();
     return (
         <div
@@ -24,4 +24,4 @@ function smallVideoThumbnail(props) {
     );
 }
 
-export default smallVideoThumbnail;
+export default SmallVideoThumbnail;

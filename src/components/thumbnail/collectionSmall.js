@@ -5,7 +5,6 @@ function collectionSmall(props) {
 
     return (
         <div
-            key={props.key}
             className='float-left w-full lg:px-[100px] 2xl:px-[100px] xs:px-[20px] sm:px-[20px] md:px-[20px]'
         >
             <div
@@ -17,8 +16,8 @@ function collectionSmall(props) {
                 className='w-full overflow-x-scroll float-left'
             >
                 {
-                    props.data && props.data.map((item) => (
-                        <Thumbnail data={item} />
+                    props.data && props.data.map((item, index) => (
+                        <Thumbnail data={item} key={index}/>
                     ))
                 }
             </div>

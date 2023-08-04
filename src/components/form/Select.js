@@ -18,7 +18,7 @@ function Select(props) {
                 {
                     props.data && props.data.map((item, index) => (
                         <option 
-                            
+                            key={index}
                             selected={item.value == props.selected ? true : false} 
                             value={item.value}>{item.value}</option>
                     ))

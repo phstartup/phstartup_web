@@ -116,15 +116,6 @@ function CustomTable(props) {
         )
     }
 
-
-    const renderRatings = (ratings, index) => {
-        return (
-            <td key={index}>
-                <Ratings value={ratings} />
-            </td>
-        )
-    }
-
     const renderImage = (header, item, index) => {
         let style = header.style ? header.style : null
         return (
@@ -156,7 +147,6 @@ function CustomTable(props) {
     const renderIndex = (item, index, hItem, hIndex) => {
         switch (hItem.type.toLowerCase()) {
             case 'text': return (renderText(hItem, item[hItem.variable], hItem.title));
-            case 'ratings': return renderRatings(item[hItem.variable], item[hItem.variable]);
             case 'redirect': return renderRedirect(hItem, item, item[hItem.variable]);
             case 'action': return renderActions(hItem, item, hItem.title ? hItem.title : hItem.action);
             case 'document': return renderDocument(hItem, item, index);

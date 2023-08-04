@@ -20,7 +20,7 @@ const dropdownMenu = [{
     route: '/settings'
 }]
 
-function loggedin(props) {
+function Loggedin(props) {
     const [toggle, setToggle] = useState(false)
     const router = useRouter()
     const [colorMode, setColorMode] = useColorMode();
@@ -196,8 +196,9 @@ function loggedin(props) {
                     <div className='w-full h-[calc(100vh-80px)] absolute mt-[80px] px-[20px] pr-[20px] bg-white dark:bg-gray-800'
                     >
                         {
-                            menu && menu.map((item) => (
+                            menu && menu.map((item, index) => (
                                 <div
+                                    key={index}
                                     onClick={() => {
                                         router.push('/' + item.route)
                                         setToggle(!toggle)
@@ -210,8 +211,9 @@ function loggedin(props) {
                         }
                         <div className='mt-[50px] w-full float-left'>
                             {
-                                ['Logout'].map((item) => (
+                                ['Logout'].map((item, index) => (
                                     <div
+                                        key={index}
                                         className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px] text-sm'
                                         onClick={() => {
                                             router.push('/' + item.toLowerCase())
@@ -252,4 +254,4 @@ function loggedin(props) {
     );
 }
 
-export default loggedin;
+export default Loggedin;

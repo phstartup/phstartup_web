@@ -5,10 +5,10 @@ import Footer from './footer'
 function body(props) {
     return (
         <div
-    className="
+            className="
         mx-auto
         lg:w-[49%] 2xl:w-[49%] sm:w-full xs:w-full md:w-full h-[400px] float-left bg-white dark:bg-gray-800 rounded-[10px] px-[20px] mb-[20px] border-1 border-b-gray-200 dark:border-gray-600 lg:px-[20px] sm:px-[10px]">
-            <Header title={props.title} rightTitle={props.rightTitle}/>
+            <Header title={props.title} rightTitle={props.rightTitle} />
             <div className='w-full float-left h-[280px]'>
                 <div
                     className='h-[50px] w-full flex items-center content-center justify-between text-xs'
@@ -16,14 +16,15 @@ function body(props) {
                     {
                         props.header && props.header.length > 0 && props.header.map((item) => (
 
-                            <span className='float-left font-bold'>{item}</span>
+                            <span className='float-left font-bold' key={index}>{item}</span>
 
                         ))
                     }
                 </div>
                 {
-                    props.data && props.data.length > 0 && props.data.map((item) => (
-                        <div 
+                    props.data && props.data.length > 0 && props.data.map((item, index) => (
+                        <div
+                            key={index}
                             className='h-[50px] w-full flex items-center content-center justify-between text-xs'
                         >
                             <span>
@@ -48,7 +49,7 @@ function body(props) {
                 }
 
             </div>
-            <Footer title={props.footerTitle}/>
+            <Footer title={props.footerTitle} />
         </div>
     );
 }

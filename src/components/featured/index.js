@@ -6,7 +6,7 @@ import Button from '@/components/buttons/btn.js'
 import { useRouter } from 'next/navigation';
 import ModalVideo from '@/components/modal/Video'
 
-function index(props) {
+function Index(props) {
     const [data, setData] = useState(null)
     const router = useRouter()
     const [pitch, setPitch] = useState(null)
@@ -97,4 +97,4 @@ function index(props) {
     );
 }
 
-export default index;
+export default Index;
