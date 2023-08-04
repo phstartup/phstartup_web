@@ -1,4 +1,4 @@
-import Controller from "@/controllers/teams"
+import Controller from "@/controllers/team"
 import Helper from "@/lib/helper";
 import { NextResponse } from "next/server";
 let helper = new Helper()
