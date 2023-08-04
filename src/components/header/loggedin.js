@@ -9,7 +9,7 @@ import useColorMode from '@/hooks/useColorMode';
 import String from '@/utils/String'
 import Profile from '@/assets/profile.png'
 import { useSession } from 'next-auth/react';
-import config from '@/config';
+import config from '../../../src/config';
 import { signOut } from 'next-auth/react';
 import CustomNotifications from '@/components/notifications'
 
