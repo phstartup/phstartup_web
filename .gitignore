@@ -37,4 +37,4 @@ next-env.d.ts
 
 .env
 
-# /src/config.js
+/src/config.js
