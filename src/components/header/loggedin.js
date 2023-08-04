@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Logo from './logo';
 import Link from 'next/link';
 import { SvgIcon } from '@mui/material';
-import { Business, DarkMode, Face6, LightMode, MenuOutlined, Notifications, Person3Rounded, Search, Settings } from '@mui/icons-material';
+import { Business, DarkMode, Face6, LightMode, MenuOutlined, Message, Notifications, Person3Rounded, Search, Settings } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import useColorMode from '@/hooks/useColorMode';
 import String from '@/utils/String'
@@ -139,6 +139,13 @@ function loggedin(props) {
                             className='cursor-pointer float-left mr-[20px] ml-[20px]'
                         />
                         <SvgIcon
+                            component={Message}
+                            onClick={() => {
+                                router.push('/messages')
+                            }}
+                            className='cursor-pointer float-left mr-[20px]'
+                        />
+                        <SvgIcon
                             component={colorMode == 'light' ? DarkMode : LightMode}
                             onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}
                             className='cursor-pointer float-left mr-[20px]'
@@ -227,7 +234,7 @@ function loggedin(props) {
             }
             {
                 notifFlag && (
-                    <CustomNotifications 
+                    <CustomNotifications
                         onClose={() => {
                             setNotifFlag(false)
                         }}
