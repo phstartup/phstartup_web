@@ -17,7 +17,11 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <SessionProvider>
-          <HomepageLayout children={children}/>
+          <HomepageLayout>
+            {
+              children
+            }  
+          </HomepageLayout>
         </SessionProvider>
       </body>
     </html>

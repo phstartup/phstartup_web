@@ -14,7 +14,7 @@ function body(props) {
                     className='h-[50px] w-full flex items-center content-center justify-between text-xs'
                 >
                     {
-                        props.header && props.header.length > 0 && props.header.map((item) => (
+                        props.header && props.header.length > 0 && props.header.map((item, index) => (
 
                             <span className='float-left font-bold' key={index}>{item}</span>
 
