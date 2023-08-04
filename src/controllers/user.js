@@ -224,6 +224,30 @@ export default class User {
         }
     }
 
+    async getByCondition(condition) {
+        const prisma = new PrismaClient();
+        const isExist = await prisma.users.findUnique(condition)
+        if (!isExist) {
+            return null
+        } else {
+            let information = new UserInformation()
+            let info = await information.retrieve({
+                where: {
+                    user_id: isExist.id
+                }
+            })
+            let userWithoutPassword = helper.exclude(isExist, ['password', 'remember_token'])
+
+            if (info) {
+                userWithoutPassword['information'] = info
+
+            } else {
+                userWithoutPassword['information'] = null
+            }
+            return helper.stringify(userWithoutPassword)
+        }
+    }
+
     async authenticate(user) {
         const prisma = new PrismaClient();
         const isExist = await prisma.users.findUnique({
@@ -237,7 +261,7 @@ export default class User {
                 email: isExist.email,
                 account_type: isExist.account_type,
             }
-            const token =  jwt.sign(
+            const token = jwt.sign(
                 userdata,
                 process.env.CRYPTO_KEY,
                 {
@@ -246,7 +270,7 @@ export default class User {
             )
             userdata['access_token'] = token
             return userdata
-        }else{
+        } else {
             return null
         }
     }

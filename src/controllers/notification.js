@@ -1,4 +1,5 @@
 const { PrismaClient, Prisma } = require('@prisma/client')
+import User from './user';
 const prisma = new PrismaClient();
 export default class Notification {
     async create(data) {
@@ -32,7 +33,22 @@ export default class Notification {
                 deleted_at: null
             }
         }
-        return await prisma.notifications.findMany(nCondition)
+        let result =  await prisma.notifications.findMany(nCondition)
+        if(result && result.length > 0){
+            for (let index = 0; index < result.length; index++) {
+                const item = result[index];
+
+                let user = new User()
+                let uResult = user.getByCondition({
+                    where: {
+                        id: item.sender
+                    }
+                })
+                result[index]['user'] = uResult;
+            }
+        }
+
+        return result
     }
 
     async update(id, data) {
