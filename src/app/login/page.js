@@ -8,7 +8,7 @@ import Social from '@/components/auth/Social';
 import { useSession } from "next-auth/react"
 import TextField from '@/components/form/text'
 
-function page(props) {
+function Page(props) {
 	const router = useRouter()
 	const { data: session } = useSession()
 	const [username, setUsername] = useState(null)
@@ -48,4 +48,4 @@ function page(props) {
 	);
 }
 
-export default page;
+export default Page;

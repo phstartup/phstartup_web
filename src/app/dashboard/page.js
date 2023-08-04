@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import Api from '@/lib/api';
 import CardSkeleton from '@/components/loading/Card'
 let api = new Api()
-function page(props) {
+function Page(props) {
   const [fData, setFData] = useState([])
   const [loading, setLoading] = useState(true)
   const { data: session } = useSession()
@@ -101,4 +101,4 @@ function page(props) {
   );
 }
 
-export default page;
+export default Page;

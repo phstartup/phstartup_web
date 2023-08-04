@@ -3,7 +3,7 @@ import Breadcrumbs from '@/components/breadcrumbs/Simple'
 import Information from '@/components/profile/Information';
 import Password from '@/components/profile/Password'
 import MFA from '@/components/profile/MFA';
-function page(props) {
+function Page(props) {
     return (
         <div className='w-full float-left'>
             <Breadcrumbs title="Your Profile"/>
@@ -17,4 +17,4 @@ function page(props) {
     );
 }
 
-export default page;
+export default Page;

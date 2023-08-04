@@ -5,7 +5,7 @@ import Button from '@/components/buttons/btnRounded'
 import { useRouter } from 'next/navigation';
 import Right from '@/components/auth/Right';
 
-function page(props) {
+function Page(props) {
 	const router = useRouter();
 	const [username, setUsername] = useState(null)
 	const [errorUsername, setErrorUsername] = useState(null)
@@ -62,4 +62,4 @@ function page(props) {
 	);
 }
 
-export default page;
+export default Page;

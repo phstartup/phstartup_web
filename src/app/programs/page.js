@@ -45,7 +45,7 @@ const programs = [{
     description: 'Learn and be mentored from successful startup founders',
     image: Sample
 }]
-function page(props) {
+function Page(props) {
     return (
         <div className='w-full float-left mt-[50px]'>
             <Breadcrumbs title="Accelerator Programs" />
@@ -88,4 +88,4 @@ function page(props) {
     );
 }
 
-export default page;
+export default Page;

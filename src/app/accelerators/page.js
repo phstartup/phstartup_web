@@ -2,7 +2,7 @@
 import React from "react";
 import Pitches from '../pitch/page'
 
-function page(props) {
+function Page(props) {
   return (
     <div className="w-full float-left">
       <Pitches />
@@ -10,4 +10,4 @@ function page(props) {
   );
 }
 
-export default page;
+export default Page;

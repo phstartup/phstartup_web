@@ -8,7 +8,7 @@ import Right from '@/components/auth/Right';
 import Social from '@/components/auth/Social';
 import Api from '@/lib/api';
 
-function page(props) {
+function Page(props) {
 	const router = useRouter();
 	const [username, setUsername] = useState(null)
 	const [errorUsername, setErrorUsername] = useState(null)
@@ -73,4 +73,4 @@ function page(props) {
 	);
 }
 
-export default page;
+export default Page;

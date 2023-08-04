@@ -56,7 +56,7 @@ const programs = [{
 
 
 const availableStatuses = ['Manila', 'Cebu', 'Davao'];
-function page(props) {
+function Page(props) {
 
 
     const handleFilter = (status) => {
@@ -161,4 +161,4 @@ function page(props) {
     );
 }
 
-export default page;
+export default Page;

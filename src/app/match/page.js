@@ -1,7 +1,7 @@
 import React from 'react';
 import Breadcrumbs from '@/components/breadcrumbs/Simple'
 import SimpleComingSoon from '@/components/soon/Simple';
-function page(props) {
+function Page(props) {
     return (
         <div className='w-full float-left'>
 
@@ -15,4 +15,4 @@ function page(props) {
     );
 }
 
-export default page;
+export default Page;

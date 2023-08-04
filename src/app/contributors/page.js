@@ -1,6 +1,6 @@
 import React from 'react';
 import Breadcrumbs from '@/components/breadcrumbs/Simple'
-function page(props) {
+function Page(props) {
     return (
         <div className='w-full float-left'>
             <Breadcrumbs title="Application Contributors" />
@@ -14,4 +14,4 @@ function page(props) {
     );
 }
 
-export default page;
+export default Page;

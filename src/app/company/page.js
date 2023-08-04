@@ -121,7 +121,7 @@ const team = [{
     id: 1
 }]
 
-function page(props) {
+function Page(props) {
 
     const search = useSearchParams()
     const [loading, setLoading] = useState(false)
@@ -197,4 +197,4 @@ function page(props) {
     );
 }
 
-export default page;
+export default Page;

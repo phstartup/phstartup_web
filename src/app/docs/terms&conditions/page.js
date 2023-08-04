@@ -4,7 +4,7 @@ import Breadcrumbs from '@/components/breadcrumbs/Simple'
 import { useSession } from 'next-auth/react';
 import Style from '@/utils/Style';
 
-function page(props) {
+function Page(props) {
     const { data: session } = useSession()
     return (
         <div className={`w-full float-left p-[20px] rounded-lg mt-[${session && session.user ? '0px': '100px'}] ` + Style.padding}>
@@ -586,4 +586,4 @@ function page(props) {
     );
 }
 
-export default page;
+export default Page;

@@ -77,7 +77,7 @@ const team = [{
     id: 1
 }]
 
-function page(props) {
+function Page(props) {
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
     const { data: session } = useSession()
@@ -150,4 +150,4 @@ function page(props) {
     );
 }
 
-export default page;
+export default Page;
