@@ -128,34 +128,35 @@ function Page(props) {
     const [data, setData] = useState(null)
 
     useEffect(() => {
-        getData()
-    })
-
-
-    const getData = async () => {
-        const id = search.get('id')
-        if (!id) {
-            return
-        }
-        await api.getNoToken('/api/home?id=' + id, (response) => {
-            if (response.data) {
-                setData({
-                    ...response.data,
-                    vouched_by,
-                    team: team
-                })
+        const getData = async () => {
+            const id = search.get('id')
+            if (!id) {
+                return
             }
+            await api.getNoToken('/api/home?id=' + id, (response) => {
+                if (response.data) {
+                    setData({
+                        ...response.data,
+                        vouched_by,
+                        team: team
+                    })
+                }
+    
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+            }, (error) => {
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+    
+            })
+        }
+        getData()
+    }, [search])
 
-            setTimeout(() => {
-                setLoading(false)
-            }, 1000)
-        }, (error) => {
-            setTimeout(() => {
-                setLoading(false)
-            }, 1000)
 
-        })
-    }
+    
 
     return (
         <div

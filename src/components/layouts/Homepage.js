@@ -46,7 +46,8 @@ function Homepage({ children }) {
             }
         }
         securedPage()
-    }, [])
+    }, [pathname, router])
+    
     return (
         <div className='w-full float-left'>
             <div className='float-left w-full min-h-full bg-white dark:bg-black text-black dark:text-white'>

@@ -33,7 +33,7 @@ function Achievements(props) {
                 setAchievements(props.data.achievements)
             }
         }
-    }, [])
+    }, [props])
 
     const submit = async (item) => {
         if (!session) return
@@ -185,6 +185,7 @@ function Achievements(props) {
                             >
                                 <img
                                     src={item.featured}
+                                    alt={item.featured}
                                     className='h-[200px] w-full rounded-t-lg'
                                 />
                             </div>

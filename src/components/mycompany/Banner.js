@@ -32,7 +32,7 @@ function Banner(props) {
                 setBanner(options.banner)
             }
         }
-    }, [])
+    }, [props])
 
     const submit = async (item) => {
         if (!session) return

@@ -67,7 +67,7 @@ function Information(props) {
                 setMobileApps(data.settings.mobile_apps ? data.settings.mobile_apps : mobileApps)
             }
         }
-    }, [])
+    }, [props, socialMedias, mobileApps])
 
     const submit = async (item) => {
         if (!session) return

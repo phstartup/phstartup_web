@@ -29,8 +29,7 @@ function Pitches(props) {
         let data = props.data
         let dPitches = data ? data.pitches : []
         managedData(dPitches)
-
-    }, [])
+    }, [props])
 
     const submit = async (item) => {
         if (!session) return
@@ -257,7 +256,7 @@ function Pitches(props) {
                             setViewVideo(false)
                         }}
                         url={pitch.url}
-                        />
+                    />
                 )
             }
         </div>

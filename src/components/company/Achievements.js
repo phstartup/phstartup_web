@@ -12,8 +12,7 @@ function Achievements(props) {
         if (props.data) {
             setData(props.data)
         }
-    })
-
+    }, [props])
 
     return (
         <div className={Style.cardContainerHome}>
@@ -38,6 +37,7 @@ function Achievements(props) {
                                 <img
                                     src={item.featured}
                                     className='h-[200px] w-full rounded-t-lg'
+                                    alt={item.featured}
                                 />
                             </div>
                             <div className='w-full float-left p-[10px] h-[100px] border-t border-gray-100 dark:border-gray-800'>

@@ -1,6 +1,6 @@
 "use client"
 import { CalendarMonth, CasesOutlined, Dashboard, House, Person, Person2Outlined, PieChart, Rocket } from '@mui/icons-material';
-export default {
+const String =  {
     app_name: 'phstartup.org',
     api_url: 'test',
     host: 'phstartup.org',
@@ -117,3 +117,5 @@ export default {
         value: 'Exit'
     }]
 }
+
+export default String;

@@ -22,48 +22,51 @@ function Pitches(props) {
     const [viewVideo, setViewVideo] = useState(false)
 
     useEffect(() => {
-        let data = props.data
-        let dPitches = data ? data.pitches : []
-        managedData(dPitches)
-    }, [])
-
-
-    const managedData = async (pitches) => {
-        if (pitches) {
-            let nPitches = []
-            for (let index = 0; index < String.pitches.length; index++) {
-                const item = String.pitches[index];
-                let exist = null
-                for (let iIndex = 0; iIndex < pitches.length; iIndex++) {
-                    const pitch = pitches[iIndex];
-                    if (pitch.type == item.value) {
-                        exist = pitch
-                        break
+        const managedData = async (pitches) => {
+            if (pitches) {
+                let nPitches = []
+                for (let index = 0; index < String.pitches.length; index++) {
+                    const item = String.pitches[index];
+                    let exist = null
+                    for (let iIndex = 0; iIndex < pitches.length; iIndex++) {
+                        const pitch = pitches[iIndex];
+                        if (pitch.type == item.value) {
+                            exist = pitch
+                            break
+                        }
+                    }
+                    if (exist) {
+                        await nPitches.push(exist)
+                    } else {
+                        await nPitches.push({
+                            type: item.value,
+                            url: null
+                        })
                     }
                 }
-                if (exist) {
-                    await nPitches.push(exist)
-                } else {
-                    await nPitches.push({
-                        type: item.value,
-                        url: null
-                    })
-                }
+                await setPData(nPitches)
+            } else {
+                await setPData([{
+                    type: '60 Seconds',
+                    url: null
+                }, {
+                    type: '120 Seconds',
+                    url: null
+                }, {
+                    type: '300 Seconds',
+                    url: null
+                }])
             }
-            await setPData(nPitches)
-        } else {
-            await setPData([{
-                type: '60 Seconds',
-                url: null
-            }, {
-                type: '120 Seconds',
-                url: null
-            }, {
-                type: '300 Seconds',
-                url: null
-            }])
         }
-    }
+
+        let data = props.data
+        let dPitches = data ? data.pitches : []
+        
+        managedData(dPitches)
+    }, [props])
+
+
+   
 
     return (
         <div className={Style.cardContainerHome}>

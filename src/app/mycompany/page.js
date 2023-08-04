@@ -77,15 +77,10 @@ const team = [{
     id: 1
 }]
 
-function Page(props) {
+export default function Page(props) {
     const [data, setData] = useState(null)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const { data: session } = useSession()
-
-    useEffect(() => {
-        getData()
-    }, [])
-
 
     const getData = async () => {
         if (!session) return
@@ -108,6 +103,32 @@ function Page(props) {
 
         })
     }
+
+    useEffect(() => {
+        const getData = async () => {
+            if (!session) return
+            setLoading(true)
+            await api.get('/api/companies?user_id=' + session.user.id, session?.accessToken, (response) => {
+
+                if (response.data) {
+                    setData({
+                        ...response.data,
+                        team
+                    })
+                }
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+            }, (error) => {
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+
+            })
+        }
+
+        getData()
+    }, [session])
 
     return (
         <div className='w-full float-left'>
@@ -149,5 +170,3 @@ function Page(props) {
         </div>
     );
 }
-
-export default Page;

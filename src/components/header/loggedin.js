@@ -37,7 +37,7 @@ function Loggedin(props) {
         } else {
             setMenu(String.loggedInMenu)
         }
-    }, [])
+    }, [session])
 
     const renderDropdown = () => {
         return (

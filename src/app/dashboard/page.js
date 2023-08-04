@@ -12,26 +12,25 @@ function Page(props) {
   const { data: session } = useSession()
 
   useEffect(() => {
-    getData()
-  })
-
-
-  const getData = async () => {
-    await api.get('/api/dashboard', session?.accessToken, (response) => {
-      setFData(response)
-      setTimeout(() => {
-        setLoading(false)
-      }, 1000)
-    }, (error) => {
-      console.log({
-        error
+    const getData = async () => {
+      await api.get('/api/dashboard', session?.accessToken, (response) => {
+        setFData(response)
+        setTimeout(() => {
+          setLoading(false)
+        }, 1000)
+      }, (error) => {
+        console.log({
+          error
+        })
+        setTimeout(() => {
+          setLoading(false)
+        }, 1000)
+  
       })
-      setTimeout(() => {
-        setLoading(false)
-      }, 1000)
+    }
 
-    })
-  }
+    getData()
+  }, [session])
 
   const renderLoading = () => {
     return (

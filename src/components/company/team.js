@@ -16,7 +16,7 @@ function Team(props) {
         if (props.data) {
             setData(props.data)
         }
-    }, [])
+    }, [props])
 
     const renderProfile = (user) => {
         let size = 100

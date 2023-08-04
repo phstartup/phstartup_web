@@ -18,8 +18,7 @@ function Services(props) {
         if (props.data) {
             setData(props.data)
         }
-    }, [])
-
+    }, [props])
 
 
     return (
@@ -45,6 +44,7 @@ function Services(props) {
                             >
                                 <img
                                     src={item.featured}
+                                    alt={item.featured}
                                     className='h-[200px] w-full rounded-t-lg'
                                 />
                             </div>

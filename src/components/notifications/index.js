@@ -15,24 +15,26 @@ function Notifications(props) {
     const { data: session } = useSession()
 
     useEffect(() => {
-        getData()
-    }, [])
-
-    const getData = async () => {
-        if (!session) return
-        setLoading(true)
-        await api.get('/api/notifications', session?.accessToken, (response) => {
-            setLoading(false)
-            if (response.data) {
-                setData(response.data)
-            } else {
+        const getData = async () => {
+            if (!session) return
+            setLoading(true)
+            await api.get('/api/notifications', session?.accessToken, (response) => {
+                setLoading(false)
+                if (response.data) {
+                    setData(response.data)
+                } else {
+                    setData([])
+                }
+            }, (error) => {
+                setLoading(false)
                 setData([])
-            }
-        }, (error) => {
-            setLoading(false)
-            setData([])
-        })
-    }
+            })
+        }
+
+        getData()
+    }, [session])
+
+    
 
     const renderProfile = (user) => {
         return (

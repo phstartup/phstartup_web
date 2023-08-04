@@ -16,7 +16,7 @@ function Index(props) {
         if (props.data) {
             setData(props.data)
         }
-    }, [])
+    }, [props])
     return (
         <div style={{
             marginTop: 100

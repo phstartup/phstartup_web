@@ -15,48 +15,49 @@ export default function Page(props) {
     const [categories, setCategories] = useState(null)
 
     useEffect(() => {
+        const getData = async () => {
+            await api.getNoToken('/api/home', (response) => {
+                setData(response.data)
+                if (response.data) {
+                    if (response.data.featured) {
+                        setFeatured(response.data.featured)
+                    }
+                    if (response.data.categories) {
+                        setCategories(response.data.categories)
+                    }
+                }
+
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+            }, (error) => {
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+
+            })
+        }
         getData()
     }, [])
 
 
-    const getData = async () => {
-        await api.getNoToken('/api/home', (response) => {
-            setData(response.data)
-            if (response.data) {
-                if (response.data.featured) {
-                    setFeatured(response.data.featured)
-                }
-                if (response.data.categories) {
-                    setCategories(response.data.categories)
-                }
-            }
 
-            setTimeout(() => {
-                setLoading(false)
-            }, 1000)
-        }, (error) => {
-            setTimeout(() => {
-                setLoading(false)
-            }, 1000)
-
-        })
-    }
 
     return (
         <div className='w-full float-left text-black dark:text-white'>
 
             <Header />
             {
-                featured  && (
-                    <Featured data={featured}/>
+                featured && (
+                    <Featured data={featured} />
                 )
             }
-           
+
             <div
                 className='float-left w-full'
             >
                 {
-                    categories && categories.length > 0 &&  categories.map((item, index) => (
+                    categories && categories.length > 0 && categories.map((item, index) => (
                         <Collections
                             title={item.title}
                             data={item.data}

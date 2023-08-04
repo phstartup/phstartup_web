@@ -45,7 +45,7 @@ function Information(props) {
             setContactNumber(data.contact_number)
             setData(data)
         }
-    }, [])
+    }, [props])
 
     const submit = async (item) => {
         if (!session) return
