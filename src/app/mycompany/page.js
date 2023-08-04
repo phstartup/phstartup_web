@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import Achievements from '@/components/mycompany/Achievements';
-import Information from '@/components/mycompany/information';
+// import Information from '@/components/mycompany/information';
 import Banner from '@/components/mycompany/Banner';
 import Services from '@/components/mycompany/Services'
 import Pitches from '@/components/mycompany/pitches'
@@ -77,10 +77,11 @@ const team = [{
     id: 1
 }]
 
-export default function Page(props) {
+function Page(props) {
+
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(true)
-    const { data: session } = useSession()
+    const { session } = useSession()
 
     const getData = async () => {
         if (!session) return
@@ -128,7 +129,7 @@ export default function Page(props) {
         }
 
         getData()
-    }, [session])
+    }, [])
 
     return (
         <div className='w-full float-left'>
@@ -141,7 +142,12 @@ export default function Page(props) {
                             )
                         }
 
-                        <Information data={data} getData={() => getData()} />
+                        {/* {
+                            data && (
+                                <Information data={data} getData={() => getData()} />
+                            )
+                        } */}
+                        
                         {
                             data && (
                                 <div className='w-full float-left'>
@@ -170,3 +176,5 @@ export default function Page(props) {
         </div>
     );
 }
+
+export default Page

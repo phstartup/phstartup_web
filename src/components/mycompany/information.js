@@ -8,7 +8,6 @@ import Select from '@/components/form/Select';
 import String from '@/utils/String';
 import { useSession } from 'next-auth/react';
 import Api from '@/lib/api';
-import { JSONViewer } from 'react-json-editor-viewer';
 import ReactJson from 'react-json-view'
 
 let api = new Api()
