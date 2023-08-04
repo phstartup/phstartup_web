@@ -31,6 +31,9 @@ export default class Notification {
             where: {
                 ...condition.where,
                 deleted_at: null
+            },
+            orderBy: {
+                updated_at: 'desc'
             }
         }
         let result =  await prisma.notifications.findMany(nCondition)
