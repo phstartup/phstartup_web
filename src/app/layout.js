@@ -1,7 +1,7 @@
 'use client'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { SessionProvider } from "next-auth/react"
 import HomepageLayout from '@/components/layouts/Homepage'
 
@@ -13,15 +13,17 @@ export default function RootLayout({ children }) {
     <html
     >
       <head>
-          <title>phstartup.org</title>
+        <title>phstartup.org</title>
       </head>
       <body className={inter.className}>
         <SessionProvider>
-          <HomepageLayout>
-            {
-              children
-            }  
-          </HomepageLayout>
+          <Suspense>
+            <HomepageLayout>
+              {
+                children
+              }
+            </HomepageLayout>
+          </Suspense>
         </SessionProvider>
       </body>
     </html>
