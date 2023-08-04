@@ -1,5 +1,5 @@
 "use client"
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Logo from './logo';
 import Link from 'next/link';
 import { SvgIcon } from '@mui/material';
@@ -24,18 +24,20 @@ function content(props) {
                     <Logo />
                 </div>
                 <div
-                    className={'h-[100px] w-3/4 float-left flex flex-row content-center items-center justify-between pr-[100px]' +  (props.rightColor ? props.rightColor : '')}
+                    className={'h-[100px] w-3/4 float-left flex flex-row content-center items-center justify-between pr-[100px]' + (props.rightColor ? props.rightColor : '')}
                 >
                     <div>
                         {
                             menu && menu.map((item) => (
-                                <Link
-                                    href={'/' + item.title.toLowerCase()}
+                                <span
+                                    onClick={() => {
+                                        router.push(item.route)
+                                    }}
                                     className='href-link cursor-pointer px-[20px] pr-[20px] text-sm'>
                                     {
                                         item.title
                                     }
-                                </Link>
+                                </span>
                             ))
                         }
                         <SvgIcon
@@ -51,17 +53,19 @@ function content(props) {
 
                         {
                             ['Login', 'Register'].map((item) => (
-                                <Link
-                                    href={'/' + item.toLowerCase()}
+                                <span
+                                    onClick={() => {
+                                        router.push('/' + item.route)
+                                    }}
                                     className='href-link cursor-pointer px-[20px] pr-[20px] text-sm'>
                                     {
                                         item
                                     }
-                                </Link>
+                                </span>
                             ))
                         }
                         <SvgIcon
-                            component={colorMode == 'light' ? DarkMode: LightMode}
+                            component={colorMode == 'light' ? DarkMode : LightMode}
                             onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}
                             className='cursor-pointer'
                         />
@@ -93,7 +97,7 @@ function content(props) {
                                 <div
                                     className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px] text-sm'
                                     onClick={() => {
-                                        router.push('/' + item.title.toLowerCase())
+                                        router.push(item.route.toLowerCase())
                                         setToggle(!toggle)
                                     }}
                                 >

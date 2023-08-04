@@ -18,7 +18,7 @@ export default {
         route: '/incubators'
     }, {
         title: 'Government Programs',
-        route: '/programs'
+        route: '/governments'
     }, {
         title: 'Events',
         route: '/events'
