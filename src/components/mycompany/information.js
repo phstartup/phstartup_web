@@ -340,7 +340,7 @@ function Information(props) {
                     !editFlag && (
                         <Button
                             style={' bg-black dark:bg-white text-white dark:text-gray-900'}
-                            title={editFlag ? "Close" : "Edit"}
+                            title={editFlag ? "Close" : props.data == null ? "Setup" : "Edit"}
                             onPress={() => {
                                 setEditFlag(!editFlag)
                             }}

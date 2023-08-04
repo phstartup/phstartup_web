@@ -160,7 +160,7 @@ function loggedin(props) {
                 <div
                     className='w-full h-[80px] float-left href-link px-[20px] pr-[20px] flex items-center content-center justify-between'
                 >
-                    <div className='w-[50%]'>
+                    <div className='w-[5g0%]'>
                         <Logo />
                     </div>
                     <div>

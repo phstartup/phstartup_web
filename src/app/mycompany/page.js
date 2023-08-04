@@ -91,10 +91,13 @@ function page(props) {
         if (!session) return
         setLoading(true)
         await api.get('/api/companies?user_id=' + session.user.id, session?.accessToken, (response) => {
-            setData({
-                ...response.data,
-                team
-            })
+            
+            if(response.data){
+                setData({
+                    ...response.data,
+                    team
+                })
+            }
             setTimeout(() => {
                 setLoading(false)
             }, 1000)
@@ -111,12 +114,24 @@ function page(props) {
             {
                 !loading && (
                     <div className='w-full float-left mt-[20px]'>
-                        <Banner data={data} getData={() => getData()} />
+                        {
+                            data && (
+                                <Banner data={data} getData={() => getData()} />
+                            )
+                        }
+
                         <Information data={data} getData={() => getData()} />
-                        <Team data={data} getData={() => getData()} />
-                        <Pitches data={data} getData={() => getData()} />
-                        <Services data={data} getData={() => getData()} />
-                        <Achievements data={data} getData={() => getData()} />
+                        {
+                            data && (
+                                <div className='w-full float-left'>
+                                    <Team data={data} getData={() => getData()} />
+                                    <Pitches data={data} getData={() => getData()} />
+                                    <Services data={data} getData={() => getData()} />
+                                    <Achievements data={data} getData={() => getData()} />
+                                </div>
+                            )
+                        }
+
                     </div>
                 )
             }
