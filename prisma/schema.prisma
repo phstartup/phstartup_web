@@ -161,7 +161,6 @@ model programs {
   deleted_at  DateTime?
 }
 
-
 model views {
   id            String    @id @default(uuid())
   user_id       String
@@ -170,4 +169,15 @@ model views {
   created_at    DateTime
   updated_at    DateTime
   deleted_at    DateTime?
+}
+
+model notifications {
+  id         String    @id @default(uuid())
+  user_id    String
+  sender     String
+  type       String
+  message    String    @db.LongText
+  created_at DateTime
+  updated_at DateTime
+  deleted_at DateTime?
 }
