@@ -160,7 +160,7 @@ function loggedin(props) {
                 <div
                     className='w-full h-[80px] float-left href-link px-[20px] pr-[20px] flex items-center content-center justify-between'
                 >
-                    <div className='w-[60%]'>
+                    <div className='w-[50%]'>
                         <Logo />
                     </div>
                     <div>
@@ -170,6 +170,13 @@ function loggedin(props) {
                                 setNotifFlag(!notifFlag)
                             }}
                             className='cursor-pointer float-left mr-[20px] ml-[20px]'
+                        />
+                        <SvgIcon
+                            component={Message}
+                            onClick={() => {
+                                router.push('/messages')
+                            }}
+                            className='cursor-pointer float-left mr-[20px]'
                         />
                         {
                             renderProfile()
