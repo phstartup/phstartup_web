@@ -14,7 +14,11 @@ export async function GET(req) {
         return new Response(helper.response(null, 401, 'Invalid Accessed.'));
     }
 
-    let result = await controller.retrieve()
+    let result = await controller.retrieve({
+        where: {
+            user_id: mwareAccount.id
+        }
+    })
     result = result ? result : null
     return new NextResponse(helper.response(result, 200, null));
 }

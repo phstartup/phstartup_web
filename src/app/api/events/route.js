@@ -14,6 +14,9 @@ export async function GET(req) {
         return new Response(helper.response(null, 401, 'Invalid Accessed.'));
     }
 
+    const url = new URL(req.url);
+    const searchParams = new URLSearchParams(url.search)
+
     let result = await controller.retrieve()
     result = result ? result : null
     return new NextResponse(helper.response(result, 200, null));
