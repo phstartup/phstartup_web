@@ -5,12 +5,14 @@ import Api from '@/lib/api';
 import { SvgIcon } from '@mui/material';
 import { Face6 } from '@mui/icons-material';
 import Helper from '@/lib/helper';
+import { useSession } from 'next-auth/react';
 let helper = new Helper()
 
 let api = new Api()
 
 function VouchedBy(props) {
     const [data, setData] = useState(null)
+    const {data: session} = useSession()
 
     useEffect(() => {
         if (props.data) {
@@ -54,7 +56,7 @@ function VouchedBy(props) {
 
 
     return (
-        <div className={Style.cardContainerHome}>
+        <div className={session ? Style.cardContainer : Style.cardContainerHome}>
             <div className='flex w-full items-center content-center justify-between'>
                 <span className='text-lg font-bold'>Vouched By {data && data.vouched_by ? `(${data.vouched_by.length})` : ''}</span>
             </div>

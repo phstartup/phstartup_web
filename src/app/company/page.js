@@ -143,7 +143,7 @@ function Page(props) {
                         team: team
                     })
                 }
-    
+
                 setTimeout(() => {
                     setLoading(false)
                 }, 1000)
@@ -151,14 +151,14 @@ function Page(props) {
                 setTimeout(() => {
                     setLoading(false)
                 }, 1000)
-    
+
             })
         }
         getData()
     }, [search])
 
 
-    
+
 
     return (
         <div
@@ -171,11 +171,14 @@ function Page(props) {
                     !loading && data && (
                         <div className={'w-full float-left mt-[20px] ' + (session ? '' : Style.padding)}>
                             <Banner data={data} />
-                            <Pitches data={data} />
-                            <Services data={data} />
-                            <Team data={data} />
-                            <VouchedBy data={data} />
-                            <Achievements data={data} />
+                            <div className={'w-full float-left'}>
+                                <Pitches data={data} />
+                                <Services data={data} />
+                                <Team data={data} />
+                                <VouchedBy data={data} />
+                                <Achievements data={data} />
+                            </div>
+
                         </div>
                     )
                 }

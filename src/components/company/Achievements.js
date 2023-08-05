@@ -2,11 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import Style from '@/utils/Style';
 import Api from '@/lib/api';
+import { useSession } from 'next-auth/react';
 
 let api = new Api()
 
 function Achievements(props) {
     const [data, setData] = useState(null)
+    const {data: session} = useSession()
 
     useEffect(() => {
         if (props.data) {
@@ -15,7 +17,7 @@ function Achievements(props) {
     }, [props])
 
     return (
-        <div className={Style.cardContainerHome}>
+        <div className={session ? Style.cardContainer : Style.cardContainerHome}>
             <div className='flex w-full items-center content-center justify-between'>
                 <span className='text-lg font-bold'>Achievements</span>
             </div>
@@ -36,7 +38,7 @@ function Achievements(props) {
                             >
                                 <img
                                     src={item.featured}
-                                    className='h-[200px] w-full rounded-t-lg'
+                                    className='h-[200px] w-full rounded-t-lg object-cover'
                                     alt={item.featured}
                                 />
                             </div>

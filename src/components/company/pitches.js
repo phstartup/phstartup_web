@@ -69,7 +69,7 @@ function Pitches(props) {
    
 
     return (
-        <div className={Style.cardContainerHome}>
+        <div className={session ? Style.cardContainer : Style.cardContainerHome}>
             <h1 className='text-lg font-bold'>Elevator Pitches</h1>
             <div className='w-full float-left text-sm mt-[20px]'>
                 <div className='float-left w-full'>

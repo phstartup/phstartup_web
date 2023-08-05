@@ -61,7 +61,7 @@ function Banner(props) {
             <div
                 onClick={() => {
                 }}
-                className='h-[200px] w-full'>
+                className={'h-[200px] w-full ' + (session ? 'bg-gray-800' : 'bg-black')}>
                 <div className='float-left w-full'>
                     <div className='float-left cursor-pointer mt-[10px] w-[180px]'
                         onClick={() => {
@@ -74,7 +74,7 @@ function Banner(props) {
                                     src={logo}
                                     width={180}
                                     height={180}
-                                    className='rounded-[100px] cursor-pointer border-2 bg-black dark:bg-white'
+                                    className='rounded-[100px] cursor-pointer border-2 object-cover'
                                     alt={"Profile"}
                                 />
                             ) : (
@@ -94,7 +94,7 @@ function Banner(props) {
 
                     {
                         props.data && (
-                            <div className='float-left w-[calc(100%-180px)] h-[200px] flex items-center content-center company-banner-name'>
+                            <div className={'float-left w-[calc(100%-180px)] h-[200px] flex items-center content-center company-banner-name' }>
                                 <div className='w-full float-left'>
                                     <span className='ml-[20px] float-left w-full'>
                                         <h1 className='font-bold text-4xl mb-[10px]'>
@@ -293,7 +293,7 @@ function Banner(props) {
     }
 
     return (
-        <div className={Style.cardContainerHome + " mb-[20px]"}>
+        <div className={(session ? Style.cardContainer : Style.cardContainerHome) + " mb-[20px]"}>
             <div className='w-full float-left text-sm min-h-[400px] overflow-hidden relative'>
                 <div className='w-full float-left h-[400px] flex items-center content-center justify-center'
                     style={{

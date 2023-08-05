@@ -5,6 +5,7 @@ import { Add, Face6 } from '@mui/icons-material';
 import TextArea from '@/components/form/textarea'
 import Button from '@/components/buttons/btn'
 import Helper from '@/lib/helper';
+import { useSession } from 'next-auth/react';
 let helper = new Helper()
 
 const comments = [{
@@ -49,6 +50,7 @@ function ModalVideo(props) {
     const [comment, setComment] = useState(null)
     const [commentError, setCommentError] = useState(null)
     const [btnLoading, setBtnLoading] = useState(false)
+    const {data: session} = useSession()
 
     const renderProfile = (user) => {
         return (
@@ -82,7 +84,7 @@ function ModalVideo(props) {
     return (
         <div id="large-modal" tabindex="-1" className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[100vh] max-h-full items-center content-center justify-center flex modal">
             <div className="relative w-full max-w-4xl max-h-full">
-                <div className="relative bg-white rounded-lg shadow dark:bg-gray-900 overflow-hidden">
+                <div className={"relative bg-white rounded-lg shadow overflow-hidden " + (session ? 'dark:bg-gray-900' : 'dark:bg-black')}>
                     <div className="flex items-center justify-between p-5">
                         <h3 className="text-xl font-medium text-gray-900 dark:text-white">
                             {
@@ -98,7 +100,7 @@ function ModalVideo(props) {
                             <span className="sr-only">Close modal</span>
                         </button>
                     </div>
-                    <div className='w-full float-left min-h-[200px] overflow-y-hidden bg-white dark:bg-gray-900'>
+                    <div className={'w-full float-left min-h-[200px] overflow-y-hidden bg-white ' + (session ? 'dark:bg-gray-900' : 'dark:bg-black')}>
                         {
                             props.url && (
                                 <Youtube url={props.url} />

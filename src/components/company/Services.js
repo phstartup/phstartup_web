@@ -22,7 +22,7 @@ function Services(props) {
 
 
     return (
-        <div className={Style.cardContainerHome}>
+        <div className={session ? Style.cardContainer : Style.cardContainerHome}>
             <div className='flex w-full items-center content-center justify-between'>
                 <span className='text-lg font-bold'>Services</span>
             </div>
@@ -45,7 +45,7 @@ function Services(props) {
                                 <img
                                     src={item.featured}
                                     alt={item.featured}
-                                    className='h-[200px] w-full rounded-t-lg'
+                                    className='h-[200px] w-full rounded-t-lg object-cover'
                                 />
                             </div>
                             <div className='w-full float-left p-[10px] h-[100px] border-t border-gray-100 dark:border-gray-800'>
