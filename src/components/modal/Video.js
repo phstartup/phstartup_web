@@ -28,7 +28,9 @@ function ModalVideo(props) {
     }, [])
 
     const getData = async () => {
+        setLoading(false)
         if (!props.data) return
+        setLoading(true)
         if (session) {
             await api.get('/api/comments?payload=pitch&payload_value=' + props.data.id, session?.accessToken, (response) => {
                 if (response.data) {

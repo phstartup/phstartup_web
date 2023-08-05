@@ -90,6 +90,7 @@ function Index(props) {
                             setViewVideo(false)
                         }}
                         url={pitch.url}
+                        data={pitch}
                     />
                 )
             }
