@@ -6,6 +6,7 @@ import String from '@/utils/String'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import Api from '@/lib/api';
+import { useSession } from 'next-auth/react';
 let api = new Api()
 
 export default function Page(props) {
@@ -13,30 +14,55 @@ export default function Page(props) {
     const [data, setData] = useState(null)
     const [featured, setFeatured] = useState(null)
     const [categories, setCategories] = useState(null)
+    const { data: session } = useSession()
 
     useEffect(() => {
         const getData = async () => {
             setLoading(true)
-            await api.getNoToken('/api/home', (response) => {
-                setData(response.data)
-                if (response.data) {
-                    if (response.data.featured) {
-                        setFeatured(response.data.featured)
+            if (session) {
+                await api.get('/api/home', session?.accessToken, (response) => {
+                    setData(response.data)
+                    if (response.data) {
+                        if (response.data.featured) {
+                            setFeatured(response.data.featured)
+                        }
+                        if (response.data.categories) {
+                            setCategories(response.data.categories)
+                        }
                     }
-                    if (response.data.categories) {
-                        setCategories(response.data.categories)
+
+                    setTimeout(() => {
+                        setLoading(false)
+                    }, 1000)
+                }, (error) => {
+                    setTimeout(() => {
+                        setLoading(false)
+                    }, 1000)
+
+                })
+            } else {
+                await api.getNoToken('/api/home', (response) => {
+                    setData(response.data)
+                    if (response.data) {
+                        if (response.data.featured) {
+                            setFeatured(response.data.featured)
+                        }
+                        if (response.data.categories) {
+                            setCategories(response.data.categories)
+                        }
                     }
-                }
 
-                setTimeout(() => {
-                    setLoading(false)
-                }, 1000)
-            }, (error) => {
-                setTimeout(() => {
-                    setLoading(false)
-                }, 1000)
+                    setTimeout(() => {
+                        setLoading(false)
+                    }, 1000)
+                }, (error) => {
+                    setTimeout(() => {
+                        setLoading(false)
+                    }, 1000)
 
-            })
+                })
+            }
+
         }
         getData()
     }, [])

@@ -63,7 +63,7 @@ function Team(props) {
 
             <div className='w-full float-left text-sm mt-[20px]'>
                 {
-                    data && data.team && data.team.map((item, index) => (
+                    data && data.teams && data.teams.length > 0 && data.teams.map((item, index) => (
                         <div
                             key={index}
                             onClick={() => {
@@ -73,19 +73,19 @@ function Team(props) {
                             <div className='w-full float-left'>
                                 <span className='float-left w-[30%]'>
                                     {
-                                        renderProfile(item)
+                                        renderProfile(item.user)
                                     }
                                 </span>
                                 <span className='float-left w-[70%] h-[100px] flex items-center content-center' >
                                     <span className='w-full float-left  pl-[10px]'>
                                         <span className='font-semibold float-left w-full'>
                                             {
-                                                helper.getName(item)
+                                                helper.getName(item.user)
                                             }
                                         </span>
                                         <span className='float-left w-full'>
                                             {
-                                                item.information.position
+                                                item.position
                                             }
                                         </span>
                                         {
@@ -122,7 +122,7 @@ function Team(props) {
                             </div>
                             <span className='float-left w-full text-xs mt-[20px] text-justify mb-[20px] overflow-ellipsis'>
                                 {
-                                    item.information.about
+                                    item.about
                                 }
                             </span>
                         </div>

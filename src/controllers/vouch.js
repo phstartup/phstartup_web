@@ -34,7 +34,17 @@ export default class Vouch {
                 deleted_at: null
             }
         }
-        return await prisma.vouches.findFirst(nCondition)
+        let result = await prisma.vouches.findFirst(nCondition)
+        if (result) {
+            const user = new User()
+
+            result['user'] = await user.getByCondition({
+                where: {
+                    id: result.user_id
+                }
+            })
+        }
+        return result
     }
 
     async retrieve(condition) {
@@ -44,12 +54,12 @@ export default class Vouch {
                 deleted_at: null
             }
         }
-        let result =  await prisma.vouches.findMany(nCondition)
+        let result = await prisma.vouches.findMany(nCondition)
 
-        if(result && result.length > 0){
+        if (result && result.length > 0) {
             for (let index = 0; index < result.length; index++) {
                 const item = result[index];
-                
+
                 const user = new User()
 
                 result[index]['user'] = await user.getByCondition({

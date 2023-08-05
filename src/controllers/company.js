@@ -2,6 +2,7 @@ import Pitch from './pitch';
 import Service from './Service';
 import Achievement from './Achievement'
 import Vouch from './vouch';
+import Team from './team'
 const { PrismaClient, Prisma } = require('@prisma/client')
 const prisma = new PrismaClient();
 export default class UserInformation {
@@ -29,7 +30,7 @@ export default class UserInformation {
         }
     }
 
-    async retrieveHome(condition) {
+    async retrieveHome(user) {
         let nCondition = {
             where: {
                 status: 'verified',
@@ -61,6 +62,33 @@ export default class UserInformation {
                     }
                 })
 
+                let vouch = new Vouch()
+
+                let rVouch = null 
+                
+                if(user){
+                    rVouch = await vouch.retrieve({
+                        where: {
+                            payload_value: result.id,
+                            user_id: user.id
+                        }
+                    })
+                }
+                
+                result['vouch_flag'] = rVouch && rVouch.length > 0 ? true : false
+                result['vouches'] = await vouch.retrieve({
+                    where: {
+                        payload_value: result.id
+                    }
+                })
+
+                let team = new Team()
+                result['teams'] = await team.retrieve({
+                    where: {
+                        company_id: result.id
+                    }
+                })
+
                 result[index]['settings'] = JSON.parse(item.settings)
             }
         }
@@ -68,7 +96,7 @@ export default class UserInformation {
         return result ? result : null
     }
 
-    async retrieveFirstWithAccount(condition, account) {
+    async retrieveFirstWithAccount(condition, user) {
         let nCondition = {
             where: {
                 ...condition.where,
@@ -103,13 +131,20 @@ export default class UserInformation {
             const rVouch = await vouch.retrieve({
                 where: {
                     payload_value: result.id,
-                    user_id: account.id
+                    user_id: user.id
                 }
             })
             result['vouch_flag'] = rVouch && rVouch.length > 0 ? true : false
             result['vouches'] = await vouch.retrieve({
                 where: {
                     payload_value: result.id
+                }
+            })
+
+            let team = new Team()
+            result['teams'] = await team.retrieve({
+                where: {
+                    company_id: result.id
                 }
             })
 
@@ -144,6 +179,13 @@ export default class UserInformation {
 
             let achievement = new Achievement()
             result['achievements'] = await achievement.retrieve({
+                where: {
+                    company_id: result.id
+                }
+            })
+
+            let team = new Team()
+            result['teams'] = await team.retrieve({
                 where: {
                     company_id: result.id
                 }

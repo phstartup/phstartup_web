@@ -1,5 +1,6 @@
 const { PrismaClient, Prisma } = require('@prisma/client')
 const prisma = new PrismaClient();
+import User from './user';
 export default class Team {
     async create(data) {
         let mData = Prisma.teamsCreateInput
@@ -9,10 +10,21 @@ export default class Team {
             updated_at: new Date()
         }
 
-        let result = await prisma.teams.create({
-            data: mData
-        });
-        return result;
+        const isExist = await prisma.teams.findMany({
+            where: {
+                user_id: data.user_id,
+                company_id: data.company_id
+            }
+        })
+
+        if (isExist.length == 0) {
+            let result = await prisma.teams.create({
+                data: mData
+            });
+            return result;
+        } else {
+            return null
+        }
     }
 
     async retrieveFirst(condition) {
@@ -22,7 +34,18 @@ export default class Team {
                 deleted_at: null
             }
         }
-        return await prisma.teams.findFirst(nCondition)
+        let result = await prisma.teams.findFirst(nCondition)
+        if (result) {
+            const user = new User()
+
+            result['user'] = await user.getByCondition({
+                where: {
+                    id: result.user_id
+                }
+            })
+        }
+
+        return result
     }
 
     async retrieve(condition) {
@@ -32,7 +55,22 @@ export default class Team {
                 deleted_at: null
             }
         }
-        return await prisma.teams.findMany(nCondition)
+        let result = await prisma.teams.findMany(nCondition)
+        if (result && result.length > 0) {
+            for (let index = 0; index < result.length; index++) {
+                const item = result[index];
+
+                const user = new User()
+
+                result[index]['user'] = await user.getByCondition({
+                    where: {
+                        id: item.user_id
+                    }
+                })
+            }
+        }
+
+        return result
     }
 
     async update(id, data) {

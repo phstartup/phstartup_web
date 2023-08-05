@@ -40,7 +40,7 @@ export async function GET(req) {
             return new NextResponse(helper.response(result, 200, null));
         }
     } else {
-        let result = await controller.retrieveHome()
+        let result = await controller.retrieveHome(mwareAccount)
         let response = {
             featured: result ? result[0] : null,
             categories: [{

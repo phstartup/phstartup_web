@@ -6,22 +6,118 @@ import Modal from '@/components/modal/index'
 import TextInput from '@/components/form/text';
 import TextArea from '@/components/form/textarea'
 import { SvgIcon } from '@mui/material';
-import { Face6, Facebook, LinkedIn } from '@mui/icons-material';
+import { Delete, Face6, Facebook, LinkedIn } from '@mui/icons-material';
 import Helper from '@/lib/helper';
+import { useSession } from 'next-auth/react';
 let helper = new Helper()
+import Api from '@/lib/api';
+let api = new Api()
 
 function Team(props) {
     const [createFlag, setCreateFlag] = useState(false)
+    const [profile, setProfile] = useState(null)
+    const { data: session } = useSession()
     const { data } = props
+    const [position, setPosition] = useState(null)
+    const [positionError, setPositionError] = useState(null)
+    const [about, setAbout] = useState(null)
+    const [aboutError, setAboutError] = useState(null)
+    const [video, setVideo] = useState(null)
+    const [videoError, setVideoError] = useState(null)
+    const [btnLoading, setBtnLoading] = useState(false)
+
+    const submit = async () => {
+        if (!session) return
+        if (!position) return
+        if (!about) return
+        if (!profile) return
+        if (!data) return
+
+        setBtnLoading(true)
+        await api.post('/api/teams', {
+            user_id: profile.id,
+            company_id: data.id,
+            position,
+            about,
+            video
+        }, session?.accessToken, (response) => {
+            setTimeout(() => {
+                setBtnLoading(false)
+                window.location.reload()
+            }, 1000)
+        }, (error) => {
+            setTimeout(() => {
+                setBtnLoading(false)
+                window.location.reload()
+            }, 1000)
+
+        })
+    }
 
     const renderContent = () => {
         return (
             <div className='w-full float-left mb-[20px]'>
+                <div className='w-full float-left mb-[20px]'>
+                    {
+                        session && session.user && (
+                            <Button
+                                style={' bg-black dark:bg-white text-white dark:text-black'}
+                                title="Add your profile"
+                                onPress={() => {
+                                    setProfile(session.user)
+                                }}
+                            />
+                        )
+                    }
+                </div>
+
+                {
+                    profile && (
+                        <div className='w-full float-right p-[20px] border border-gray-100 rounded-lg mb-[20px]'>
+                            <div className='w-full float-left'>
+                                <span className='float-left w-[100px]'>
+                                    {
+                                        renderProfile(profile)
+                                    }
+                                </span>
+                                <span className='float-left w-[calc(100%-100px)] h-[100px] flex items-center content-center' >
+                                    <span className='w-full float-left  pl-[10px] flex justify-between'>
+                                        <span className='font-semibold'>
+                                            {
+                                                helper.getName(profile)
+                                            }
+                                        </span>
+                                        <span>
+                                            <SvgIcon component={Delete}
+                                                onClick={() => {
+                                                    setProfile(null)
+                                                }}
+                                                className='text-red-500 cursor-pointer'
+                                            />
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    )
+                }
+
                 <div className='w-full float-left text-sm'>
-                    <h1 className='text-sm mb-[20px]'>Title</h1>
+                    <h1 className='text-sm mb-[20px]'>Position</h1>
                     <TextInput
                         type="text"
-                        placeholder="Title"
+                        placeholder="CEO, COO, CMO ..."
+                        value={position}
+                        onChange={(value, error) => {
+                            setPosition(value)
+                            setPositionError(error)
+                        }}
+                        validation={{
+                            type: 'text',
+                            size: 2,
+                            column: 'Position',
+                            error: positionError
+                        }}
                     />
                 </div>
 
@@ -29,7 +125,18 @@ function Team(props) {
                     <h1 className='text-sm mb-[20px]'>Description</h1>
                     <TextArea
                         type="text"
-                        placeholder="Oxygen type of Clothes"
+                        placeholder="Write something specific of what you do..."
+                        value={about}
+                        onChange={(value, error) => {
+                            setAbout(value)
+                            setAboutError(error)
+                        }}
+                        validation={{
+                            type: 'text',
+                            size: 2,
+                            column: 'About',
+                            error: aboutError
+                        }}
                     />
                 </div>
 
@@ -37,7 +144,18 @@ function Team(props) {
                     <h1 className='text-sm mb-[20px]'>Video Link(Optional)</h1>
                     <TextInput
                         type="text"
-                        placeholder="tags"
+                        placeholder="Video url"
+                        value={video}
+                        onChange={(value, error) => {
+                            setVideo(value)
+                            setVideoError(error)
+                        }}
+                        validation={{
+                            type: 'text',
+                            size: 2,
+                            column: 'Video',
+                            error: videoError
+                        }}
                     />
                 </div>
 
@@ -110,7 +228,7 @@ function Team(props) {
             <div className='w-full float-left text-sm mt-[20px]'>
 
                 {
-                    data && data.team && data.team.map((item, index) => (
+                    data && data.teams && data.teams.map((item, index) => (
                         <div
                             key={index}
                             onClick={() => {
@@ -120,19 +238,19 @@ function Team(props) {
                             <div className='w-full float-left'>
                                 <span className='float-left w-[30%]'>
                                     {
-                                        renderProfile(item)
+                                        renderProfile(item.user)
                                     }
                                 </span>
-                                <span className='float-left w-[70%] h-[100px] flex items-center content-center' >
+                                <span className='float-left w-[70%] h-[100px] flex items-center content-center pl-[10px]' >
                                     <span className='w-full float-left  pl-[10px]'>
                                         <span className='font-semibold float-left w-full'>
                                             {
-                                                helper.getName(item)
+                                                helper.getName(item.user)
                                             }
                                         </span>
                                         <span className='float-left w-full'>
                                             {
-                                                item.information.position
+                                                item.position
                                             }
                                         </span>
                                         {
@@ -169,7 +287,7 @@ function Team(props) {
                             </div>
                             <span className='float-left w-full text-xs mt-[20px] text-justify mb-[20px] overflow-ellipsis'>
                                 {
-                                    item.information.about
+                                    item.about
                                 }
                             </span>
                         </div>
@@ -180,7 +298,7 @@ function Team(props) {
             {
                 createFlag && (
                     <Modal
-                        title="Add A Team Member"
+                        title="Add Team Member"
                         onClose={() => {
                             setCreateFlag(!createFlag)
                         }}
@@ -199,7 +317,9 @@ function Team(props) {
                                     <Button
                                         style={' bg-black dark:bg-white text-white dark:text-black ml-[20px]'}
                                         title="Save"
+                                        loading={btnLoading}
                                         onPress={() => {
+                                            submit()
                                         }}
                                     />
                                 </div>

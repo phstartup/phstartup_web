@@ -27,24 +27,26 @@ export async function POST(req) {
 
     const body = await req.json()
 
-    const { position, about, video, company_id } = body
+    const { position, about, video, company_id, user_id } = body
     if (body.id) {
         // update
         let result = await controller.update(
             body.id,
             {
-                user_id: mwareAccount.id,
-                company_id: company_id,
-                payload,
-                payload_value
+                user_id,
+                company_id,
+                about,
+                position,
+                video
             })
         return new NextResponse(helper.response(result, 200, null))
-    } else if (position && about && video) {
+    } else if (position && about && video && user_id && company_id) {
         let result = await controller.create({
-            user_id: mwareAccount.id,
-            company_id: company_id,
-            payload,
-            payload_value
+            user_id,
+            company_id,
+            about,
+            position,
+            video
         })
         return new NextResponse(helper.response(result, 200, null))
     }

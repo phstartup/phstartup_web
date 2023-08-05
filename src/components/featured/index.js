@@ -29,7 +29,7 @@ function Index(props) {
                     data && data.settings && data.settings.banner && (
                         <img
                             src={data.settings.banner}
-                            className='w-full h-full'
+                            className='w-full h-full object-cover'
                             alt={data.settings.banner}
                         />
                     )
