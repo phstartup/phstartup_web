@@ -256,6 +256,7 @@ function Pitches(props) {
                             setViewVideo(false)
                         }}
                         url={pitch.url}
+                        data={pitch}
                     />
                 )
             }

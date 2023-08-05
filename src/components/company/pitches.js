@@ -61,12 +61,12 @@ function Pitches(props) {
 
         let data = props.data
         let dPitches = data ? data.pitches : []
-        
+
         managedData(dPitches)
     }, [props])
 
 
-   
+
 
     return (
         <div className={session ? Style.cardContainer : Style.cardContainerHome}>
@@ -138,7 +138,8 @@ function Pitches(props) {
                             setViewVideo(false)
                         }}
                         url={pitch.url}
-                        />
+                        data={pitch}
+                    />
                 )
             }
         </div>

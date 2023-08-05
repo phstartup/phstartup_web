@@ -1,5 +1,6 @@
 const { PrismaClient, Prisma } = require('@prisma/client')
 const prisma = new PrismaClient();
+import User from './user';
 export default class Comment {
     async create(data) {
         let mData = Prisma.commentsCreateInput
@@ -15,24 +16,33 @@ export default class Comment {
         return result;
     }
 
-    async retrieveFirst(condition) {
-        let nCondition = {
-            where: {
-                ...condition.where,
-                deleted_at: null
-            }
-        }
-        return await prisma.comments.findFirst(nCondition)
-    }
-
     async retrieve(condition) {
         let nCondition = {
             where: {
                 ...condition.where,
                 deleted_at: null
+            },
+            orderBy: {
+                updated_at: 'desc'
             }
         }
-        return await prisma.comments.findMany(nCondition)
+        let result = await prisma.comments.findMany(nCondition)
+
+        if (result && result.length > 0) {
+            for (let index = 0; index < result.length; index++) {
+                const item = result[index];
+
+                const user = new User()
+
+                result[index]['user'] = await user.getByCondition({
+                    where: {
+                        id: item.user_id
+                    }
+                })
+            }
+        }
+
+        return result
     }
 
     async update(id, data) {

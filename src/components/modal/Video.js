@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Youtube from '@/components/video/Youtube'
 import { SvgIcon } from '@mui/material';
 import { Add, Face6 } from '@mui/icons-material';
@@ -6,51 +6,71 @@ import TextArea from '@/components/form/textarea'
 import Button from '@/components/buttons/btn'
 import Helper from '@/lib/helper';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import Skeleton from '@/components/loading/Single'
 let helper = new Helper()
 
-const comments = [{
-    created_at: 'July 1, 2023',
-    user: {
-        username: 'kennette',
-        information: {
-            first_name: 'Kennette',
-            last_name: 'Canales',
-            profile: 'https://lh3.googleusercontent.com/a/AAcHTtfPb4VcRepRHKExg7-HfrIoQ-njnXlHAEKZCdXBgMGb6w=s96-c'
-        },
-        id: 1
-    },
-    content: 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. '
-}, {
-    created_at: 'July 1, 2023',
-    user: {
-        username: 'kennette',
-        information: {
-            first_name: 'Kennette',
-            last_name: 'Canales',
-            profile: 'https://lh3.googleusercontent.com/a/AAcHTtfPb4VcRepRHKExg7-HfrIoQ-njnXlHAEKZCdXBgMGb6w=s96-c'
-        },
-        id: 1
-    },
-    content: 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. '
-}, {
-    created_at: 'July 1, 2023',
-    user: {
-        username: 'kennette',
-        information: {
-            first_name: 'Kennette',
-            last_name: 'Canales',
-            profile: 'https://lh3.googleusercontent.com/a/AAcHTtfPb4VcRepRHKExg7-HfrIoQ-njnXlHAEKZCdXBgMGb6w=s96-c'
-        },
-        id: 1
-    },
-    content: 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. '
-}]
+import Api from '@/lib/api';
+let api = new Api()
+
 function ModalVideo(props) {
+    const router = useRouter()
     const [addComment, setAddComment] = useState(false)
     const [comment, setComment] = useState(null)
     const [commentError, setCommentError] = useState(null)
     const [btnLoading, setBtnLoading] = useState(false)
-    const {data: session} = useSession()
+    const { data: session } = useSession()
+    const [comments, setComments] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+    const getData = async () => {
+        if (!props.data) return
+        await api.get('/api/comments?payload=pitch&payload_value=' + props.data.id, session?.accessToken, (response) => {
+            if (response.data) {
+                setComments(response.data)
+            }
+            setTimeout(() => {
+                setLoading(false)
+            }, 1000)
+        }, (error) => {
+            setTimeout(() => {
+                setLoading(false)
+            }, 1000)
+        })
+    }
+
+    const submit = async () => {
+        if (!session) return
+        if (!comment) return
+        if (!props.data) return
+
+        setBtnLoading(true)
+        await api.post('/api/comments', {
+            content: comment,
+            payload: 'pitch',
+            payload_value: props.data.id
+        }, session?.accessToken, (response) => {
+            setTimeout(() => {
+                setBtnLoading(false)
+                setAddComment(false)
+                setCommentError(null)
+                setComment(null)
+                getData()
+            }, 1000)
+        }, (error) => {
+            setTimeout(() => {
+                setBtnLoading(false)
+                setAddComment(false)
+                setComment(null)
+                setCommentError(null)
+                getData()
+            }, 1000)
+        })
+    }
 
     const renderProfile = (user) => {
         return (
@@ -124,7 +144,12 @@ function ModalVideo(props) {
                                     }}
                                     className='cursor-pointer'
                                     onClick={() => {
-                                        setAddComment(true)
+                                        if (session) {
+                                            setAddComment(true)
+                                        } else {
+                                            router.push('/login')
+                                        }
+
                                     }}
                                 />
                             </span>
@@ -167,6 +192,7 @@ function ModalVideo(props) {
                                                 title="Save"
                                                 loading={btnLoading}
                                                 onPress={() => {
+                                                    submit()
                                                 }}
                                             />
                                         </div>
@@ -177,7 +203,7 @@ function ModalVideo(props) {
                         <div className='w-full float-left'>
 
                             {
-                                comments && comments.map((item, index) => (
+                                !loading && comments && comments.map((item, index) => (
                                     <div className='w-full float-left mb-[20px] border-b border-b-gray-100 dark:border-b-gray-700' key={index}>
                                         <span className='w-full float-left flex justify-between text-sm'>
                                             <span>
@@ -186,7 +212,7 @@ function ModalVideo(props) {
                                                         renderProfile(item.user)
                                                     }
                                                 </span>
-                                                <span className='font-semibold'>
+                                                <span className='font-semibold h-[30px] flex items-center content-center float-left'>
                                                     {
                                                         helper.getName(item.user)
                                                     }
@@ -206,6 +232,11 @@ function ModalVideo(props) {
                                             </span>
                                         </span>
                                     </div>
+                                ))
+                            }
+                            {
+                                loading && [1, 2, 3, 4, 5].map((item, index) => (
+                                    <Skeleton key={index}/>
                                 ))
                             }
                         </div>
