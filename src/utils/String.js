@@ -1,5 +1,5 @@
 "use client"
-import { CalendarMonth, CasesOutlined, Dashboard, House, Person, Person2Outlined, PieChart, Rocket } from '@mui/icons-material';
+import { CalendarMonth, CasesOutlined, Dashboard, House, Person, Person2Outlined, PieChart, Rocket, VideoCameraBack } from '@mui/icons-material';
 const String =  {
     app_name: 'phstartup.org',
     api_url: 'test',
@@ -29,6 +29,11 @@ const String =  {
             title: 'Dashboard',
             icon: PieChart,
             route: 'dashboard'
+        },
+        {
+            title: 'Pitches',
+            icon: VideoCameraBack,
+            route: 'pitches'
         },
         {
             title: 'My Company',

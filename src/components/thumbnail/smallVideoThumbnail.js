@@ -13,7 +13,7 @@ function SmallVideoThumbnail(props) {
             <img
                 src={props.data?.settings?.banner}
                 alt={props.data?.settings?.banner}
-                className='w-full h-full'
+                className='w-full h-full object-cover'
                 />
             <div
             className='absolute px-5 py-5 bottom-0 profile-card-title w-full font-bold text-white'

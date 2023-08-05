@@ -10,6 +10,7 @@ import Api from '@/lib/api';
 import Empty from '@/components/empty/Simple'
 import { useRouter, useSearchParams } from 'next/navigation';
 import Style from '@/utils/Style';
+import { useSession } from 'next-auth/react';
 let api = new Api()
 
 
@@ -124,8 +125,9 @@ const team = [{
 function Page(props) {
 
     const search = useSearchParams()
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [data, setData] = useState(null)
+    const { data: session } = useSession()
 
     useEffect(() => {
         const getData = async () => {
@@ -160,14 +162,14 @@ function Page(props) {
 
     return (
         <div
-            className='w-full float-left mt-[100px]'
+            className={'w-full float-left ' + (session ? '' : 'mt-[100px]')}
         >
             <div
                 className='float-left w-full'
             >
                 {
                     !loading && data && (
-                        <div className={'w-full float-left mt-[20px] ' + Style.padding}>
+                        <div className={'w-full float-left mt-[20px] ' + (session ? '' : Style.padding)}>
                             <Banner data={data} />
                             <Pitches data={data} />
                             <Services data={data} />

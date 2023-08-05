@@ -15,7 +15,8 @@ const protectedPages = [
     '/match',
     '/jobs',
     '/events',
-    '/mycompany'
+    '/mycompany',
+    '/pitches'
 ]
 
 const loginRegiser = [
