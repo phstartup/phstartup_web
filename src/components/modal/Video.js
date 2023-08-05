@@ -29,18 +29,34 @@ function ModalVideo(props) {
 
     const getData = async () => {
         if (!props.data) return
-        await api.get('/api/comments?payload=pitch&payload_value=' + props.data.id, session?.accessToken, (response) => {
-            if (response.data) {
-                setComments(response.data)
-            }
-            setTimeout(() => {
-                setLoading(false)
-            }, 1000)
-        }, (error) => {
-            setTimeout(() => {
-                setLoading(false)
-            }, 1000)
-        })
+        if (session) {
+            await api.get('/api/comments?payload=pitch&payload_value=' + props.data.id, session?.accessToken, (response) => {
+                if (response.data) {
+                    setComments(response.data)
+                }
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+            }, (error) => {
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+            })
+        } else {
+            await api.getNoToken('/api/comments?payload=pitch&payload_value=' + props.data.id, (response) => {
+                if (response.data) {
+                    setComments(response.data)
+                }
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+            }, (error) => {
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+            })
+        }
+
     }
 
     const submit = async () => {
@@ -236,7 +252,7 @@ function ModalVideo(props) {
                             }
                             {
                                 loading && [1, 2, 3, 4, 5].map((item, index) => (
-                                    <Skeleton key={index}/>
+                                    <Skeleton key={index} />
                                 ))
                             }
                         </div>
