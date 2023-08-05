@@ -1,5 +1,6 @@
 const { PrismaClient, Prisma } = require('@prisma/client')
 const prisma = new PrismaClient();
+import User from './user';
 export default class Vouch {
     async create(data) {
         let mData = Prisma.vouchesCreateInput
@@ -8,7 +9,7 @@ export default class Vouch {
             created_at: new Date(),
             updated_at: new Date()
         }
-        const isExist = await prisma.pitches.findFirst({
+        const isExist = await prisma.vouches.findMany({
             where: {
                 user_id: data.user_id,
                 payload: data.payload,
@@ -16,8 +17,8 @@ export default class Vouch {
             }
         })
 
-        if (!isExist) {
-            let result = await prisma.pitches.create({
+        if (isExist.length == 0) {
+            let result = await prisma.vouches.create({
                 data: mData
             });
             return result;
@@ -43,7 +44,23 @@ export default class Vouch {
                 deleted_at: null
             }
         }
-        return await prisma.vouches.findMany(nCondition)
+        let result =  await prisma.vouches.findMany(nCondition)
+
+        if(result && result.length > 0){
+            for (let index = 0; index < result.length; index++) {
+                const item = result[index];
+                
+                const user = new User()
+
+                result[index]['user'] = await user.getByCondition({
+                    where: {
+                        id: item.user_id
+                    }
+                })
+            }
+        }
+
+        return result
     }
 
     async update(id, data) {

@@ -54,7 +54,7 @@ export async function POST(req) {
                 content
             })
         return new NextResponse(helper.response(result, 200, null))
-    } else if (payload && [payload_value] && content) {
+    } else if (payload && payload_value && content) {
         let result = await controller.create({
             user_id: mwareAccount.id,
             payload,

@@ -1,6 +1,7 @@
 import Pitch from './pitch';
 import Service from './Service';
 import Achievement from './Achievement'
+import Vouch from './vouch';
 const { PrismaClient, Prisma } = require('@prisma/client')
 const prisma = new PrismaClient();
 export default class UserInformation {
@@ -64,6 +65,56 @@ export default class UserInformation {
             }
         }
 
+        return result ? result : null
+    }
+
+    async retrieveFirstWithAccount(condition, account) {
+        let nCondition = {
+            where: {
+                ...condition.where,
+                deleted_at: null
+            }
+        }
+        let result = await prisma.companies.findFirst(nCondition)
+
+        if (result) {
+            let pitch = new Pitch()
+            result['pitches'] = await pitch.retrieve({
+                where: {
+                    company_id: result.id
+                }
+            })
+
+            let service = new Service()
+            result['services'] = await service.retrieve({
+                where: {
+                    company_id: result.id
+                }
+            })
+
+            let achievement = new Achievement()
+            result['achievements'] = await achievement.retrieve({
+                where: {
+                    company_id: result.id
+                }
+            })
+
+            let vouch = new Vouch()
+            const rVouch = await vouch.retrieve({
+                where: {
+                    payload_value: result.id,
+                    user_id: account.id
+                }
+            })
+            result['vouch_flag'] = rVouch && rVouch.length > 0 ? true : false
+            result['vouches'] = await vouch.retrieve({
+                where: {
+                    payload_value: result.id
+                }
+            })
+
+            result['settings'] = JSON.parse(result['settings'])
+        }
         return result ? result : null
     }
 

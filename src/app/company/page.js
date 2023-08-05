@@ -135,30 +135,49 @@ function Page(props) {
             if (!id) {
                 return
             }
-            await api.getNoToken('/api/home?id=' + id, (response) => {
-                if (response.data) {
-                    setData({
-                        ...response.data,
-                        vouched_by,
-                        team: team
-                    })
-                }
 
-                setTimeout(() => {
-                    setLoading(false)
-                }, 1000)
-            }, (error) => {
-                setTimeout(() => {
-                    setLoading(false)
-                }, 1000)
+            if (session) {
+                await api.get('/api/home?id=' + id, session?.accessToken, (response) => {
+                    if (response.data) {
+                        setData({
+                            ...response.data,
+                            vouched_by,
+                            team: team
+                        })
+                    }
 
-            })
+                    setTimeout(() => {
+                        setLoading(false)
+                    }, 1000)
+                }, (error) => {
+                    setTimeout(() => {
+                        setLoading(false)
+                    }, 1000)
+
+                })
+            } else {
+                await api.getNoToken('/api/home?id=' + id, (response) => {
+                    if (response.data) {
+                        setData({
+                            ...response.data,
+                            vouched_by,
+                            team: team
+                        })
+                    }
+
+                    setTimeout(() => {
+                        setLoading(false)
+                    }, 1000)
+                }, (error) => {
+                    setTimeout(() => {
+                        setLoading(false)
+                    }, 1000)
+
+                })
+            }
         }
         getData()
     }, [search])
-
-
-
 
     return (
         <div

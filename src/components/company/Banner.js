@@ -51,9 +51,34 @@ function Banner(props) {
             // submit here
             setVouchModal(true)
         } else {
-            // router.push('/login')
-            setVouchModal(true)
+            router.push('/login')
         }
+    }
+
+    const submitVouch = async () => {
+        if (!session) return
+        if (!message) return
+        if (!data) return
+
+        setBtnLoading(true)
+        await api.post('/api/vouches', { 
+            content: message,
+            payload: 'company',
+            payload_value: data.id
+         }, session?.accessToken, (response) => {
+            setTimeout(() => {
+                setBtnLoading(false)
+                setVouchModal(false)
+                window.location.reload()
+            }, 1000)
+        }, (error) => {
+            setTimeout(() => {
+                setBtnLoading(false)
+                setVouchModal(false)
+                window.location.reload()
+            }, 1000)
+
+        })
     }
 
     const renderProfile = () => {
@@ -94,7 +119,7 @@ function Banner(props) {
 
                     {
                         props.data && (
-                            <div className={'float-left w-[calc(100%-180px)] h-[200px] flex items-center content-center company-banner-name' }>
+                            <div className={'float-left w-[calc(100%-180px)] h-[200px] flex items-center content-center company-banner-name'}>
                                 <div className='w-full float-left'>
                                     <span className='ml-[20px] float-left w-full'>
                                         <h1 className='font-bold text-4xl mb-[10px]'>
@@ -243,7 +268,7 @@ function Banner(props) {
                                             }
                                         </span>
                                         {
-                                            data && !data.vouch && (
+                                            data && !data.vouch_flag && (
                                                 <span className='float-left mt-[20px]'>
                                                     <Button
                                                         style={' bg-black dark:bg-white text-white dark:text-gray-900'}
@@ -274,7 +299,7 @@ function Banner(props) {
                     <h1 className='text-sm mb-[20px]'>Message</h1>
                     <TextArea
                         type="text"
-                        placeholder="You something great here..."
+                        placeholder="Write something great here..."
                         value={message}
                         onChange={(value, error) => {
                             setMessage(value)
@@ -328,6 +353,7 @@ function Banner(props) {
                                         style={' bg-red-400 text-white'}
                                         title="Cancel"
                                         onPress={() => {
+                                            setMessage(null)
                                             setVouchModal(false)
                                         }}
                                     />
@@ -337,6 +363,7 @@ function Banner(props) {
                                         title={"Submit"}
                                         loading={btnLoading}
                                         onPress={() => {
+                                            submitVouch()
                                         }}
                                     />
                                 </div>

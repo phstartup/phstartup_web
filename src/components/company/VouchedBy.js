@@ -58,12 +58,12 @@ function VouchedBy(props) {
     return (
         <div className={session ? Style.cardContainer : Style.cardContainerHome}>
             <div className='flex w-full items-center content-center justify-between'>
-                <span className='text-lg font-bold'>Vouched By {data && data.vouched_by ? `(${data.vouched_by.length})` : ''}</span>
+                <span className='text-lg font-bold'>Vouched By {data && data.vouches ? `(${data.vouches.length})` : ''}</span>
             </div>
 
             <div className='w-full float-left text-sm mt-[20px]'>
                 {
-                    data && data.vouched_by && data.vouched_by.map((item, index) => (
+                    data && data.vouches && data.vouches.map((item, index) => (
                         <div
                             key={index}
                             onClick={() => {
@@ -76,7 +76,7 @@ function VouchedBy(props) {
                                         renderProfile(item.user)
                                     }
                                 </span>
-                                <span className='float-left w-[70%] h-[100px] flex items-center content-center' >
+                                <span className='float-left w-[70%] h-[70px] flex items-center content-center' >
                                     <span className='w-full float-left  pl-[10px]'>
                                         <span className='font-semibold float-left w-full'>
                                             {
@@ -85,7 +85,7 @@ function VouchedBy(props) {
                                         </span>
                                         <span className='float-left w-full'>
                                             {
-                                                item.user.information.position
+                                               item.user.information.position
                                             }
                                         </span>
                                     </span>

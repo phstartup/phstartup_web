@@ -11,7 +11,7 @@ const middleware = new Middleware();
 
 
 export async function GET(req) {
-    // const mwareAccount = await middleware.check(req)
+    const mwareAccount = await middleware.check(req)
     // if (mwareAccount == false) {
     //     return new Response(helper.response(null, 401, 'Invalid Accessed.'));
     // }
@@ -21,13 +21,24 @@ export async function GET(req) {
     const id = searchParams.get('id')
 
     if (id) {
-        let result = await controller.retrieveFirst({
-            where: {
-                id: id
-            }
-        })
-        result = result ? result : null
-        return new NextResponse(helper.response(result, 200, null));
+        if (mwareAccount) {
+            // retrieve here with auth
+            let result = await controller.retrieveFirstWithAccount({
+                where: {
+                    id: id
+                }
+            }, mwareAccount)
+            result = result ? result : null
+            return new NextResponse(helper.response(result, 200, null));
+        } else {
+            let result = await controller.retrieveFirst({
+                where: {
+                    id: id
+                }
+            })
+            result = result ? result : null
+            return new NextResponse(helper.response(result, 200, null));
+        }
     } else {
         let result = await controller.retrieveHome()
         let response = {
