@@ -83,7 +83,7 @@ function Index(props) {
                         </div>
                     </div>
                     <span className='lg:text-6xl 2xl:text-6xl sm:text-3xl xs:text-3xl md:text-3xl float-left lg:w-[50%] xl:w-[50%] 2xl:w-[50%] sm:w-full xs:w-full md:w-full flex items-center content-center h-[100px]'>
-                        Startup of the Month
+                        Startup of the Week
                     </span>
                 </div>
 

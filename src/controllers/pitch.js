@@ -1,6 +1,7 @@
 const { Prisma } = require('@prisma/client')
 import { prisma } from '@/lib/db'
 import Company from './company';
+import View from './view';
 export default class Pitch {
     async create(data) {
         let mData = Prisma.pitchesCreateInput
@@ -34,7 +35,17 @@ export default class Pitch {
                 deleted_at: null
             }
         }
-        return await prisma.pitches.findFirst(nCondition)
+        let result = await prisma.pitches.findFirst(nCondition)
+        if (result) {
+            const view = new View()
+            result['views'] = await view.getTotal({
+                where: {
+                    payload: 'pitch',
+                    payload_value: result.id
+                }
+            })
+        }
+        return result
     }
 
     async retrieve(condition) {
@@ -44,12 +55,25 @@ export default class Pitch {
                 deleted_at: null
             }
         }
-        return await prisma.pitches.findMany(nCondition)
+        let result = await prisma.pitches.findMany(nCondition)
+        if (result && result.length > 0) {
+            for (let index = 0; index < result.length; index++) {
+                const item = result[index];
+                const view = new View()
+                result[index]['views'] = await view.getTotal({
+                    where: {
+                        payload: 'pitch',
+                        payload_value: item.id
+                    }
+                })
+            }
+        }
+        return result
     }
 
     async retrieveWithCompany(condition) {
-        let result =  await prisma.pitches.findMany(condition)
-        if(result && result.length > 0){
+        let result = await prisma.pitches.findMany(condition)
+        if (result && result.length > 0) {
             for (let index = 0; index < result.length; index++) {
                 const item = result[index];
                 const company = new Company()
@@ -59,6 +83,13 @@ export default class Pitch {
                     }
                 })
                 result[index]['company'] = rCompany
+                const view = new View()
+                result[index]['views'] = await view.getTotal({
+                    where: {
+                        payload: 'pitch',
+                        payload_value: item.id
+                    }
+                })
             }
         }
         return result

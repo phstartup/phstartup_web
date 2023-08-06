@@ -35,37 +35,16 @@ export default class View {
         return await prisma.views.findMany(nCondition)
     }
 
-    async update(id, data) {
-        let updateData = Prisma.viewsUncheckedUpdateInput
-        updateData = {
-            ...data,
-            updated_at: new Date()
-        }
-        return await prisma.views.update({
-            where: {
-                id: id
+    async getTotal(condition) {
+        let result = await prisma.views.aggregate({
+            _count: {
+                id: true
             },
-            data: {
-                ...updateData,
-                updated_at: new Date(),
+            where: {
+                ...condition.where,
+                deleted_at: null
             }
         })
+        return result ? result._count.id : null
     }
-
-    async delete(condition) {
-        let updateData = Prisma.viewsUncheckedUpdateInput
-        updateData = {
-            updated_at: new Date(),
-            deleted_at: new Date()
-        }
-        return await prisma.views.update({
-            where: {
-                ...condition
-            },
-            data: {
-                ...updateData
-            }
-        })
-    }
-
 }

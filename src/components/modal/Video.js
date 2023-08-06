@@ -25,6 +25,7 @@ function ModalVideo(props) {
 
     useEffect(() => {
         getData()
+        submitView()
     }, [])
 
     const getData = async () => {
@@ -90,6 +91,28 @@ function ModalVideo(props) {
         })
     }
 
+    const submitView = async () => {
+        if (!props.data) return
+
+        if(session){
+            await api.post('/api/views', {
+                payload: 'pitch',
+                payload_value: props.data.id
+            }, session?.accessToken, (response) => {
+            }, (error) => {
+            })
+        }else{
+            await api.postRegister('/api/views', {
+                payload: 'pitch',
+                payload_value: props.data.id
+            }, (response) => {
+            }, (error) => {
+            })
+        }
+
+        
+    }
+
     const renderProfile = (user) => {
         return (
             <div
@@ -148,8 +171,8 @@ function ModalVideo(props) {
                     <div className='w-full float-left px-[20px] mt-[20px]'>
                         <div className='w-full float-left flex justify-between text-sm font-bold'>
                             {
-                                props.views && (
-                                    <span>{props.views} Views</span>
+                                props.data.views && (
+                                    <span className='h-[50px] flex items-center content-center'>{props.data.views} Views</span>
                                 )
                             }
                             {

@@ -17,7 +17,7 @@ let api = new Api()
 function Pitches(props) {
     const { data: session } = useSession()
     const [createFlag, setCreateFlag] = useState(false)
-    const [url, setUrl] = useState(null)
+    const [url, setUrl] = useState('https://www.youtube.com/embed/')
     const [urlError, setUrlError] = useState(null)
     const [type, setType] = useState(null)
     const [btnLoading, setBtnLoading] = useState(false)
@@ -102,7 +102,7 @@ function Pitches(props) {
         return (
             <div className='w-full float-left mb-[20px]'>
                 <div className='w-full float-left text-sm'>
-                    <h1 className='text-sm mb-[20px]'>URL</h1>
+                    <h1 className='text-sm mb-[20px]'>URL(Youtube ID)</h1>
                     <TextInput
                         type="text"
                         placeholder="Url"
