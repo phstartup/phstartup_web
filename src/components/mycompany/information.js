@@ -46,6 +46,7 @@ function Information(props) {
         twitter: 'https://twitter.com',
         instagram: 'https://instagram.com'
     })
+    const [ask, setAsk] = useState(null)
 
     useEffect(() => {
         if (props.data) {
@@ -59,6 +60,7 @@ function Information(props) {
             setEmailAddress(data.email_address)
             setContactNumber(data.contact_number)
             setStage(data.stage)
+            setAsk(data.ask)
             setData(data)
             setSettings(data.settings)
             if (data.settings) {
@@ -92,6 +94,7 @@ function Information(props) {
             name,
             description,
             stage,
+            ask,
             category,
             industries,
             address,
@@ -141,6 +144,18 @@ function Information(props) {
                             size: 2,
                             column: 'Description',
                             error: descriptionError
+                        }}
+                    />
+                </div>
+                <div className='w-full float-left text-sm'>
+                    <h1 className='text-sm mb-[20px]'>Are you looking for</h1>
+                    <Select
+                        type="text"
+                        data={String.ask}
+                        selected={ask}
+                        placeholder="Select Ask"
+                        onChange={(value) => {
+                            setAsk(value)
                         }}
                     />
                 </div>

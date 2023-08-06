@@ -61,7 +61,7 @@ function Homepage({ children }) {
                                     <Sidebar />
                                 </div>
                                 <div
-                                    className={'lg:w-[85%] min-h-[100vh] 2xl:w-[85%] sm:w-full xs:w-full md:w-full float-left p-[20px] mt-[80px] lg:ml-[15%] 2xl:ml-[15%] bg-white dark:bg-gray-900'}>
+                                    className={'lg:w-[85%] min-h-[100vh] 2xl:w-[85%] sm:w-full xs:w-full md:w-full float-left p-[20px] mt-[80px] lg:ml-[15%] 2xl:ml-[15%] bg-gray-100 dark:bg-gray-900'}>
                                     {
                                         children
                                     }

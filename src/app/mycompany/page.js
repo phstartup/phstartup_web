@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, {Component} from 'react';
 import Achievements from '@/components/mycompany/Achievements';
 import Information from '@/components/mycompany/information';
 import Banner from '@/components/mycompany/Banner';
@@ -9,74 +9,6 @@ import Team from '@/components/mycompany/team'
 import { useSession } from 'next-auth/react';
 import Api from '@/lib/api';
 let api = new Api()
-
-
-const team = [{
-    username: 'kennette',
-    information: {
-        position: 'CEO, Increment Technologies Inc.',
-        first_name: 'Kennette',
-        last_name: 'Canales',
-        profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c',
-        social: {
-            facebook: 'https://facebook.com',
-            linkedIn: 'https://linkedin.com'
-        },
-        contact_number: '09123456789',
-        email: 'kenn@jiph.co',
-        about: 'Software Engineer'
-    },
-    id: 1
-}, {
-    username: 'kennette',
-    information: {
-        position: 'CEO, Increment Technologies Inc.',
-        first_name: 'Kennette',
-        last_name: 'Canales',
-        profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c',
-        social: {
-            facebook: 'https://facebook.com',
-            linkedIn: 'https://linkedin.com'
-        },
-        contact_number: '09123456789',
-        email: 'kenn@jiph.co',
-        about: 'Software Engineer'
-    },
-    id: 1
-}, {
-    username: 'kennette',
-    information: {
-        position: 'CEO, Increment Technologies Inc.',
-        first_name: 'Kennette',
-        last_name: 'Canales',
-        profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c',
-        social: {
-            facebook: 'https://facebook.com',
-            linkedIn: 'https://linkedin.com'
-        },
-        contact_number: '09123456789',
-        email: 'kenn@jiph.co',
-        about: 'Software Engineer'
-    },
-    id: 1
-}, {
-    username: 'kennette',
-    information: {
-        position: 'CEO, Increment Technologies Inc.',
-        first_name: 'Kennette',
-        last_name: 'Canales',
-        profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c',
-        social: {
-            facebook: 'https://facebook.com',
-            linkedIn: 'https://linkedin.com'
-        },
-        contact_number: '09123456789',
-        email: 'kenn@jiph.co',
-        about: 'Software Engineer'
-    },
-    id: 1
-}]
-
 
 const withSession = (Component) => (props) => {
     const session = useSession()
@@ -119,10 +51,7 @@ class Page extends React.Component {
         await api.get('/api/companies?user_id=' + session.user.id, session?.accessToken, (response) => {
             if (response.data) {
                 this.setState({
-                    data: {
-                        ...response.data,
-                        team
-                    }
+                    data: response.data
                 })
             }
             setTimeout(() => {
@@ -154,23 +83,23 @@ class Page extends React.Component {
                         <div className='w-full float-left mt-[20px]'>
                             {
                                 data && (
-                                    <Banner data={data} getData={() => getData()} />
+                                    <Banner data={data} getData={() => this.getData()} />
                                 )
                             }
 
                             {
                                 data && (
-                                    <Information data={data} getData={() => getData()} />
+                                    <Information data={data} getData={() => this.getData()} />
                                 )
                             }
 
                             {
                                 data && (
                                     <div className='w-full float-left'>
-                                        <Team data={data} getData={() => getData()} />
-                                        <Pitches data={data} getData={() => getData()} />
-                                        <Services data={data} getData={() => getData()} />
-                                        <Achievements data={data} getData={() => getData()} />
+                                        <Team data={data} getData={() => this.getData()} />
+                                        <Pitches data={data} getData={() => this.getData()} />
+                                        <Services data={data} getData={() => this.getData()} />
+                                        <Achievements data={data} getData={() => this.getData()} />
                                     </div>
                                 )
                             }

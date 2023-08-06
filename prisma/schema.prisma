@@ -44,6 +44,7 @@ model companies {
   name           String
   description    String    @db.LongText
   stage          String    @default("pre-seed")
+  ask            String    @default("funding")
   category       String
   industries     String    @db.LongText
   address        String

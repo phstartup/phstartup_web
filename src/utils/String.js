@@ -120,6 +120,13 @@ const String =  {
         value: 'IPO'
     },{
         value: 'Exit'
+    }],
+    ask: [{
+        value: 'Funding'
+    }, {
+        value: 'Partnership'
+    }, {
+        value: 'Network'
     }]
 }
 

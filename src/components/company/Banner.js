@@ -127,7 +127,7 @@ function Banner(props) {
                                         </h1>
                                         <span className='w-full float-left font-semibold'>
                                             {
-                                                props.data.stage.toUpperCase()
+                                               'LOOKING FOR ' + props.data.ask.toUpperCase() + '(' + props.data.stage.toUpperCase() + ')'
                                             }
                                         </span>
                                         <span className='text-sm w-full'>
