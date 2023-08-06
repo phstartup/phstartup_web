@@ -12,7 +12,7 @@ import { useSession } from 'next-auth/react';
 
 function Information(props) {
     const router = useRouter()
-    const {data:session} = useSession()
+    const { data: session } = useSession()
     const renderProfile = () => {
         return (
             <div
@@ -38,6 +38,7 @@ function Information(props) {
                         <h1 className='text-sm mb-[20px]'>Email Address</h1>
                         <TextInput
                             type="text"
+                            disable={true}
                             placeholder="Email Address"
                             value={session?.user?.email}
                         />
@@ -49,7 +50,17 @@ function Information(props) {
                         <TextInput
                             type="text"
                             placeholder="Complete Name"
+                            disable={true}
                             value={session?.user?.name}
+                        />
+                    </div>
+                    <div className='w-full float-left text-sm mt-[20px]'>
+                        <h1 className='text-sm mb-[20px]'>User ID</h1>
+                        <TextInput
+                            type="text"
+                            placeholder="User ID"
+                            disable={true}
+                            value={session?.user?.id}
                         />
                     </div>
                 </div>

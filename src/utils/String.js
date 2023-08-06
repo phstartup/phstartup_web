@@ -127,6 +127,19 @@ const String =  {
         value: 'Partnership'
     }, {
         value: 'Network'
+    }],
+    accountTypes: [{
+        value: 'Student'
+    }, {
+        value: 'Founder'
+    }, {
+        value: 'Professional'
+    }, {
+        value: 'Investor'
+    }, {
+        value: 'Government Employee'
+    }, {
+        value: 'Teacher'
     }]
 }
 

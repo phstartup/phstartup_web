@@ -25,7 +25,7 @@ function Page(props) {
         setTimeout(() => {
           setLoading(false)
         }, 1000)
-  
+
       })
     }
 
@@ -70,10 +70,15 @@ function Page(props) {
   }
   return (
     <div className="w-full float-left">
-      <div className="w-full float-left mb-[20px]">
-        <Breadcrumbs title={'Hi ' + session?.user?.name + ', Good Day!'} />
-      </div>
-      <div className="w-full float-left mt-[50px]">
+      {
+        session && (
+          <div className="w-full float-left mb-[20px]">
+            <Breadcrumbs title={'Hi ' + session?.user?.name + ', Good Day!'} />
+          </div>
+        )
+      }
+
+      <div className="w-full float-left mt-[20px]">
         <div className="float-left w-full">
           <h1 className="text-lg font-bold mb-[20px]">Your Startup Updates</h1>
           {

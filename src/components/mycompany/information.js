@@ -277,18 +277,6 @@ function Information(props) {
                 <div className='w-full float-left text-sm mt-[20px]'>
                     <h1 className='text-sm mb-[20px]'>Social Media</h1>
                     <div className='w-full h-[150px] float-left'>
-                        {/* <JSONViewer
-                            data={socialMedias}
-                            collapsible
-                            onChange={(key, value, parent, data) => {
-                                setMobileApps({
-                                    ...mobileApps,
-                                    [key]: value
-                                })
-                            }}
-                            view="dual"
-                            styles={style}
-                        /> */}
                         <ReactJson
                             src={socialMedias}
                             editFlag={true}

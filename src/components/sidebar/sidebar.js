@@ -23,6 +23,10 @@ function Sidebar(props) {
                         key={index}
                         className={'w-full float-left h-[60px] flex items-center content-center px-[20px] hover:font-bold  cursor-pointer ' + (pathname.match(item.route) ? 'font-bold' : '')}>
                         <SvgIcon component={item.icon}
+
+                            style={{
+                                fontSize: 18
+                            }}
                             className={pathname.match(item.route) ? 'font-bold' : 'text-gray-500'}
                         />
                         <span className='text-sm ml-[10px]'>{item.title}</span>
@@ -35,12 +39,18 @@ function Sidebar(props) {
                         onClick={() => {
                             router.push('/contributors')
                         }}
+                        style={{
+                            fontSize: 18
+                        }}
                         component={Person3} className='cursor-pointer' />
                 </Tooltip>
                 <Tooltip content="Terms & Conditions">
                     <SvgIcon
                         onClick={() => {
                             router.push('/docs/terms&conditions')
+                        }}
+                        style={{
+                            fontSize: 18
                         }}
                         component={HandshakeRounded} className='cursor-pointer' />
                 </Tooltip>
@@ -49,12 +59,18 @@ function Sidebar(props) {
                         onClick={() => {
                             router.push('/docs/privacypolicy')
                         }}
+                        style={{
+                            fontSize: 18
+                        }}
                         component={SecurityOutlined} className='ml-[10px] cursor-pointer' />
                 </Tooltip>
                 <Tooltip content="Settings">
                     <SvgIcon
                         onClick={() => {
                             router.push('/settings')
+                        }}
+                        style={{
+                            fontSize: 18
                         }}
                         component={Settings} className='ml-[10px] cursor-pointer' />
                 </Tooltip>
@@ -65,6 +81,9 @@ function Sidebar(props) {
                             signOut({
                                 callbackUrl: `${window.location.origin}`
                             })
+                        }}
+                        style={{
+                            fontSize: 18
                         }}
                         component={Logout} className='ml-[10px] cursor-pointer' />
                 </Tooltip>
