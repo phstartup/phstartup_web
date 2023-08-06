@@ -4,24 +4,20 @@ import Api from '@/lib/api';
 let api = new Api()
 import Thumbnail from '@/components/thumbnail/Pitch'
 import Empty from '@/components/empty/Simple'
-import Style from "@/utils/Style";
 import Select from '@/components/form/Select';
 import String from "@/utils/String";
-import { useSession } from "next-auth/react";
 
 function Page(props) {
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
     const [filter, setFilter] = useState(String.pitches[0].value)
-    const {data: session } = useSession()
     useEffect(() => {
         getData()
     }, [])
 
     const getData = async () => {
-        if(!session) return
         setLoading(true)
-        await api.get('/api/pitches?type=' + filter, session?.accessToken,(response) => {
+        await api.getNoToken('/api/pitches?type=' + filter,(response) => {
             if (response.data && response.data.length > 0) {
                 setData(response.data)
             }

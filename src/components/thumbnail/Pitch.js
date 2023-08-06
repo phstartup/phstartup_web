@@ -11,12 +11,7 @@ function Pitch(props) {
     return (
         <div
             className='float-left lg:w-[24%] xl:w-[24%] 2xl:w-[24%] xs:w-[100%] sm:w-[100%] md:w-[48%] h-[250px] lg:mr-[1%] xl:mr-[1%] 2xl:mr-[1%] small-video-thumbnail relative cursor-pointer mb-[20px]'
-            onClick={() => {
-                setPitch(props.data)
-                setTimeout(() => {
-                    setViewVideo(true)
-                }, 10)
-            }}
+
         >
             <div className='relative w-full float-left h-[250px]'>
                 <img
@@ -32,7 +27,12 @@ function Pitch(props) {
                         style={{
                             fontSize: 32
                         }}
-
+                        onClick={() => {
+                            setPitch(props.data)
+                            setTimeout(() => {
+                                setViewVideo(true)
+                            }, 10)
+                        }}
                         component={PlayCircle} />
                 </div>
             </div>

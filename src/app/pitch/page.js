@@ -1,12 +1,11 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import Featured from '@/components/featured'
-import Collections from '@/components/thumbnail/collectionSmall'
-import String from '@/utils/String'
 import Header from '@/components/header'
-import Footer from '@/components/footer'
+import Pitches from '../pitches/page'
 import Api from '@/lib/api';
 import { useSession } from 'next-auth/react';
+import Style from '@/utils/Style';
 let api = new Api()
 
 export default function Page(props) {
@@ -83,17 +82,9 @@ export default function Page(props) {
                         }
 
                         <div
-                            className='float-left w-full'
+                            className={'float-left w-full mt-[50px] ' + Style.padding}
                         >
-                            {
-                                categories && categories.length > 0 && categories.map((item, index) => (
-                                    <Collections
-                                        title={item.title}
-                                        data={item.data}
-                                        key={index}
-                                    />
-                                ))
-                            }
+                            <Pitches />
                         </div>
                     </div>
                 )

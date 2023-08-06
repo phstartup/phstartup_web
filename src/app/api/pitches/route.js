@@ -9,10 +9,10 @@ import Middleware from "@/lib/middleware"
 const middleware = new Middleware();
 
 export async function GET(req) {
-    const mwareAccount = await middleware.check(req)
-    if (mwareAccount == false) {
-        return new Response(helper.response(null, 401, 'Invalid Accessed.'));
-    }
+    // const mwareAccount = await middleware.check(req)
+    // if (mwareAccount == false) {
+    //     return new Response(helper.response(null, 401, 'Invalid Accessed.'));
+    // }
 
     const url = new URL(req.url);
     const searchParams = new URLSearchParams(url.search)
