@@ -27,6 +27,7 @@ CREATE TABLE `user_informations` (
     `phone_number` VARCHAR(191) NULL,
     `address` VARCHAR(191) NULL,
     `profile` LONGTEXT NULL,
+    `details` LONGTEXT NULL,
     `created_at` DATETIME(3) NOT NULL,
     `updated_at` DATETIME(3) NOT NULL,
     `deleted_at` DATETIME(3) NULL,
@@ -40,6 +41,8 @@ CREATE TABLE `companies` (
     `user_id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `description` LONGTEXT NOT NULL,
+    `stage` VARCHAR(191) NOT NULL DEFAULT 'pre-seed',
+    `ask` VARCHAR(191) NOT NULL DEFAULT 'funding',
     `category` VARCHAR(191) NOT NULL,
     `industries` LONGTEXT NOT NULL,
     `address` VARCHAR(191) NOT NULL,
@@ -76,7 +79,7 @@ CREATE TABLE `teams` (
     `company_id` VARCHAR(191) NOT NULL,
     `position` VARCHAR(191) NOT NULL,
     `about` LONGTEXT NOT NULL,
-    `video` LONGTEXT NOT NULL,
+    `video` LONGTEXT NULL,
     `created_at` DATETIME(3) NOT NULL,
     `updated_at` DATETIME(3) NOT NULL,
     `deleted_at` DATETIME(3) NULL,
@@ -92,7 +95,7 @@ CREATE TABLE `services` (
     `title` LONGTEXT NOT NULL,
     `description` LONGTEXT NOT NULL,
     `featured` LONGTEXT NOT NULL,
-    `video` LONGTEXT NULL,
+    `video` LONGTEXT NOT NULL,
     `created_at` DATETIME(3) NOT NULL,
     `updated_at` DATETIME(3) NOT NULL,
     `deleted_at` DATETIME(3) NULL,
@@ -109,6 +112,102 @@ CREATE TABLE `achievements` (
     `description` LONGTEXT NOT NULL,
     `link` LONGTEXT NOT NULL,
     `featured` LONGTEXT NOT NULL,
+    `created_at` DATETIME(3) NOT NULL,
+    `updated_at` DATETIME(3) NOT NULL,
+    `deleted_at` DATETIME(3) NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `comments` (
+    `id` VARCHAR(191) NOT NULL,
+    `user_id` VARCHAR(191) NOT NULL,
+    `payload` VARCHAR(191) NOT NULL,
+    `payload_value` LONGTEXT NOT NULL,
+    `content` LONGTEXT NOT NULL,
+    `created_at` DATETIME(3) NOT NULL,
+    `updated_at` DATETIME(3) NOT NULL,
+    `deleted_at` DATETIME(3) NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `vouches` (
+    `id` VARCHAR(191) NOT NULL,
+    `user_id` VARCHAR(191) NOT NULL,
+    `payload` VARCHAR(191) NOT NULL,
+    `payload_value` LONGTEXT NOT NULL,
+    `content` LONGTEXT NOT NULL,
+    `created_at` DATETIME(3) NOT NULL,
+    `updated_at` DATETIME(3) NOT NULL,
+    `deleted_at` DATETIME(3) NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `events` (
+    `id` VARCHAR(191) NOT NULL,
+    `user_id` VARCHAR(191) NOT NULL,
+    `company_id` VARCHAR(191) NOT NULL,
+    `title` VARCHAR(191) NOT NULL,
+    `description` LONGTEXT NOT NULL,
+    `start_date` DATETIME(3) NOT NULL,
+    `end_date` DATETIME(3) NOT NULL,
+    `link` LONGTEXT NOT NULL,
+    `target` LONGTEXT NOT NULL,
+    `price` VARCHAR(191) NOT NULL,
+    `currency` VARCHAR(191) NOT NULL,
+    `featured` LONGTEXT NOT NULL,
+    `status` VARCHAR(191) NOT NULL DEFAULT 'draft',
+    `created_at` DATETIME(3) NOT NULL,
+    `updated_at` DATETIME(3) NOT NULL,
+    `deleted_at` DATETIME(3) NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `programs` (
+    `id` VARCHAR(191) NOT NULL,
+    `user_id` VARCHAR(191) NOT NULL,
+    `company_id` VARCHAR(191) NOT NULL,
+    `title` VARCHAR(191) NOT NULL,
+    `description` LONGTEXT NOT NULL,
+    `deadline` DATETIME(3) NOT NULL,
+    `link` LONGTEXT NOT NULL,
+    `target` LONGTEXT NOT NULL,
+    `price` VARCHAR(191) NOT NULL,
+    `currency` VARCHAR(191) NOT NULL,
+    `created_at` DATETIME(3) NOT NULL,
+    `updated_at` DATETIME(3) NOT NULL,
+    `deleted_at` DATETIME(3) NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `views` (
+    `id` VARCHAR(191) NOT NULL,
+    `user_id` VARCHAR(191) NOT NULL,
+    `payload` VARCHAR(191) NOT NULL,
+    `payload_value` LONGTEXT NOT NULL,
+    `created_at` DATETIME(3) NOT NULL,
+    `updated_at` DATETIME(3) NOT NULL,
+    `deleted_at` DATETIME(3) NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `notifications` (
+    `id` VARCHAR(191) NOT NULL,
+    `user_id` VARCHAR(191) NOT NULL,
+    `sender` VARCHAR(191) NOT NULL,
+    `type` VARCHAR(191) NOT NULL,
+    `message` LONGTEXT NOT NULL,
     `created_at` DATETIME(3) NOT NULL,
     `updated_at` DATETIME(3) NOT NULL,
     `deleted_at` DATETIME(3) NULL,

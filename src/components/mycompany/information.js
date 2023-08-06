@@ -67,6 +67,11 @@ function Information(props) {
                 setSocialMedias(data.settings.social_medias ? data.settings.social_medias : socialMedias)
                 setMobileApps(data.settings.mobile_apps ? data.settings.mobile_apps : mobileApps)
             }
+        }else{
+            setCategory(String.categories[0].value)
+            setIndustries(String.industries[0].value)
+            setStage(String.stages[0].value)
+            setAsk(String.ask[0].value)
         }
     }, [props, socialMedias, mobileApps])
 
@@ -159,7 +164,7 @@ function Information(props) {
                         }}
                     />
                 </div>
-                <div className='w-full float-left text-sm'>
+                <div className='w-full float-left text-sm mt-[20px]'>
                     <h1 className='text-sm mb-[20px]'>Company Stage</h1>
                     <Select
                         type="text"
@@ -171,7 +176,7 @@ function Information(props) {
                         }}
                     />
                 </div>
-                <div className='w-full float-left text-sm'>
+                <div className='w-full float-left text-sm mt-[20px]'>
                     <h1 className='text-sm mb-[20px]'>Initiative Category</h1>
                     <Select
                         type="text"

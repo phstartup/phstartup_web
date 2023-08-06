@@ -55,22 +55,7 @@ export async function GET(req) {
             let result = await controller.retrieveHome(mwareAccount)
             let response = {
                 featured: result ? result[0] : null,
-                categories: [{
-                    title: 'Recently Added',
-                    data: result
-                }, {
-                    title: 'QBO Accelerator',
-                    data: result
-                }, {
-                    title: 'Accelerating Asia',
-                    data: result
-                }, {
-                    title: 'DOHE Accelerator',
-                    data: result
-                }, {
-                    title: 'Research & Developments',
-                    data: result
-                }]
+                categories: null
             }
             return new NextResponse(helper.response(response, 200, null));
         }

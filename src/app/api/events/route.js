@@ -17,7 +17,11 @@ export async function GET(req) {
     const url = new URL(req.url);
     const searchParams = new URLSearchParams(url.search)
 
-    let result = await controller.retrieve()
+    let result = await controller.retrieve({
+        where: {
+            deleted_at: null
+        }
+    })
     result = result ? result : null
     return new NextResponse(helper.response(result, 200, null));
 }
@@ -34,7 +38,7 @@ export async function POST(req) {
 
     const body = await req.json()
 
-    const { title, description, link, target, price, currency, start_date, end_date } = body
+    const { title, description, link, target, price, currency, start_date, end_date, featured, status } = body
     if (body.id) {
         // update
         let result = await controller.update(
@@ -49,10 +53,12 @@ export async function POST(req) {
                 price,
                 currency,
                 start_date,
-                end_date
+                end_date,
+                featured,
+                status
             })
         return new NextResponse(helper.response(result, 200, null))
-    } else if (title && description && link && target && price && currency && start_date && end_date) {
+    } else if (title && description && link && target && price && currency && start_date && end_date && featured) {
         let result = await controller.create({
             user_id: mwareAccount.id,
             company_id: mwareAccount.company.id,
@@ -63,7 +69,9 @@ export async function POST(req) {
             price,
             currency,
             start_date,
-            end_date
+            end_date,
+            featured,
+            status: 'draft'
         })
         return new NextResponse(helper.response(result, 200, null))
     }

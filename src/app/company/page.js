@@ -14,117 +14,7 @@ import Style from '@/utils/Style';
 import { useSession } from 'next-auth/react';
 let api = new Api()
 
-
-const vouched_by = [{
-    created_at: 'July 1, 2023',
-    user: {
-        username: 'kennette',
-        information: {
-            position: 'CEO, Increment Technologies Inc.',
-            first_name: 'Kennette',
-            last_name: 'Canales',
-            profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c'
-        },
-        id: 1
-    },
-    content: 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. '
-}, {
-    created_at: 'July 1, 2023',
-    user: {
-        username: 'kennette',
-        information: {
-            position: 'CEO, Increment Technologies Inc.',
-            first_name: 'Kennette',
-            last_name: 'Canales',
-            profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c'
-        },
-        id: 1
-    },
-    content: 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. '
-}, {
-    created_at: 'July 1, 2023',
-    user: {
-        username: 'kennette',
-        information: {
-            position: 'CEO, Increment Technologies Inc.',
-            first_name: 'Kennette',
-            last_name: 'Canales',
-            profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c'
-        },
-        id: 1
-    },
-    content: 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. '
-}]
-
-
-const team = [{
-    username: 'kennette',
-    information: {
-        position: 'CEO, Increment Technologies Inc.',
-        first_name: 'Kennette',
-        last_name: 'Canales',
-        profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c',
-        social: {
-            facebook: 'https://facebook.com',
-            linkedIn: 'https://linkedin.com'
-        },
-        contact_number: '09123456789',
-        email: 'kenn@jiph.co',
-        about: 'Software Engineer'
-    },
-    id: 1
-}, {
-    username: 'kennette',
-    information: {
-        position: 'CEO, Increment Technologies Inc.',
-        first_name: 'Kennette',
-        last_name: 'Canales',
-        profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c',
-        social: {
-            facebook: 'https://facebook.com',
-            linkedIn: 'https://linkedin.com'
-        },
-        contact_number: '09123456789',
-        email: 'kenn@jiph.co',
-        about: 'Software Engineer'
-    },
-    id: 1
-}, {
-    username: 'kennette',
-    information: {
-        position: 'CEO, Increment Technologies Inc.',
-        first_name: 'Kennette',
-        last_name: 'Canales',
-        profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c',
-        social: {
-            facebook: 'https://facebook.com',
-            linkedIn: 'https://linkedin.com'
-        },
-        contact_number: '09123456789',
-        email: 'kenn@jiph.co',
-        about: 'Software Engineer'
-    },
-    id: 1
-}, {
-    username: 'kennette',
-    information: {
-        position: 'CEO, Increment Technologies Inc.',
-        first_name: 'Kennette',
-        last_name: 'Canales',
-        profile: 'https://lh3.googleusercontent.com/a/AAcHTtcb9ye9Utq3d9PI1SSylYY4BlHdW04S0bcqkrx67sIKhzY=s96-c',
-        social: {
-            facebook: 'https://facebook.com',
-            linkedIn: 'https://linkedin.com'
-        },
-        contact_number: '09123456789',
-        email: 'kenn@jiph.co',
-        about: 'Software Engineer'
-    },
-    id: 1
-}]
-
 function Page(props) {
-
     const search = useSearchParams()
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState(null)
@@ -140,11 +30,7 @@ function Page(props) {
             if (session) {
                 await api.get('/api/home?id=' + id, session?.accessToken, (response) => {
                     if (response.data) {
-                        setData({
-                            ...response.data,
-                            vouched_by,
-                            team: team
-                        })
+                        setData(response.data)
                     }
 
                     setTimeout(() => {
@@ -159,11 +45,7 @@ function Page(props) {
             } else {
                 await api.getNoToken('/api/home?id=' + id, (response) => {
                     if (response.data) {
-                        setData({
-                            ...response.data,
-                            vouched_by,
-                            team: team
-                        })
+                        setData(response.data)
                     }
 
                     setTimeout(() => {

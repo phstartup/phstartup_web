@@ -1,5 +1,5 @@
 "use client"
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Achievements from '@/components/mycompany/Achievements';
 import Information from '@/components/mycompany/information';
 import Banner from '@/components/mycompany/Banner';
@@ -75,7 +75,7 @@ class Page extends React.Component {
 
     render() {
         const { loading, data } = this.state;
-        const {data: session} = this.props.session
+        const { data: session } = this.props.session
 
         return (
             <div className='w-full float-left' >
@@ -88,11 +88,7 @@ class Page extends React.Component {
                                 )
                             }
 
-                            {
-                                data && (
-                                    <Information data={data} getData={() => this.getData()} />
-                                )
-                            }
+                            <Information data={data} getData={() => this.getData()} />
 
                             {
                                 data && (

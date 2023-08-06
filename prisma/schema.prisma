@@ -89,7 +89,7 @@ model services {
   title       String    @db.LongText
   description String    @db.LongText
   featured    String    @db.LongText
-  video       String   @db.LongText
+  video       String    @db.LongText
   created_at  DateTime
   updated_at  DateTime
   deleted_at  DateTime?
@@ -136,12 +136,14 @@ model events {
   company_id  String
   title       String
   description String    @db.LongText
-  start_date  DateTime
-  end_date    DateTime
+  start_date  String
+  end_date    String
   link        String    @db.LongText
   target      String    @db.LongText
   price       String
   currency    String
+  featured    String    @db.LongText
+  status      String    @default("draft")
   created_at  DateTime
   updated_at  DateTime
   deleted_at  DateTime?

@@ -4,6 +4,8 @@ import Helper from '@/lib/helper';
 import UserInformation from './userInformation';
 import { compare, hash } from 'bcryptjs';
 import jwt from 'jsonwebtoken'
+import Company from './company';
+import Team from './team';
 
 let helper = new Helper()
 export default class User {
@@ -48,12 +50,40 @@ export default class User {
     }
 
     async verifyHeaderToken(token) {
-
         let result = await prisma.users.findFirst({
             where: {
                 remember_token: token
             }
         })
+
+        if(result){
+            const company = new Company()
+            let rCompany = await company.retrieveFirst({
+                where: {
+                    user_id: result.id
+                }
+            })
+    
+            if(rCompany == null){
+                const team = new Team()
+                let rTeam = await team.retrieveFirstNoUser({
+                    where: {
+                        user_id: result.id
+                    }
+                })
+    
+                if(rTeam){
+                    rCompany = await company.retrieveFirst({
+                        where: {
+                            id: rTeam.company_id
+                        }
+                    })
+                }
+            }
+            if(rCompany){
+                result['company'] = rCompany
+            }
+        }
 
         return result ? result : null
     }

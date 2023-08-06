@@ -30,6 +30,9 @@ export default class Event {
             where: {
                 ...condition.where,
                 deleted_at: null
+            },
+            orderBy: {
+                start_date: 'desc'
             }
         }
         return await prisma.events.findMany(nCondition)

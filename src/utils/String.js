@@ -57,7 +57,7 @@ const String =  {
             route: 'programs'
         },
         {
-            title: 'Startup Events',
+            title: 'Events',
             icon: CalendarMonth,
             route: 'events'
         },
@@ -151,6 +151,11 @@ const String =  {
         value: 'Government Employee'
     }, {
         value: 'Teacher'
+    }],
+    currencies: [{
+        value: 'PHP'
+    }, {
+        value: 'USD'
     }]
 }
 
