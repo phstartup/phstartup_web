@@ -1,10 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import Style from '@/utils/Style';
-import Button from '@/components/buttons/btn'
-import Modal from '@/components/modal/index'
-import TextInput from '@/components/form/text';
-import TextArea from '@/components/form/textarea'
+import Empty from '@/components/empty/Simple'
 import Api from '@/lib/api';
 import { useSession } from 'next-auth/react';
 
@@ -59,6 +56,15 @@ function Services(props) {
 
                         </div>
                     ))
+                }
+                {
+                    ((data && !data.services) || (data && data.services && data.services.length == 0)) && (
+                        <div
+                            className={'float-left h-[300px] rounded-lg border border-gray-100 dark:border-gray-700 cursor-pointer mb-[20px] lg:w-[24%] xl:w-[24%] 2xl:w-[24%] sm:w-[100%] xs:w-[100%] md:w-[49%] lg:mr-[1%] xl:mr-[1%] 2xl:mr-[1%] md:mr-[1%] xs:mr-[0%] sm:mr-[0%]'}
+                        >
+                            <Empty />
+                        </div>
+                    )
                 }
             </div>
         </div>
