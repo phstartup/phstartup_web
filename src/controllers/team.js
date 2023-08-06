@@ -48,6 +48,19 @@ export default class Team {
         return result
     }
 
+    async retrieveFirstNoUser(condition) {
+        let nCondition = {
+            where: {
+                ...condition.where,
+                deleted_at: null
+            }
+        }
+        
+        let result = await prisma.teams.findFirst(nCondition)
+
+        return result ? result : null
+    }
+
     async retrieve(condition) {
         let nCondition = {
             where: {

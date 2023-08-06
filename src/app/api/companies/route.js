@@ -1,4 +1,5 @@
 import Controller from "@/controllers/company"
+import Team from '@/controllers/team'
 import Helper from "@/lib/helper";
 import { NextResponse } from "next/server";
 let helper = new Helper()
@@ -16,7 +17,6 @@ export async function GET(req) {
         return new Response(helper.response(null, 401, 'Invalid Accessed.'));
     }
 
-
     const url = new URL(req.url);
     const searchParams = new URLSearchParams(url.search)
     const user_id = searchParams.get('user_id')
@@ -27,6 +27,23 @@ export async function GET(req) {
                 user_id: user_id
             }
         })
+
+        if(result == null){
+            const team = new Team()
+            let rTeam = await team.retrieveFirstNoUser({
+                where: {
+                    user_id: user_id
+                }
+            })
+
+            if(rTeam){
+                result = await controller.retrieveFirst({
+                    where: {
+                        id: rTeam.company_id
+                    }
+                })
+            }
+        }
         result = result ? result : null
         return new NextResponse(helper.response(result, 200, null));
     } else {
