@@ -6,7 +6,7 @@ import Modal from '@/components/modal/index'
 import TextInput from '@/components/form/text';
 import TextArea from '@/components/form/textarea'
 import { SvgIcon } from '@mui/material';
-import { Delete, Face6, Facebook, LinkedIn } from '@mui/icons-material';
+import { Delete, Face6, Facebook, Instagram, LinkedIn, Twitter } from '@mui/icons-material';
 import Helper from '@/lib/helper';
 import { useSession } from 'next-auth/react';
 let helper = new Helper()
@@ -25,6 +25,10 @@ function Team(props) {
     const [video, setVideo] = useState(null)
     const [videoError, setVideoError] = useState(null)
     const [btnLoading, setBtnLoading] = useState(false)
+    const [search, setSearch] = useState(false)
+    const [searchField, setSearchField] = useState(null)
+    const [searchFieldError, setSearchFieldError] = useState(null)
+    const [searchLoading, setSearchLoading] = useState(false)
 
     const submit = async () => {
         if (!session) return
@@ -53,6 +57,22 @@ function Team(props) {
 
         })
     }
+    const getProfile = async () => {
+        if(!session) return
+        setSearchLoading(true)
+        await api.get('/api/user?id=' + searchField, session?.accessToken, (response) => {
+            if (response.data) {
+                setProfile(response.data)
+            }
+            setTimeout(() => {
+                setSearchLoading(false)
+            }, 1000)
+        }, (error) => {
+            setTimeout(() => {
+                setSearchLoading(false)
+            }, 1000)
+        })
+    }
 
     const renderContent = () => {
         return (
@@ -60,16 +80,59 @@ function Team(props) {
                 <div className='w-full float-left mb-[20px]'>
                     {
                         session && session.user && (
-                            <Button
-                                style={' bg-black dark:bg-white text-white dark:text-black'}
-                                title="Add your profile"
-                                onPress={() => {
-                                    setProfile(session.user)
-                                }}
-                            />
+                            <div className='w-full float-left'>
+                                <Button
+                                    style={' bg-black dark:bg-white text-white dark:text-black'}
+                                    title="Add your profile"
+                                    onPress={() => {
+                                        setProfile(session.user)
+                                    }}
+                                />
+
+                                <Button
+                                    style={' bg-black dark:bg-white text-white dark:text-black ml-[10px]'}
+                                    title="Search"
+                                    onPress={() => {
+                                        setSearch(true)
+                                    }}
+                                />
+                            </div>
                         )
                     }
                 </div>
+                {
+                    search && (
+                        <div className='w-full float-left mb-[20px]'>
+                            <div className='w-[80%] float-left'>
+                                <TextInput
+                                    type="text"
+                                    placeholder="Paste User ID"
+                                    value={searchField}
+                                    onChange={(value, error) => {
+                                        setSearchField(value)
+                                        setSearchFieldError(error)
+                                    }}
+                                    validation={{
+                                        type: 'text',
+                                        size: 36,
+                                        column: 'Search',
+                                        error: searchFieldError
+                                    }}
+                                />
+                            </div>
+                            <div className='w-[20%] float-left'>
+                                <Button
+                                    style={' bg-black dark:bg-white text-white dark:text-black ml-[10px]'}
+                                    title="Find"
+                                    loading={searchLoading}
+                                    onPress={() => {
+                                        getProfile()
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    )
+                }
 
                 {
                     profile && (
@@ -254,13 +317,13 @@ function Team(props) {
                                             }
                                         </span>
                                         {
-                                            item.information && item.information.social && (
+                                            item.user.information && item.user.information && item.user.information.details && item.user.information.details.social_links && (
                                                 <span className='float-left w-full mt-[10px]'>
                                                     {
-                                                        item.information.social.facebook && (
+                                                        item.user.information.details.social_links.facebook && (
                                                             <SvgIcon
                                                                 onClick={() => {
-                                                                    window.open(item.information.social.facebook, '_blank')
+                                                                    window.open(item.user.information.details.social_links.facebook, '_blank')
                                                                 }}
                                                                 component={Facebook}
                                                             />
@@ -268,12 +331,34 @@ function Team(props) {
                                                     }
 
                                                     {
-                                                        item.information.social.linkedIn && (
+                                                        item.user.information.details.social_links.linkedIn && (
                                                             <SvgIcon
                                                                 onClick={() => {
-                                                                    window.open(item.information.social.linkedIn, '_blank')
+                                                                    window.open(item.user.information.details.social_links.linkedIn, '_blank')
                                                                 }}
                                                                 component={LinkedIn}
+                                                            />
+                                                        )
+                                                    }
+
+                                                    {
+                                                        item.user.information.details.social_links.instagram && (
+                                                            <SvgIcon
+                                                                onClick={() => {
+                                                                    window.open(item.user.information.details.social_links.instagram, '_blank')
+                                                                }}
+                                                                component={Instagram}
+                                                            />
+                                                        )
+                                                    }
+
+                                                    {
+                                                        item.user.information.details.social_links.twitter && (
+                                                            <SvgIcon
+                                                                onClick={() => {
+                                                                    window.open(item.user.information.details.social_links.twitter, '_blank')
+                                                                }}
+                                                                component={Twitter}
                                                             />
                                                         )
                                                     }
@@ -301,6 +386,10 @@ function Team(props) {
                         title="Add Team Member"
                         onClose={() => {
                             setCreateFlag(!createFlag)
+                            setSearch(null)
+                            setSearchField(null)
+                            setSearchLoading(false)
+                            setProfile(null)
                         }}
                         content={renderContent}
                         footer={() => {
@@ -311,6 +400,10 @@ function Team(props) {
                                         title="Cancel"
                                         onPress={() => {
                                             setCreateFlag(!createFlag)
+                                            setSearch(null)
+                                            setSearchField(null)
+                                            setSearchLoading(false)
+                                            setProfile(null)
                                         }}
                                     />
 

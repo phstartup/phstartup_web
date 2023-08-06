@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Style from '@/utils/Style';
 import Api from '@/lib/api';
 import { SvgIcon } from '@mui/material';
-import { Face6, Facebook, LinkedIn } from '@mui/icons-material';
+import { Face6, Facebook, Instagram, LinkedIn, Twitter } from '@mui/icons-material';
 import Helper from '@/lib/helper';
 import { useSession } from 'next-auth/react';
 let helper = new Helper()
@@ -12,7 +12,7 @@ let api = new Api()
 
 function Team(props) {
     const [data, setData] = useState(null)
-    const {data: session } = useSession()
+    const { data: session } = useSession()
 
     useEffect(() => {
         if (props.data) {
@@ -89,13 +89,13 @@ function Team(props) {
                                             }
                                         </span>
                                         {
-                                            item.information && item.information.social && (
+                                            item.user.information && item.user.information && item.user.information.details && item.user.information.details.social_links && (
                                                 <span className='float-left w-full mt-[10px]'>
                                                     {
-                                                        item.information.social.facebook && (
+                                                        item.user.information.details.social_links.facebook && (
                                                             <SvgIcon
                                                                 onClick={() => {
-                                                                    window.open(item.information.social.facebook, '_blank')
+                                                                    window.open(item.user.information.details.social_links.facebook, '_blank')
                                                                 }}
                                                                 component={Facebook}
                                                             />
@@ -103,12 +103,34 @@ function Team(props) {
                                                     }
 
                                                     {
-                                                        item.information.social.linkedIn && (
+                                                        item.user.information.details.social_links.linkedIn && (
                                                             <SvgIcon
                                                                 onClick={() => {
-                                                                    window.open(item.information.social.linkedIn, '_blank')
+                                                                    window.open(item.user.information.details.social_links.linkedIn, '_blank')
                                                                 }}
                                                                 component={LinkedIn}
+                                                            />
+                                                        )
+                                                    }
+
+                                                    {
+                                                        item.user.information.details.social_links.instagram && (
+                                                            <SvgIcon
+                                                                onClick={() => {
+                                                                    window.open(item.user.information.details.social_links.instagram, '_blank')
+                                                                }}
+                                                                component={Instagram}
+                                                            />
+                                                        )
+                                                    }
+
+                                                    {
+                                                        item.user.information.details.social_links.twitter && (
+                                                            <SvgIcon
+                                                                onClick={() => {
+                                                                    window.open(item.user.information.details.social_links.twitter, '_blank')
+                                                                }}
+                                                                component={Twitter}
                                                             />
                                                         )
                                                     }
