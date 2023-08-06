@@ -6,7 +6,7 @@ import Modal from '@/components/modal/index'
 import TextInput from '@/components/form/text';
 import TextArea from '@/components/form/textarea'
 import { SvgIcon } from '@mui/material';
-import { Delete, Face6, Facebook, Instagram, LinkedIn, Twitter } from '@mui/icons-material';
+import { Delete, Face6, Facebook, Instagram, LinkedIn, Twitter, VideoCameraBack } from '@mui/icons-material';
 import Helper from '@/lib/helper';
 import { useSession } from 'next-auth/react';
 let helper = new Helper()
@@ -36,6 +36,7 @@ function Team(props) {
         if (!about) return
         if (!profile) return
         if (!data) return
+        if (!video) return
 
         setBtnLoading(true)
         await api.post('/api/teams', {
@@ -204,7 +205,7 @@ function Team(props) {
                 </div>
 
                 <div className='w-full float-left text-sm mt-[20px]'>
-                    <h1 className='text-sm mb-[20px]'>Video Link(Optional)</h1>
+                    <h1 className='text-sm mb-[20px]'>Video Link</h1>
                     <TextInput
                         type="text"
                         placeholder="Video url"
@@ -277,14 +278,6 @@ function Team(props) {
                             setCreateFlag(true)
                         }}
                     />
-
-                    <Button
-                        style={' bg-gray-400 dark:bg-gray-900 text-white dark:text-white ml-[10px]'}
-                        title="Invite"
-                        onPress={() => {
-                            setCreateFlag(true)
-                        }}
-                    />
                 </span>
             </div>
 
@@ -315,6 +308,19 @@ function Team(props) {
                                             {
                                                 item.position
                                             }
+                                            {
+                                                item.video && (
+                                                    <SvgIcon 
+                                                        className='ml-[10px]'
+                                                        style={{
+                                                            fontSize: 18
+                                                        }}
+                                                        onClick={() => {
+                                                            window.open(item.video, '_blank')
+                                                        }}
+                                                        component={VideoCameraBack} />
+                                                )
+                                            }
                                         </span>
                                         {
                                             item.user.information && item.user.information && item.user.information.details && item.user.information.details.social_links && (
@@ -324,6 +330,9 @@ function Team(props) {
                                                             <SvgIcon
                                                                 onClick={() => {
                                                                     window.open(item.user.information.details.social_links.facebook, '_blank')
+                                                                }}
+                                                                style={{
+                                                                    fontSize: 18
                                                                 }}
                                                                 component={Facebook}
                                                             />
@@ -336,6 +345,9 @@ function Team(props) {
                                                                 onClick={() => {
                                                                     window.open(item.user.information.details.social_links.linkedIn, '_blank')
                                                                 }}
+                                                                style={{
+                                                                    fontSize: 18
+                                                                }}
                                                                 component={LinkedIn}
                                                             />
                                                         )
@@ -347,6 +359,9 @@ function Team(props) {
                                                                 onClick={() => {
                                                                     window.open(item.user.information.details.social_links.instagram, '_blank')
                                                                 }}
+                                                                style={{
+                                                                    fontSize: 18
+                                                                }}
                                                                 component={Instagram}
                                                             />
                                                         )
@@ -357,6 +372,9 @@ function Team(props) {
                                                             <SvgIcon
                                                                 onClick={() => {
                                                                     window.open(item.user.information.details.social_links.twitter, '_blank')
+                                                                }}
+                                                                style={{
+                                                                    fontSize: 18
                                                                 }}
                                                                 component={Twitter}
                                                             />

@@ -40,7 +40,7 @@ export async function POST(req) {
                 video
             })
         return new NextResponse(helper.response(result, 200, null))
-    } else if (position && about && video && user_id && company_id) {
+    } else if (position && about && user_id && company_id) {
         let result = await controller.create({
             user_id,
             company_id,

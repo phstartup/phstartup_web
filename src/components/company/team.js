@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Style from '@/utils/Style';
 import Api from '@/lib/api';
 import { SvgIcon } from '@mui/material';
-import { Face6, Facebook, Instagram, LinkedIn, Twitter } from '@mui/icons-material';
+import { Face6, Facebook, Instagram, LinkedIn, Twitter, VideoCameraBack } from '@mui/icons-material';
 import Helper from '@/lib/helper';
 import { useSession } from 'next-auth/react';
 let helper = new Helper()
@@ -87,6 +87,19 @@ function Team(props) {
                                             {
                                                 item.position
                                             }
+                                            {
+                                                item.video && (
+                                                    <SvgIcon
+                                                        className='ml-[10px]'
+                                                        style={{
+                                                            fontSize: 18
+                                                        }}
+                                                        onClick={() => {
+                                                            window.open(item.video, '_blank')
+                                                        }}
+                                                        component={VideoCameraBack} />
+                                                )
+                                            }
                                         </span>
                                         {
                                             item.user.information && item.user.information && item.user.information.details && item.user.information.details.social_links && (
@@ -96,6 +109,9 @@ function Team(props) {
                                                             <SvgIcon
                                                                 onClick={() => {
                                                                     window.open(item.user.information.details.social_links.facebook, '_blank')
+                                                                }}
+                                                                style={{
+                                                                    fontSize: 18
                                                                 }}
                                                                 component={Facebook}
                                                             />
@@ -108,6 +124,9 @@ function Team(props) {
                                                                 onClick={() => {
                                                                     window.open(item.user.information.details.social_links.linkedIn, '_blank')
                                                                 }}
+                                                                style={{
+                                                                    fontSize: 18
+                                                                }}
                                                                 component={LinkedIn}
                                                             />
                                                         )
@@ -119,6 +138,9 @@ function Team(props) {
                                                                 onClick={() => {
                                                                     window.open(item.user.information.details.social_links.instagram, '_blank')
                                                                 }}
+                                                                style={{
+                                                                    fontSize: 18
+                                                                }}
                                                                 component={Instagram}
                                                             />
                                                         )
@@ -129,6 +151,9 @@ function Team(props) {
                                                             <SvgIcon
                                                                 onClick={() => {
                                                                     window.open(item.user.information.details.social_links.twitter, '_blank')
+                                                                }}
+                                                                style={{
+                                                                    fontSize: 18
                                                                 }}
                                                                 component={Twitter}
                                                             />
