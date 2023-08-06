@@ -1,5 +1,6 @@
 const { Prisma } = require('@prisma/client')
 import { prisma } from '@/lib/db'
+var moment = require('moment'); 
 export default class Event {
     async create(data) {
         let mData = Prisma.eventsCreateInput
@@ -35,7 +36,14 @@ export default class Event {
                 start_date: 'desc'
             }
         }
-        return await prisma.events.findMany(nCondition)
+        let result =  await prisma.events.findMany(nCondition)
+        if(result && result.length > 0){
+            for (let index = 0; index < result.length; index++) {
+                const item = result[index];
+                result[index]['start_date'] = moment(item.start_date).format("dddd, MMMM Do YYYY");   
+            }
+        }
+        return result
     }
 
     async update(id, data) {

@@ -14,7 +14,6 @@ const protectedPages = [
     '/profile',
     '/match',
     '/jobs',
-    '/events',
     '/mycompany',
     '/pitches'
 ]

@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import Breadcrumbs from '@/components/breadcrumbs/Simple'
 import Button from '@/components/buttons/btn'
-import Filter from '@/components/form/Filter';
 import TextInput from '@/components/form/text'
 import Modal from '@/components/modal/index'
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
@@ -56,6 +55,7 @@ function Page(props) {
     const [featuredError, setFeaturedError] = useState(null)
     const [startDate, setStartDate] = useState(sDate)
     const [endDate, setEndDate] = useState(eDate)
+    const [filter, setFilter] = useState(null)
 
     useEffect(() => {
         getData()
@@ -122,7 +122,7 @@ function Page(props) {
 
             })
         } else {
-            await api.getNoToken('/api/events?id=' + id, (response) => {
+            await api.getNoToken('/api/events', (response) => {
                 if (response.data) {
                     setData(response.data)
                 }
@@ -162,20 +162,6 @@ function Page(props) {
                         component={ChevronRight}
                     />
                 </span>
-            </div>
-        )
-    }
-
-    const renderFilter = () => {
-        return (
-            <div className='w-full float-left lg:flex xl:flex 2xl:flex justify-between mt-[20px]'>
-                <div className='lg:w-[40%] xl:w-[40%] 2xl:w-[40%]'>
-                    <TextInput
-                        type="text"
-                        placeholder="Search"
-                    />
-                </div>
-                <Filter availableStatuses={availableStatuses} onFilter={handleFilter} />
             </div>
         )
     }
@@ -344,27 +330,30 @@ function Page(props) {
             </div>
         )
     }
-
     return (
         <div className={`w-full float-left ` + (session ? '' : 'mt-[100px] ' + Style.padding)}>
             <div className='w-full float-left flex justify-between'>
                 <div>
-                    <Breadcrumbs title="Startup Events" />
+                    <Select
+                        type="text"
+                        data={String.categories}
+                        selected={filter}
+                        placeholder="Select Filter"
+                        onChange={(value) => {
+                            setFilter(value)
+                        }}
+                    />
                 </div>
-                <Button
-                    style={' bg-black dark:bg-white text-white dark:text-gray-900'}
-                    title={"Add Event"}
-                    onPress={() => {
-                        setCreateFlag(true)
-                    }}
-                />
-            </div>
-
-
-
-            <div className='w-full float-left mt-[20px]'>
                 {
-                    renderFilter()
+                    session && session.user && session.user.company && (
+                        <Button
+                            style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                            title={"Add Event"}
+                            onPress={() => {
+                                setCreateFlag(true)
+                            }}
+                        />
+                    )
                 }
             </div>
 

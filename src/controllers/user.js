@@ -56,23 +56,23 @@ export default class User {
             }
         })
 
-        if(result){
+        if (result) {
             const company = new Company()
             let rCompany = await company.retrieveFirst({
                 where: {
                     user_id: result.id
                 }
             })
-    
-            if(rCompany == null){
+
+            if (rCompany == null) {
                 const team = new Team()
                 let rTeam = await team.retrieveFirstNoUser({
                     where: {
                         user_id: result.id
                     }
                 })
-    
-                if(rTeam){
+
+                if (rTeam) {
                     rCompany = await company.retrieveFirst({
                         where: {
                             id: rTeam.company_id
@@ -80,7 +80,7 @@ export default class User {
                     })
                 }
             }
-            if(rCompany){
+            if (rCompany) {
                 result['company'] = rCompany
             }
         }
@@ -241,6 +241,33 @@ export default class User {
 
             } else {
                 userWithoutPassword['information'] = null
+            }
+
+            const company = new Company()
+            let rCompany = await company.retrieveFirst({
+                where: {
+                    user_id: isExist.id
+                }
+            })
+
+            if (rCompany == null) {
+                const team = new Team()
+                let rTeam = await team.retrieveFirstNoUser({
+                    where: {
+                        user_id: isExist.id
+                    }
+                })
+
+                if (rTeam) {
+                    rCompany = await company.retrieveFirst({
+                        where: {
+                            id: rTeam.company_id
+                        }
+                    })
+                }
+            }
+            if (rCompany) {
+                userWithoutPassword['company'] = rCompany
             }
             return helper.stringify(userWithoutPassword)
         }

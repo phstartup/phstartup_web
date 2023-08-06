@@ -52,11 +52,6 @@ const String =  {
             route: 'mycompany'
         },
         {
-            title: 'Programs',
-            icon: Rocket,
-            route: 'programs'
-        },
-        {
             title: 'Events',
             icon: CalendarMonth,
             route: 'events'
