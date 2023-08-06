@@ -48,6 +48,9 @@ function Page(props) {
                         placeholder="Select Ask"
                         onChange={(value) => {
                             setFilter(value)
+                            setTimeout(() => {
+                                getData()
+                            }, 10)
                         }}
                     />
                 </div>

@@ -149,7 +149,7 @@ function ModalVideo(props) {
                         <div className='w-full float-left flex justify-between text-sm font-bold'>
                             {
                                 props.views && (
-                                    <span>1,000 Views</span>
+                                    <span>{props.views} Views</span>
                                 )
                             }
                             {
