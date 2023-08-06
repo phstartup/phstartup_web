@@ -21,10 +21,10 @@ function Index(props) {
         <div style={{
             marginTop: 100
         }}
-            className='float-left w-full relative lg:h-[80vh] 2xl:h-[80vh] sm:h-[60vh] md:h-[60vh]'
+            className='float-left w-full relative lg:h-[80vh] xl:h-[80vh] 2xl:h-[80vh] sm:h-[50vh] xs:h-[50vh] md:h-[50vh]'
         >
             <div
-                className='float-left lg:h-[80vh] 2xl:h-[80vh] w-full sm:h-[60vh] md:h-[60vh]'
+                className='float-left lg:h-[80vh] xl:h-[80vh] 2xl:h-[80vh] sm:h-[50vh] xs:h-[50vh] md:h-[50vh] w-full'
             >   {
                     data && data.settings && data.settings.banner && (
                         <img
@@ -37,47 +37,54 @@ function Index(props) {
 
             </div>
             <div
-                className='w-full absolute bottom-0 left-0 pt-[20px] pb-[20px] lg:px-[100px] 2xl:px-[100px] profile-card-title text-white'
+                className='w-full absolute bottom-0 left-0 pt-[20px] pb-[20px] lg:px-[100px] 2xl:px-[100px] xl:px-[100px] sm:px-[20px] xs:px-[20px] md:px-[20px] profile-card-title text-white'
             >
-                {
-                    data && (
-                        <span className='font-bold lg:text-6xl 2xl:text-6xl sm:text-3xl xs:text-3xl md:text-3xl'>
-                            {data.name}
-                        </span>
-                    )
-                }
+                <div className='float-left w-full'>
+                    <div
+                        className='lg:w-[50%] xl:w-[50%] 2xl:w-[50%] sm:w-full xs:w-full md:w-full float-left'
+                    >
+                        {
+                            data && (
+                                <div className='font-bold lg:text-6xl 2xl:text-6xl sm:text-3xl xs:text-3xl md:text-3xl w-full float-left'>
+                                    {data.name}
+                                </div>
+                            )
+                        }
 
-                <div
-                    className='left w-full flex items-center content-center'
-                >
-                    {
-                        data && data.pitches && (
-                            <SvgIcon
-                                component={PlayCircle}
-                                className='float-left cursor-pointer'
-                                style={{
-                                    fontSize: 60
-                                }}
-                                onClick={() => {
-                                    setPitch(data.pitches[0])
-                                    setTimeout(() => {
-                                        setViewVideo(true)
-                                    }, 10)
-                                }}
-                            />
-                        )
-                    }
+                        <div className='w-full float-left'>
+                            {
+                                data && data.pitches && (
+                                    <SvgIcon
+                                        component={PlayCircle}
+                                        className='float-left cursor-pointer'
+                                        style={{
+                                            fontSize: 60
+                                        }}
+                                        onClick={() => {
+                                            setPitch(data.pitches[0])
+                                            setTimeout(() => {
+                                                setViewVideo(true)
+                                            }, 10)
+                                        }}
+                                    />
+                                )
+                            }
 
-                    {
-                        data && (
-                            <Button
-                                title="More details"
-                                onPress={() => {
-                                    router.push('/company?id=' + data.id)
-                                }}
-                            />
-                        )
-                    }
+                            {
+                                data && (
+                                    <Button
+                                        title="More details"
+                                        onPress={() => {
+                                            router.push('/company?id=' + data.id)
+                                        }}
+                                    />
+                                )
+                            }
+                        </div>
+                    </div>
+                    <span className='lg:text-6xl 2xl:text-6xl sm:text-3xl xs:text-3xl md:text-3xl float-left lg:w-[50%] xl:w-[50%] 2xl:w-[50%] sm:w-full xs:w-full md:w-full flex items-center content-center h-[100px]'>
+                        Startup of the Month
+                    </span>
                 </div>
 
             </div>
