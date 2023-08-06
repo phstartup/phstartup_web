@@ -1,6 +1,6 @@
-const { PrismaClient, Prisma } = require('@prisma/client')
+const { Prisma } = require('@prisma/client')
+import { prisma } from '@/lib/db'
 import User from './user';
-const prisma = new PrismaClient();
 export default class Notification {
     async create(data) {
         let mData = Prisma.notificationsCreateInput

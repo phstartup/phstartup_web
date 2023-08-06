@@ -1,5 +1,5 @@
-const { PrismaClient, Prisma } = require('@prisma/client')
-const prisma = new PrismaClient();
+const { Prisma } = require('@prisma/client')
+import { prisma } from '@/lib/db'
 export default class Service {
     async create(data) {
         let mData = Prisma.servicesCreateInput

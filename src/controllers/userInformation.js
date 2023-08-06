@@ -1,9 +1,8 @@
-const { PrismaClient, Prisma } = require('@prisma/client')
-const prisma = new PrismaClient();
+const { Prisma } = require('@prisma/client')
+import { prisma } from '@/lib/db'
 export default class UserInformation {
 
     async retrieve(condition) {
-        const prisma = new PrismaClient();
         let nCondition = {
             where: {
                 ...condition.where,

@@ -1,4 +1,5 @@
-const { PrismaClient, Prisma } = require('@prisma/client')
+const { Prisma } = require('@prisma/client')
+import { prisma } from '@/lib/db'
 import Helper from '@/lib/helper';
 import UserInformation from './userInformation';
 import { compare, hash } from 'bcryptjs';
@@ -7,7 +8,6 @@ import jwt from 'jsonwebtoken'
 let helper = new Helper()
 export default class User {
     async registerAccountOnly(user) {
-        let prisma = new PrismaClient();
         const isExist = await prisma.users.findFirst({
             where: {
                 OR: [
@@ -48,7 +48,6 @@ export default class User {
     }
 
     async verifyHeaderToken(token) {
-        const prisma = new PrismaClient();
 
         let result = await prisma.users.findFirst({
             where: {
@@ -60,7 +59,6 @@ export default class User {
     }
 
     async retrieveAdmin() {
-        const prisma = new PrismaClient();
         let nCondition = {
             where: {
                 deleted_at: null
@@ -94,8 +92,6 @@ export default class User {
     }
 
     async register(user, account, profile) {
-
-        const prisma = new PrismaClient();
 
         let data = Prisma.usersCreateInput
         data = {
@@ -141,7 +137,6 @@ export default class User {
     }
 
     async updateToken(user, token) {
-        const prisma = new PrismaClient();
         let updateData = Prisma.usersUncheckedUpdateInput
         updateData = {
             remember_token: token,
@@ -157,8 +152,6 @@ export default class User {
     }
 
     async auth(user, account, profile) {
-        const prisma = new PrismaClient();
-
         const isExist = await prisma.users.findUnique({
             where: {
                 email: user.email
@@ -196,7 +189,6 @@ export default class User {
     }
 
     async get(user) {
-        const prisma = new PrismaClient();
         const isExist = await prisma.users.findUnique({
             where: {
                 email: user.email
@@ -225,7 +217,6 @@ export default class User {
     }
 
     async getByCondition(condition) {
-        const prisma = new PrismaClient();
         const isExist = await prisma.users.findUnique(condition)
         if (!isExist) {
             return null
@@ -249,7 +240,6 @@ export default class User {
     }
 
     async authenticate(user) {
-        const prisma = new PrismaClient();
         const isExist = await prisma.users.findUnique({
             where: {
                 email: user.email

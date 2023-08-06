@@ -1,5 +1,5 @@
-const { PrismaClient, Prisma } = require('@prisma/client')
-const prisma = new PrismaClient();
+const { Prisma } = require('@prisma/client')
+import { prisma } from '@/lib/db'
 import Company from './company';
 export default class Pitch {
     async create(data) {

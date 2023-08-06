@@ -3,8 +3,8 @@ import Service from './Service';
 import Achievement from './Achievement'
 import Vouch from './vouch';
 import Team from './team'
-const { PrismaClient, Prisma } = require('@prisma/client')
-const prisma = new PrismaClient();
+const { Prisma } = require('@prisma/client')
+import { prisma } from '@/lib/db'
 export default class Company {
     async create(data) {
         let mData = Prisma.companiesCreateInput
