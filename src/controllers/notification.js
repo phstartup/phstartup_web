@@ -1,6 +1,7 @@
 const { Prisma } = require('@prisma/client')
 import { prisma } from '@/lib/db'
 import User from './user';
+var moment = require('moment'); 
 export default class Notification {
     async create(data) {
         let mData = Prisma.notificationsCreateInput
@@ -47,6 +48,7 @@ export default class Notification {
                     }
                 })
                 result[index]['user'] = uResult;
+                result[index]['updated_at'] = moment(item.updated_at).fromNow()
             }
         }
 

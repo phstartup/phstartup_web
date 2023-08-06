@@ -104,7 +104,7 @@ function Notifications(props) {
                             </span>
                             <span className='w-full float-left text-xs text-green-500 mt-[10px] font-semibold'>
                                 {
-                                    item.created_at
+                                    item.updated_at
                                 }
                             </span>
                         </div>
