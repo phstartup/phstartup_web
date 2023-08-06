@@ -40,7 +40,8 @@ function Sidebar(props) {
                             router.push('/contributors')
                         }}
                         style={{
-                            fontSize: 18
+                            fontSize: 18,
+                            marginRight: 10
                         }}
                         component={Person3} className='cursor-pointer' />
                 </Tooltip>
