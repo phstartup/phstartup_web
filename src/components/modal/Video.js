@@ -147,7 +147,22 @@ function ModalVideo(props) {
                     </div>
                     <div className='w-full float-left px-[20px] mt-[20px]'>
                         <div className='w-full float-left flex justify-between text-sm font-bold'>
-                            1,000 Views
+                            {
+                                props.views && (
+                                    <span>1,000 Views</span>
+                                )
+                            }
+                            {
+                                props.data.company && (
+                                    <Button
+                                        style={' bg-black dark:bg-white text-white dark:text-black'}
+                                        title="More details"
+                                        onPress={() => {
+                                            router.push('/company?id=' + props.data.company.id)
+                                        }}
+                                    />
+                                )
+                            }
                         </div>
                     </div>
                     <div className='w-full float-left pb-[20px] px-[20px]'>

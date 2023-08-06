@@ -203,7 +203,11 @@ export default class Company {
                 deleted_at: null
             }
         }
-        return await prisma.companies.findFirst(nCondition)
+        let result = await prisma.companies.findFirst(nCondition)
+        if(result){
+            result['settings'] = result.settings ? JSON.parse(result.settings) : null
+        }
+        return result
     }
 
     async retrieveByCondition(condition) {

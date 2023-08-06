@@ -1,5 +1,6 @@
 const { PrismaClient, Prisma } = require('@prisma/client')
 const prisma = new PrismaClient();
+import Company from './company';
 export default class Pitch {
     async create(data) {
         let mData = Prisma.pitchesCreateInput
@@ -44,6 +45,23 @@ export default class Pitch {
             }
         }
         return await prisma.pitches.findMany(nCondition)
+    }
+
+    async retrieveWithCompany(condition) {
+        let result =  await prisma.pitches.findMany(condition)
+        if(result && result.length > 0){
+            for (let index = 0; index < result.length; index++) {
+                const item = result[index];
+                const company = new Company()
+                let rCompany = await company.retrieve({
+                    where: {
+                        id: item.company_id
+                    }
+                })
+                result[index]['company'] = rCompany
+            }
+        }
+        return result
     }
 
     async update(id, data) {
