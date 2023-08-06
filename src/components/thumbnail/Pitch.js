@@ -10,14 +10,14 @@ function Pitch(props) {
     const [viewVideo, setViewVideo] = useState(false)
     return (
         <div
-            className='float-left lg:w-[24%] xl:w-[24%] 2xl:w-[24%] xs:w-[100%] sm:w-[100%] md:w-[48%] h-[250px] lg:mr-[1%] xl:mr-[1%] 2xl:mr-[1%] small-video-thumbnail relative cursor-pointer mb-[20px]'
+            className='float-left lg:w-[24%] xl:w-[24%] 2xl:w-[24%] xs:w-[100%] sm:w-[100%] md:w-[48%] h-[250px] lg:mr-[1%] xl:mr-[1%] 2xl:mr-[1%] small-video-thumbnail relative cursor-pointer mb-[20px] rounded-t-lg'
 
         >
-            <div className='relative w-full float-left h-[250px]'>
+            <div className='relative w-full float-left h-[250px] rounded-t-lg'>
                 <img
                     src={props.data?.company?.settings?.banner}
                     alt={props.data?.company?.settings?.banner}
-                    className='w-full h-full object-cover'
+                    className='w-full h-full object-cover rounded-t-lg'
                 />
                 <div
                     className='absolute px-5 py-5 bottom-0 profile-card-title w-full font-bold text-white flex justify-between'

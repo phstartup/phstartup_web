@@ -1,27 +1,33 @@
 "use client"
-import { CalendarMonth, CasesOutlined, Dashboard, House, Person, Person2Outlined, PieChart, Rocket, VideoCameraBack } from '@mui/icons-material';
+import { Business, CalendarMonth, CasesOutlined, Dashboard, House, Person, Person2Outlined, PieChart, Rocket, VideoCameraBack } from '@mui/icons-material';
 const String =  {
     app_name: 'phstartup.org',
     api_url: 'test',
     host: 'phstartup.org',
     menu: [{
         title: 'Startups',
-        route: '/startups'
+        route: '/startups',
+        value: 'startup'
     }, {
         title: 'Investors',
-        route: '/investors'
+        route: '/investors',
+        value: 'investor'
     }, {
         title: 'Accelerators',
-        route: '/accelerators'
+        route: '/accelerators',
+        value: 'accelerator'
     }, {
         title: 'Incubators',
-        route: '/incubators'
+        route: '/incubators',
+        value: 'incubator'
     }, {
         title: 'Government Programs',
-        route: '/governments'
+        route: '/governments',
+        value: 'government'
     }, {
         title: 'Events',
-        route: '/events'
+        route: '/events',
+        value: 'event'
     }],
 
     loggedInMenu: [
@@ -34,6 +40,11 @@ const String =  {
             title: 'Pitches',
             icon: VideoCameraBack,
             route: 'pitches'
+        },
+        {
+            title: 'Companies',
+            icon: Business,
+            route: 'companies'
         },
         {
             title: 'My Company',
