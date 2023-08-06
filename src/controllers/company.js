@@ -5,7 +5,7 @@ import Vouch from './vouch';
 import Team from './team'
 const { PrismaClient, Prisma } = require('@prisma/client')
 const prisma = new PrismaClient();
-export default class UserInformation {
+export default class Company {
     async create(data) {
         let mData = Prisma.companiesCreateInput
         mData = {
@@ -204,6 +204,17 @@ export default class UserInformation {
             }
         }
         return await prisma.companies.findFirst(nCondition)
+    }
+
+    async retrieveByCondition(condition) {
+        let result =  await prisma.companies.findMany(condition)
+        if(result && result.length > 0){
+            for (let index = 0; index < result.length; index++) {
+                const item = result[index];
+                result[index]['settings'] = item.settings ? JSON.parse(item.settings) : null
+            }
+        }
+        return result
     }
 
     async update(id, data) {

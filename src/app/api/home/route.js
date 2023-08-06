@@ -40,26 +40,39 @@ export async function GET(req) {
             return new NextResponse(helper.response(result, 200, null));
         }
     } else {
-        let result = await controller.retrieveHome(mwareAccount)
-        let response = {
-            featured: result ? result[0] : null,
-            categories: [{
-                title: 'Recently Added',
-                data: result
-            }, {
-                title: 'QBO Accelerator',
-                data: result
-            }, {
-                title: 'Accelerating Asia',
-                data: result
-            }, {
-                title: 'DOHE Accelerator',
-                data: result
-            }, {
-                title: 'Research & Developments',
-                data: result
-            }]
+        const category = searchParams.get('category')
+        if (category) {
+            let result = await controller.retrieveByCondition({
+                where: {
+                    category: category
+                },
+                orderBy: {
+                    name: 'asc'
+                }
+            })
+            return new NextResponse(helper.response(result, 200, null));
+        } else {
+            let result = await controller.retrieveHome(mwareAccount)
+            let response = {
+                featured: result ? result[0] : null,
+                categories: [{
+                    title: 'Recently Added',
+                    data: result
+                }, {
+                    title: 'QBO Accelerator',
+                    data: result
+                }, {
+                    title: 'Accelerating Asia',
+                    data: result
+                }, {
+                    title: 'DOHE Accelerator',
+                    data: result
+                }, {
+                    title: 'Research & Developments',
+                    data: result
+                }]
+            }
+            return new NextResponse(helper.response(response, 200, null));
         }
-        return new NextResponse(helper.response(response, 200, null));
     }
 }

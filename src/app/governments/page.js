@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import Pitches from '../pitch/page'
+import Companies from "@/components/home/Companies";
 
 function Page(props) {
   return (
     <div className="w-full float-left">
-      <Pitches />
+      <Companies type='governments' />
     </div>
   );
 }
