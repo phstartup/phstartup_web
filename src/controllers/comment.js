@@ -1,7 +1,9 @@
 const { Prisma } = require('@prisma/client')
 import { prisma } from '@/lib/db'
+var moment = require('moment'); 
 import User from './user';
 export default class Comment {
+
     async create(data) {
         let mData = Prisma.commentsCreateInput
         mData = {
@@ -39,9 +41,10 @@ export default class Comment {
                         id: item.user_id
                     }
                 })
+
+                result[index]['updated_at'] = moment(item.updated_at).fromNow()
             }
         }
-
         return result
     }
 

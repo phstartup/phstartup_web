@@ -253,7 +253,7 @@ function ModalVideo(props) {
                                             </span>
                                             <span>
                                                 {
-                                                    'Posted on ' + item.created_at
+                                                    'Posted on ' + item.updated_at
                                                 }
                                             </span>
                                         </span>
