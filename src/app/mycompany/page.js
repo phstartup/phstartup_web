@@ -28,8 +28,6 @@ const withSession = (Component) => (props) => {
     )
 }
 
-withSession.displayName = 'withSession'
-
 class Page extends React.Component {
     constructor() {
         super();

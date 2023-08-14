@@ -3,7 +3,11 @@ import React from 'react';
 import Logo from '@/components/header/logo'
 import String from '@/utils/String'
 import { SvgIcon } from '@mui/material';
-import { Facebook, Instagram, LinkedIn, Twitter, YouTube } from '@mui/icons-material';
+import Facebook from '@mui/icons-material/Facebook';
+import Instagram from '@mui/icons-material/Instagram';
+import LinkedIn from '@mui/icons-material/LinkedIn';
+import Twitter from '@mui/icons-material/Twitter';
+import YouTube from '@mui/icons-material/YouTube';
 import { useRouter } from 'next/navigation';
 import Style from '@/utils/Style';
 

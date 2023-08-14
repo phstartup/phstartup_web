@@ -1,4 +1,5 @@
-import { Add, AddCircle, AddCircleOutline, RemoveCircle, RemoveCircleOutline } from '@mui/icons-material';
+import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutline from '@mui/icons-material/RemoveCircleOutline';
 import { SvgIcon } from '@mui/material';
 import React from 'react';
 

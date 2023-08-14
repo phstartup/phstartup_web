@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { SvgIcon } from '@mui/material';
-import { PlayCircle } from '@mui/icons-material';
+import PlayCircle from '@mui/icons-material/PlayCircle';
 import ModalVideo from '@/components/modal/Video'
 function Pitch(props) {
     const router = useRouter();

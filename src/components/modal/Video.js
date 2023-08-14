@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Youtube from '@/components/video/Youtube'
 import { SvgIcon } from '@mui/material';
-import { Add, Face6 } from '@mui/icons-material';
+import Add from '@mui/icons-material/Add';
+import Face6 from '@mui/icons-material/Face6';
 import TextArea from '@/components/form/textarea'
 import Button from '@/components/buttons/btn'
 import Helper from '@/lib/helper';

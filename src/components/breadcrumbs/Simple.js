@@ -1,5 +1,5 @@
 "use client"
-import { ChevronLeft } from '@mui/icons-material';
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import { SvgIcon } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import React from 'react';

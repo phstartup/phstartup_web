@@ -5,7 +5,7 @@ import Button from '@/components/buttons/btn'
 import TextInput from '@/components/form/text';
 import Modal from '@/components/modal/index'
 import { SvgIcon } from '@mui/material';
-import { Photo } from '@mui/icons-material';
+import Photo from '@mui/icons-material/Photo';
 import { useSession } from 'next-auth/react';
 import Api from '@/lib/api';
 let api = new Api()

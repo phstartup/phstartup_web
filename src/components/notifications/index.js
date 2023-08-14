@@ -1,4 +1,5 @@
-import { Close, Face6 } from '@mui/icons-material';
+import Close  from '@mui/icons-material/Close';
+import Face6 from '@mui/icons-material/Face6';
 import { SvgIcon } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Api from '@/lib/api';

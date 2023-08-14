@@ -1,4 +1,4 @@
-import { Face5, HourglassEmptySharp } from '@mui/icons-material';
+import Face5 from '@mui/icons-material/Face5';
 import { SvgIcon } from '@mui/material';
 import React from 'react';
 

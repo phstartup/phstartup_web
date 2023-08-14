@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import Style from '@/utils/Style';
 import { SvgIcon } from '@mui/material';
-import { Add, Edit, PlayCircle } from '@mui/icons-material';
+import Add from '@mui/icons-material/Add';
+import Edit from '@mui/icons-material/Edit';
+import PlayCircle from '@mui/icons-material/PlayCircle';
 import Modal from '@/components/modal/index'
 import ModalVideo from '@/components/modal/Video'
 import Button from '@/components/buttons/btn'

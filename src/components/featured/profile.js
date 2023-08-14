@@ -3,7 +3,7 @@ import React from 'react';
 import SampleImage from '@/assets/sample.png'
 import Image from 'next/image'
 import { SvgIcon } from '@mui/material';
-import { PlayCircle } from '@mui/icons-material';
+import PlayCircle from '@mui/icons-material/PlayCircle';
 import Button from '@/components/buttons/btn.js'
 
 export const metadata = {

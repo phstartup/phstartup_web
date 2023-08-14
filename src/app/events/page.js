@@ -4,7 +4,8 @@ import Breadcrumbs from '@/components/breadcrumbs/Simple'
 import Button from '@/components/buttons/btn'
 import TextInput from '@/components/form/text'
 import Modal from '@/components/modal/index'
-import { ChevronLeft, ChevronRight } from '@mui/icons-material';
+import ChevronLeft from '@mui/icons-material/ChevronLeft'
+import ChevronRight from '@mui/icons-material/ChevronRight'
 import { SvgIcon } from '@mui/material';
 import Style from '@/utils/Style';
 import { useSession } from 'next-auth/react';

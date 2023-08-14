@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Style from '@/utils/Style';
 import Api from '@/lib/api';
 import { SvgIcon } from '@mui/material';
-import { Face6 } from '@mui/icons-material';
+import Face6 from '@mui/icons-material/Face6';
 import Helper from '@/lib/helper';
 import { useSession } from 'next-auth/react';
 import Empty from '@/components/empty/Simple'

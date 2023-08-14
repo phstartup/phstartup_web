@@ -3,7 +3,13 @@ import React, { useEffect, useState } from 'react';
 import Logo from './logo';
 import Link from 'next/link';
 import { SvgIcon } from '@mui/material';
-import { Business, DarkMode, Face6, LightMode, MenuOutlined, Message, Notifications, Person3Rounded, Search, Settings } from '@mui/icons-material';
+import DarkMode from '@mui/icons-material/DarkMode';
+import Face6 from '@mui/icons-material/Face6';
+import LightMode from '@mui/icons-material/LightMode';
+import MenuOutlined from '@mui/icons-material/MenuOutlined';
+import Message from '@mui/icons-material/Message';
+import Notifications from '@mui/icons-material/Notifications';
+import Settings from '@mui/icons-material/Settings';
 import { useRouter } from 'next/navigation';
 import useColorMode from '@/hooks/useColorMode';
 import String from '@/utils/String'

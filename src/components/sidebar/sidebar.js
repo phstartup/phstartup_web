@@ -4,7 +4,11 @@ import { SvgIcon } from '@mui/material';
 import { Tooltip, Button } from "@material-tailwind/react";
 import React from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { HandshakeRounded, Logout, Person3, SecurityOutlined, Settings } from '@mui/icons-material';
+import HandshakeRounded from '@mui/icons-material/HandshakeRounded';
+import Logout from '@mui/icons-material/Logout';
+import Person3 from '@mui/icons-material/Person3';
+import SecurityOutlined from '@mui/icons-material/SecurityOutlined';
+import  Settings from '@mui/icons-material/Settings';
 import Style from '@/utils/Style';
 import { signOut } from 'next-auth/react';
 const menu = String.loggedInMenu

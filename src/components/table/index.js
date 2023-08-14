@@ -2,7 +2,10 @@
 import React, { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { SvgIcon } from '@mui/material';
-import { ChevronLeft, ChevronRight, ToggleOffOutlined, ToggleOnOutlined } from '@mui/icons-material';
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
+import ChevronRight from '@mui/icons-material/ChevronRight';
+import ToggleOffOutlined from '@mui/icons-material/ToggleOffOutlined';
+import ToggleOnOutlined from '@mui/icons-material/ToggleOnOutlined';
 import { useRouter } from 'next/navigation';
 function CustomTable(props) {
     const router = useRouter();

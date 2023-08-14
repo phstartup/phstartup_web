@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 import Logo from './logo';
 import Link from 'next/link';
 import { SvgIcon } from '@mui/material';
-import { DarkMode, LightMode, MenuOutlined, Search } from '@mui/icons-material';
+import DarkMode from '@mui/icons-material/DarkMode';
+import LightMode from '@mui/icons-material/LightMode';
+import MenuOutlined from '@mui/icons-material/MenuOutlined';
+import Search  from '@mui/icons-material/Search';
 import { useRouter } from 'next/navigation';
 import useColorMode from '@/hooks/useColorMode';
 import String from '@/utils/String'

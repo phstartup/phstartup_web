@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { SvgIcon } from '@mui/material';
-import { PlayCircle } from '@mui/icons-material';
+import PlayCircle from '@mui/icons-material/PlayCircle';
 import Button from '@/components/buttons/btn.js'
 import { useRouter } from 'next/navigation';
 import ModalVideo from '@/components/modal/Video'

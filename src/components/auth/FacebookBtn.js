@@ -1,4 +1,4 @@
-import { FacebookOutlined } from '@mui/icons-material';
+import FacebookOutlined from '@mui/icons-material/FacebookOutlined';
 import { SvgIcon } from '@mui/material';
 import React from 'react';
 import Style from '@/utils/Style';

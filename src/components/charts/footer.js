@@ -1,5 +1,5 @@
 "use client"
-import { ChevronRightOutlined } from '@mui/icons-material';
+import ChevronRightOutlined from '@mui/icons-material/ChevronRightOutlined';
 import { SvgIcon } from '@mui/material';
 import React from 'react';
 

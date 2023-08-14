@@ -3,7 +3,12 @@ import React, { useEffect, useState } from 'react';
 import Style from '@/utils/Style';
 import Api from '@/lib/api';
 import { SvgIcon } from '@mui/material';
-import { Face6, Facebook, Instagram, LinkedIn, Twitter, VideoCameraBack } from '@mui/icons-material';
+import Face6 from '@mui/icons-material/Face6';
+import Facebook from '@mui/icons-material/Facebook';
+import Instagram from '@mui/icons-material/Instagram';
+import LinkedIn from '@mui/icons-material/LinkedIn';
+import Twitter from '@mui/icons-material/Twitter';
+import VideoCameraBack  from '@mui/icons-material/VideoCameraBack';
 import Helper from '@/lib/helper';
 import { useSession } from 'next-auth/react';
 import Empty from '@/components/empty/Simple'

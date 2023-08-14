@@ -2,7 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import Style from '@/utils/Style';
 import { SvgIcon } from '@mui/material';
-import { Android, Apple, Facebook, Instagram, LinkedIn, Photo, Twitter } from '@mui/icons-material';
+import Android from '@mui/icons-material/Android';
+import Apple from '@mui/icons-material/Apple';
+import Facebook from '@mui/icons-material/Facebook';
+import Instagram from '@mui/icons-material/Instagram';
+import LinkedIn from '@mui/icons-material/LinkedIn';
+import Photo from '@mui/icons-material/Photo';
+import Twitter from '@mui/icons-material/Twitter';
 import { useSession } from 'next-auth/react';
 import Button from '@/components/buttons/btn'
 import TextArea from '@/components/form/textarea'
