@@ -93,7 +93,6 @@ export async function POST(req) {
         
     } else if (name && description &&ask && stage && category && industries && address && website && email_address && contact_number && settings) {
         // create
-        console.log('create here')
         let result = await controller.create({
             user_id: mwareAccount.id,
             name,
@@ -107,7 +106,7 @@ export async function POST(req) {
             email_address,
             contact_number,
             settings: JSON.stringify(settings),
-            status
+            status: 'verified'
         })
         return new NextResponse(helper.response(result, 200, null))
     }
