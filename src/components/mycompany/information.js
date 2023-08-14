@@ -354,9 +354,9 @@ function Information(props) {
                 }
 
             </div>
-            {/* {
+            {
                 editFlag && renderFields()
-            } */}
+            }
 
         </div>
     );
