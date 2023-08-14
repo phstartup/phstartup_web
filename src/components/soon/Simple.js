@@ -1,3 +1,5 @@
+"use client"
+import String from '@/utils/String';
 import React from 'react';
 
 function Simple(props) {
@@ -22,7 +24,12 @@ function Simple(props) {
                 <br />
                 <br />
                 <p className='text-center'>
-                    To join, please contact this email.
+                    Join our WhatsApp group:
+                </p>
+                <p className='text-center'>
+                    {
+                        String.whatsApp
+                    }
                 </p>
             </div>
         </div>

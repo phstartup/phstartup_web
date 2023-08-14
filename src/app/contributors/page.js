@@ -3,10 +3,11 @@ import React from 'react';
 import Breadcrumbs from '@/components/breadcrumbs/Simple'
 import { useSession } from 'next-auth/react';
 import Style from '@/utils/Style';
+import String from '@/utils/String';
 function Page(props) {
     const { data: session } = useSession()
     return (
-        <div className={'w-full float-left ' + (session ? '' : 'mt-[100px] ' + Style.padding)}>
+        <div className={'w-full float-left min-h-[100vh] overflow-hidden ' + (session ? '' : 'mt-[100px] ' + Style.padding)}>
             <Breadcrumbs title="Contributors" />
 
             <div className='w-full float-left mt-[50px] text-justify text-sm'>
@@ -17,7 +18,9 @@ function Page(props) {
                     Join our whatsapp group:
                 </p>
                 <p>
-                    https://chat.whatsapp.com/EzysJ8nag564VmIuSSDNVv
+                    {
+                        String.whatsApp
+                    }
                 </p>
             </div>
         </div>

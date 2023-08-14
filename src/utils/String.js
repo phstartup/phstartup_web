@@ -157,7 +157,8 @@ const String =  {
         value: 'PHP'
     }, {
         value: 'USD'
-    }]
+    }],
+    whatsApp: 'https://chat.whatsapp.com/EzysJ8nag564VmIuSSDNVv'
 }
 
 export default String;
