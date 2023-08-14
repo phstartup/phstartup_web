@@ -39,7 +39,7 @@ function Page(props) {
         <div className={"w-full float-left"}>
 
             <div className="w-full float-left mb-[20px]">
-                <div className="w-[20%]">
+                <div className="lg:w-[20%] xl:w-[20%] 2xl:w-[20%] sm:w-1/2 md:h-1/2 xs:w-1/2">
                     <Select
                         type="text"
                         data={String.pitches}
