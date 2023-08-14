@@ -11,22 +11,22 @@ import FetchLoading from '@/components/loading/SpinnerWhole'
 import Api from '@/lib/api';
 let api = new Api()
 
-const withSession = (Component) => (props) => {
-    const session = useSession()
+// const withSession = (Component) => (props) => {
+//     const session = useSession()
 
-    // if the component has a render property, we are good
-    if (Component.prototype.render) {
-        return <Component session={session} {...props} />
-    }
+//     // if the component has a render property, we are good
+//     if (Component.prototype.render) {
+//         return <Component session={session} {...props} />
+//     }
 
-    // if the passed component is a function component, there is no need for this wrapper
-    throw new Error(
-        [
-            "You passed a function component, `withSession` is not needed.",
-            "You can `useSession` directly in your component.",
-        ].join("\n")
-    )
-}
+//     // if the passed component is a function component, there is no need for this wrapper
+//     throw new Error(
+//         [
+//             "You passed a function component, `withSession` is not needed.",
+//             "You can `useSession` directly in your component.",
+//         ].join("\n")
+//     )
+// }
 
 class Page extends React.Component {
     constructor() {
@@ -112,4 +112,4 @@ class Page extends React.Component {
     };
 }
 
-export default withSession(Page)
+export default Page
