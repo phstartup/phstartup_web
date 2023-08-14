@@ -44,7 +44,8 @@ export default class Company {
                 let pitch = new Pitch()
                 result[index]['pitches'] = await pitch.retrieve({
                     where: {
-                        company_id: item.id
+                        company_id: item.id,
+                        type: '60 Seconds'
                     }
                 })
 
