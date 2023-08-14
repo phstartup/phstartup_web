@@ -8,7 +8,8 @@ import Select from '@/components/form/Select';
 import String from '@/utils/String';
 import { useSession } from 'next-auth/react';
 import Api from '@/lib/api';
-import ReactJson from 'react-json-view'
+import loadable from '@loadable/component';
+const ReactJson = loadable(() => import('react-json-view'));
 
 let api = new Api()
 function Information(props) {
@@ -19,11 +20,8 @@ function Information(props) {
     const [description, setDescription] = useState(null)
     const [descriptionError, setDescriptionError] = useState(null)
     const [stage, setStage] = useState(null)
-    const [stageError, setStageError] = useState(null)
     const [category, setCategory] = useState(null)
-    const [categoryError, setCategoryError] = useState(null)
     const [industries, setIndustries] = useState(null)
-    const [industriesError, setIndustriesError] = useState(null)
     const [address, setAddress] = useState(null)
     const [addressError, setAddressError] = useState(null)
     const [website, setWebsite] = useState(null)
@@ -73,7 +71,7 @@ function Information(props) {
             setStage(String.stages[0].value)
             setAsk(String.ask[0].value)
         }
-    }, [props, socialMedias, mobileApps])
+    }, [])
 
     const submit = async (item) => {
         if (!session) return
@@ -356,9 +354,9 @@ function Information(props) {
                 }
 
             </div>
-            {
+            {/* {
                 editFlag && renderFields()
-            }
+            } */}
 
         </div>
     );
