@@ -222,7 +222,9 @@ function Loggedin(props) {
                                         key={index}
                                         className='hover:font-bold cursor-pointer w-full float-left pt-[20px] pb-[20px] text-sm'
                                         onClick={() => {
-                                            router.push('/' + item.toLowerCase())
+                                            signOut({
+                                                callbackUrl: `${window.location.origin}`
+                                            })
                                             setToggle(!toggle)
                                         }}
                                     >
