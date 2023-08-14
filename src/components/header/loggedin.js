@@ -162,11 +162,11 @@ function Loggedin(props) {
                     </div>
                 </div>
             </div>
-            <div className='sm:block md:block xs:block lg:hidden 2xl:hidden'>
+            <div className='sm:block md:block xs:block lg:hidden 2xl:hidden xl:hidden'>
                 <div
                     className='w-full h-[80px] float-left href-link px-[20px] pr-[20px] flex items-center content-center justify-between'
                 >
-                    <div className='w-[5g0%]'>
+                    <div className='w-[40%]'>
                         <Logo />
                     </div>
                     <div>
