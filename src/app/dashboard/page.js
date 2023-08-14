@@ -5,6 +5,7 @@ import Breadcrumbs from '@/components/breadcrumbs/Simple'
 import { useSession } from "next-auth/react";
 import Api from '@/lib/api';
 import CardSkeleton from '@/components/loading/Card'
+import SimpleComingSoon from '@/components/soon/Simple';
 let api = new Api()
 function Page(props) {
   const [fData, setFData] = useState([])
@@ -78,7 +79,14 @@ function Page(props) {
         )
       }
 
-      <div className="w-full float-left mt-[20px]">
+      <div className='w-full float-left mt-[20px]'>
+        <SimpleComingSoon
+          title="Dashboard"
+          description="Display summary of our startup community in the Philippines."
+        />
+      </div>
+
+      {/* <div className="w-full float-left mt-[20px]">
         <div className="float-left w-full">
           <h1 className="text-lg font-bold mb-[20px]">Your Startup Updates</h1>
           {
@@ -99,7 +107,7 @@ function Page(props) {
           }
         </div>
 
-      </div>
+      </div> */}
 
     </div>
   );
