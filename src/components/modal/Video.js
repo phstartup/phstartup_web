@@ -23,10 +23,17 @@ function ModalVideo(props) {
     const { data: session } = useSession()
     const [comments, setComments] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [length, setLength ] = useState(null)
 
     useEffect(() => {
         getData()
         submitView()
+        console.log({
+            data: props.data
+        })
+        if(props.data){
+            setLength(getTime(props.data.type))
+        }
     }, [])
 
     const getData = async () => {
@@ -61,6 +68,15 @@ function ModalVideo(props) {
             })
         }
 
+    }
+
+    const getTime = (type) => {
+        switch(type.toLowerCase()){
+            case '120 seconds': return 120;
+            case '60 seconds': return 60;
+            case '300 seconds': return 300;
+            default: return 60;
+        }
     }
 
     const submit = async () => {
@@ -164,8 +180,14 @@ function ModalVideo(props) {
                     </div>
                     <div className={'w-full float-left min-h-[200px] overflow-y-hidden bg-white ' + (session ? 'dark:bg-gray-900' : 'dark:bg-black')}>
                         {
-                            props.url && (
-                                <Youtube url={props.url} />
+                            props.url && length && (
+                                <Youtube url={props.url} 
+                                    length={length}
+                                    onEnd={() => {
+                                        props.onClose()
+                                    }}
+                                
+                                />
                             )
                         }
                     </div>
