@@ -4,7 +4,7 @@ import React from 'react';
 
 function Simple(props) {
     return (
-        <div className='w-full h-[50vh] flex items-center content-center justify-center'>
+        <div className='w-full h-full flex items-center content-center justify-center'>
             <div className='text-center'>
                 <span>
                     <SvgIcon component={Face5}
