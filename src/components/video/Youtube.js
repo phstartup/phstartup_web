@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import YouTube from 'react-youtube';
+import loadable from '@loadable/component';
+const YouTube = loadable(() => import('react-youtube'));
 
 const opts = {
     height: '500px',
@@ -7,7 +8,8 @@ const opts = {
     playerVars: {
         autoplay: 1,
         controls: 0,
-        end: 10
+        end: 10,
+        start: 0
     },
 };
 const max = 10
@@ -37,10 +39,6 @@ function Youtube(props) {
     const manageTime = async () => {
         window.timer++
         setPercent(window.timer)
-        console.log({
-           timer: window.timer, 
-            length
-        })
         if (window.timer >= length) {
             _onStop()
         }
