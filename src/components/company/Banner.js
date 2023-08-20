@@ -67,11 +67,11 @@ function Banner(props) {
         if (!data) return
 
         setBtnLoading(true)
-        await api.post('/api/vouches', { 
+        await api.post('/api/vouches', {
             content: message,
             payload: 'company',
             payload_value: data.id
-         }, session?.accessToken, (response) => {
+        }, session?.accessToken, (response) => {
             setTimeout(() => {
                 setBtnLoading(false)
                 setVouchModal(false)
@@ -85,6 +85,68 @@ function Banner(props) {
             }, 1000)
 
         })
+    }
+
+    const renderActions = (style, right) => {
+        return (
+            <div className={'w-full float-left ' + style}>
+                <span>
+                    {
+                        data && data.website && (
+                            <span className=' float-left  mt-[20px]'>
+                                <Button
+                                    style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                                    title="View Website"
+                                    onPress={() => {
+                                        window.open(data.website, '_blank')
+                                    }}
+                                />
+                            </span>
+                        )
+                    }
+                    {
+                        data && data.email_address && (
+                            <span className=' float-left  mt-[20px] ml-[5px]'>
+                                <Button
+                                    style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                                    title={data.email_address}
+                                    onPress={() => {
+                                        //
+                                    }}
+                                />
+                            </span>
+                        )
+                    }
+
+                    {
+                        data && data.contact_number && (
+                            <span className=' float-left  mt-[20px] ml-[5px]'>
+                                <Button
+                                    style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                                    title={data.contact_number}
+                                    onPress={() => {
+                                        //
+                                    }}
+                                />
+                            </span>
+                        )
+                    }
+                </span>
+                {
+                    data && !data.vouch_flag && (
+                        <span className={' mt-[20px] ' + right}>
+                            <Button
+                                style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                                title="I can vouch"
+                                onPress={() => {
+                                    vouchSubmit()
+                                }}
+                            />
+                        </span>
+                    )
+                }
+            </div>
+        )
     }
 
     const renderProfile = () => {
@@ -133,18 +195,18 @@ function Banner(props) {
                                         </h1>
                                         <span className='w-full float-left font-semibold'>
                                             {
-                                               'LOOKING FOR ' + props.data.ask.toUpperCase() + '(' + props.data.stage.toUpperCase() + ')'
+                                                'LOOKING FOR ' + props.data.ask.toUpperCase() + '(' + props.data.stage.toUpperCase() + ')'
                                             }
                                         </span>
-                                        <span className='text-sm w-full'>
+                                        <span className='text-sm w-full float-left'>
                                             {
                                                 props.data.description
                                             }
                                         </span>
-                                        <span>
+                                        <span className='sm:w-full xs:w-full md:w-full lg:w-auto 2xl:w-auto xl:w-auto float-left mt-[10px]'>
                                             {
                                                 socialMedias && (
-                                                    <span className='ml-[20px]'>
+                                                    <span>
                                                         {
                                                             socialMedias.facebook && (
                                                                 <SvgIcon
@@ -230,69 +292,24 @@ function Banner(props) {
                                             }
                                         </span>
                                     </span>
-                                    <span className='w-full float-left flex justify-between ml-[20px]'>
-                                        <span>
-                                            {
-                                                data && data.website && (
-                                                    <span className=' float-left  mt-[20px]'>
-                                                        <Button
-                                                            style={' bg-black dark:bg-white text-white dark:text-gray-900'}
-                                                            title="View Website"
-                                                            onPress={() => {
-                                                                window.open(data.website, '_blank')
-                                                            }}
-                                                        />
-                                                    </span>
-                                                )
-                                            }
-                                            {
-                                                data && data.email_address && (
-                                                    <span className=' float-left  mt-[20px] ml-[5px]'>
-                                                        <Button
-                                                            style={' bg-black dark:bg-white text-white dark:text-gray-900'}
-                                                            title={data.email_address}
-                                                            onPress={() => {
-                                                                //
-                                                            }}
-                                                        />
-                                                    </span>
-                                                )
-                                            }
-
-                                            {
-                                                data && data.contact_number && (
-                                                    <span className=' float-left  mt-[20px] ml-[5px]'>
-                                                        <Button
-                                                            style={' bg-black dark:bg-white text-white dark:text-gray-900'}
-                                                            title={data.contact_number}
-                                                            onPress={() => {
-                                                                //
-                                                            }}
-                                                        />
-                                                    </span>
-                                                )
-                                            }
-                                        </span>
+                                    <span className='w-full float-left lg:block xl:block 2xl:block sm:hidden xs:hidden md:hidden'>
                                         {
-                                            data && !data.vouch_flag && (
-                                                <span className='float-left mt-[20px]'>
-                                                    <Button
-                                                        style={' bg-black dark:bg-white text-white dark:text-gray-900'}
-                                                        title="I can vouch"
-                                                        onPress={() => {
-                                                            vouchSubmit()
-                                                        }}
-                                                    />
-                                                </span>
-                                            )
+                                            renderActions('flex justify-between', 'float-right')
                                         }
                                     </span>
+
                                 </div>
                             </div>
                         )
                     }
 
                 </div>
+
+                <span className='w-full float-left lg:hidden xl:hidden 2xl:hidden sm:block xs:block md:block'>
+                    {
+                        renderActions('', 'float-left ml-[5px]')
+                    }
+                </span>
 
             </div>
         )
