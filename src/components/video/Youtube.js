@@ -11,13 +11,12 @@ const opts = {
     },
 };
 const max = 10
-let timer = 0
+window.timer = 0
+window.interval = null
 function Youtube(props) {
     const [options, setOptions] = useState(opts)
     const [length, setLength] = useState(0)
     const [percent, setPercent] = useState(0)
-    const [interval, setIntervalC] = useState(null) 
-    let end = 0
 
     useEffect(() => {
         setOptions({
@@ -30,20 +29,26 @@ function Youtube(props) {
             },
         })
         setLength(props.length ? props.length : max)
+        clearInterval(window.interval)
+        window.interval = null
+        window.timer = 0
     }, [])
 
     const manageTime = async () => {
-        timer++
-        setPercent(timer)
-        end = props.length ? props.length : max
-        if (timer >= end) {
+        window.timer++
+        setPercent(window.timer)
+        console.log({
+           timer: window.timer, 
+            length
+        })
+        if (window.timer >= length) {
             _onStop()
         }
     }
 
     const _onStop = () => {
-        clearInterval(interval)
-        setIntervalC(null)
+        clearInterval(window.interval)
+        window.interval = null
     }
 
 
@@ -58,28 +63,25 @@ function Youtube(props) {
                             videoId={props.url}
                             opts={options}
                             onReady={(e) => {
-                                console.log('on ready')
                                 e.target.playVideo();
-                                if(interval == null){
-                                    setIntervalC(setInterval(() => manageTime(), 1000));
+                                if(window.interval == null){
+                                    window.interval = setInterval(() => manageTime(), 1000);
                                 }
                             }}
                             onEnd={(e) => {
                                 e.target.stopVideo()
-                                clearInterval(interval)
-                                setIntervalC(null)
+                                clearInterval(window.interval)
+                                window.interval = null
                             }}
                             onPlay={(e) => {
-                                console.log('on play')
-                                if(interval == null){
-                                    setIntervalC(setInterval(() => manageTime(), 1000));
+                                if(window.interval == null){
+                                    window.interval = setInterval(() => manageTime(), 1000);
                                 }
                             }}
                             onPause={(e) => {
-                                console.log('on pause')
                                 e.target.pauseVideo()
-                                clearInterval(interval)
-                                setIntervalC(null)
+                                clearInterval(window.interval)
+                                window.interval = null
                             }}
                             />
                     )
