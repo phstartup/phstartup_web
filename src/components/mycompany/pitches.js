@@ -19,7 +19,7 @@ let api = new Api()
 function Pitches(props) {
     const { data: session } = useSession()
     const [createFlag, setCreateFlag] = useState(false)
-    const [url, setUrl] = useState('https://www.youtube.com/embed/')
+    const [url, setUrl] = useState()
     const [urlError, setUrlError] = useState(null)
     const [type, setType] = useState(null)
     const [btnLoading, setBtnLoading] = useState(false)
