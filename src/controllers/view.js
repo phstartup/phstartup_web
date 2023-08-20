@@ -15,6 +15,31 @@ export default class View {
         return result;
     }
 
+    async createUnique(data, user = null) {
+        console.log('hello')
+        if(user){
+            let isExist = await this.retrieveFirst({
+                where: {
+                    payload: data.payload,
+                    payload_value: data.payload_value,
+                    user_id: user.id
+                }
+            })
+
+            if(!isExist){
+                return await this.create({
+                    ...data,
+                    user_id: user.id
+                })
+            }
+        }else{
+            return await this.create({
+                ...data,
+                user_id: '0'
+            })
+        }
+    }
+
     async retrieveFirst(condition) {
         let nCondition = {
             where: {

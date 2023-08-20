@@ -3,6 +3,7 @@ import Service from './Service';
 import Achievement from './Achievement'
 import Vouch from './vouch';
 import Team from './team'
+import View from './view'
 const { Prisma } = require('@prisma/client')
 import { prisma } from '@/lib/db'
 export default class Company {
@@ -65,9 +66,9 @@ export default class Company {
 
                 let vouch = new Vouch()
 
-                let rVouch = null 
-                
-                if(user){
+                let rVouch = null
+
+                if (user) {
                     rVouch = await vouch.retrieve({
                         where: {
                             payload_value: result.id,
@@ -75,7 +76,7 @@ export default class Company {
                         }
                     })
                 }
-                
+
                 result['vouch_flag'] = rVouch && rVouch.length > 0 ? true : false
                 result['vouches'] = await vouch.retrieve({
                     where: {
@@ -97,7 +98,7 @@ export default class Company {
         return result ? result : null
     }
 
-    async retrieveFirstWithAccount(condition, user) {
+    async retrieveFirstWithAccount(condition, user, createView = false) {
         let nCondition = {
             where: {
                 ...condition.where,
@@ -107,6 +108,15 @@ export default class Company {
         let result = await prisma.companies.findFirst(nCondition)
 
         if (result) {
+            if (createView) {
+                let view = new View()
+                await view.createUnique({
+                    payload: 'company',
+                    payload_value: result.id
+                }, user)
+            }
+
+
             let pitch = new Pitch()
             result['pitches'] = await pitch.retrieve({
                 where: {
@@ -154,7 +164,7 @@ export default class Company {
         return result ? result : null
     }
 
-    async retrieveFirst(condition) {
+    async retrieveFirst(condition, createView = false) {
         let nCondition = {
             where: {
                 ...condition.where,
@@ -164,6 +174,14 @@ export default class Company {
         let result = await prisma.companies.findFirst(nCondition)
 
         if (result) {
+            if(createView){
+                let view = new View()
+                await view.createUnique({
+                    payload: 'company',
+                    payload_value: result.id
+                })
+            }
+
             let pitch = new Pitch()
             result['pitches'] = await pitch.retrieve({
                 where: {
@@ -205,15 +223,15 @@ export default class Company {
             }
         }
         let result = await prisma.companies.findFirst(nCondition)
-        if(result){
+        if (result) {
             result['settings'] = result.settings ? JSON.parse(result.settings) : null
         }
         return result
     }
 
     async retrieveByCondition(condition) {
-        let result =  await prisma.companies.findMany(condition)
-        if(result && result.length > 0){
+        let result = await prisma.companies.findMany(condition)
+        if (result && result.length > 0) {
             for (let index = 0; index < result.length; index++) {
                 const item = result[index];
                 result[index]['settings'] = item.settings ? JSON.parse(item.settings) : null

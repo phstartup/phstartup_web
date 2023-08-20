@@ -27,7 +27,7 @@ export async function GET(req) {
                 where: {
                     id: id
                 }
-            }, mwareAccount)
+            }, mwareAccount, true)
             result = result ? result : null
             return new NextResponse(helper.response(result, 200, null));
         } else {
@@ -35,7 +35,7 @@ export async function GET(req) {
                 where: {
                     id: id
                 }
-            })
+            }, true)
             result = result ? result : null
             return new NextResponse(helper.response(result, 200, null));
         }
