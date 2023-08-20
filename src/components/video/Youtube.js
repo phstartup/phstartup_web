@@ -13,8 +13,6 @@ const opts = {
     },
 };
 const max = 10
-window.timer = 0
-window.interval = null
 function Youtube(props) {
     const [options, setOptions] = useState(opts)
     const [length, setLength] = useState(0)
