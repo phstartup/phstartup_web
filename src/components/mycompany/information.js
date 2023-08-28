@@ -62,10 +62,13 @@ function Information(props) {
             if (data.settings) {
                 setSocialMedias(data.settings.social_medias ? data.settings.social_medias : socialMedias)
                 setMobileApps(data.settings.mobile_apps ? data.settings.mobile_apps : mobileApps)
+                setSubIndustry(data.settings.sub_industry ? data.settings.sub_industry : null)
             }
+            manageSubIndustries(data.industries)
         } else {
             setCategory(String.categories[0].value)
             setIndustries(String.industries[0].value)
+            manageSubIndustries(String.industries[0].value)
         }
     }, [])
 
@@ -94,6 +97,8 @@ function Information(props) {
             description,
             category,
             industries,
+            ask: data ? data.ask : null,
+            stage: data ? data.stage : null,
             address,
             website,
             email_address: emailAddress,
@@ -101,10 +106,29 @@ function Information(props) {
             settings: {
                 ...settings,
                 social_medias: socialMedias,
-                mobile_apps: mobileApps
+                mobile_apps: mobileApps,
+                sub_industry: subIndustry
             }
         })
     }
+
+    const manageSubIndustries = (value) => {
+        let industries = String.industries.filter((item) => {
+            return item.value == value
+        })
+        if(industries && industries.length > 0){
+            let subs = industries[0].sub.map((item) => {
+                return {
+                    value: item
+                }
+            })
+            setSubIndustries([])
+            setTimeout(() => {
+                setSubIndustries(subs)
+            }, 10)
+        }
+    }
+
     const renderFields = () => {
         return (
             <div className='w-full float-left text-sm mt-[20px]'>
@@ -167,20 +191,7 @@ function Information(props) {
                             placeholder="Select Industries"
                             onChange={(value) => {
                                 setIndustries(value)
-                                let industries = String.industries.filter((item) => {
-                                    return item.value == value
-                                })
-                                if(industries && industries.length > 0){
-                                    let subs = industries[0].sub.map((item) => {
-                                        return {
-                                            value: item
-                                        }
-                                    })
-                                    setSubIndustries([])
-                                    setTimeout(() => {
-                                        setSubIndustries(subs)
-                                    }, 10)
-                                }
+                                manageSubIndustries(value)
                             }}
                         />
                     </div>

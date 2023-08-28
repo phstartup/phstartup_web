@@ -83,6 +83,17 @@ function Stage(props) {
                         }}
                     />
                 </div>
+                <div className='float-left w-full mt-[20px]' >
+                    <Button
+                        style={' bg-black dark:bg-white text-white dark:text-gray-900'}
+                        title={"Save"}
+                        loading={btnLoading}
+                        onPress={() => {
+                            validate()
+                        }}
+                    />
+
+                </div>
             </div>
         )
     }

@@ -91,7 +91,7 @@ export async function POST(req) {
             return new NextResponse(helper.response(result, 200, null))
         }
         
-    } else if (name && description &&ask && stage && category && industries && address && website && email_address && contact_number && settings) {
+    } else if (name && description && category && industries && address && website && email_address && contact_number && settings) {
         // create
         let result = await controller.create({
             user_id: mwareAccount.id,
