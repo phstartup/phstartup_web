@@ -47,7 +47,7 @@ model companies {
   stage          String    @default("pre-seed")
   ask            String    @default("funding")
   category       String
-  industries     String    @db.LongText
+  industries     String?   @db.LongText
   address        String
   website        String
   email_address  String

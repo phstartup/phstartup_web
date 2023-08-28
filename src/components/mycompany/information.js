@@ -43,6 +43,8 @@ function Information(props) {
         twitter: 'https://twitter.com',
         instagram: 'https://instagram.com'
     })
+    const [subIndustries, setSubIndustries] = useState([])
+    const [subIndustry, setSubIndustry] = useState(null)
 
     useEffect(() => {
         if (props.data) {
@@ -165,21 +167,40 @@ function Information(props) {
                             placeholder="Select Industries"
                             onChange={(value) => {
                                 setIndustries(value)
+                                let industries = String.industries.filter((item) => {
+                                    return item.value == value
+                                })
+                                if(industries && industries.length > 0){
+                                    let subs = industries[0].sub.map((item) => {
+                                        return {
+                                            value: item
+                                        }
+                                    })
+                                    setSubIndustries([])
+                                    setTimeout(() => {
+                                        setSubIndustries(subs)
+                                    }, 10)
+                                }
                             }}
                         />
                     </div>
-                    <div className='w-1/2 float-left'>
-                        <h1 className='text-sm mb-[20px]'>Sub Industry</h1>
-                        <Select
-                            type="text"
-                            data={String.industries}
-                            selected={industries}
-                            placeholder="Select Industries"
-                            onChange={(value) => {
-                                setIndustries(value)
-                            }}
-                        />
-                    </div>
+                    {
+                        subIndustries && (
+                            <div className='w-1/2 float-left'>
+                                <h1 className='text-sm mb-[20px]'>Sub Industry</h1>
+                                <Select
+                                    type="text"
+                                    data={subIndustries}
+                                    selected={subIndustry}
+                                    placeholder="Select Industries"
+                                    onChange={(value) => {
+                                        setSubIndustry(value)
+                                    }}
+                                />
+                            </div>
+                        )
+                    }
+
 
                 </div>
 
