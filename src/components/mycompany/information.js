@@ -19,7 +19,6 @@ function Information(props) {
     const [nameError, setNameError] = useState(null)
     const [description, setDescription] = useState(null)
     const [descriptionError, setDescriptionError] = useState(null)
-    const [stage, setStage] = useState(null)
     const [category, setCategory] = useState(null)
     const [industries, setIndustries] = useState(null)
     const [address, setAddress] = useState(null)
@@ -44,7 +43,6 @@ function Information(props) {
         twitter: 'https://twitter.com',
         instagram: 'https://instagram.com'
     })
-    const [ask, setAsk] = useState(null)
 
     useEffect(() => {
         if (props.data) {
@@ -57,19 +55,15 @@ function Information(props) {
             setWebsite(data.website)
             setEmailAddress(data.email_address)
             setContactNumber(data.contact_number)
-            setStage(data.stage)
-            setAsk(data.ask)
             setData(data)
             setSettings(data.settings)
             if (data.settings) {
                 setSocialMedias(data.settings.social_medias ? data.settings.social_medias : socialMedias)
                 setMobileApps(data.settings.mobile_apps ? data.settings.mobile_apps : mobileApps)
             }
-        }else{
+        } else {
             setCategory(String.categories[0].value)
             setIndustries(String.industries[0].value)
-            setStage(String.stages[0].value)
-            setAsk(String.ask[0].value)
         }
     }, [])
 
@@ -96,8 +90,6 @@ function Information(props) {
             id: data ? data.id : null,
             name,
             description,
-            stage,
-            ask,
             category,
             industries,
             address,
@@ -151,30 +143,6 @@ function Information(props) {
                     />
                 </div>
                 <div className='w-full float-left text-sm'>
-                    <h1 className='text-sm mb-[20px]'>Are you looking for</h1>
-                    <Select
-                        type="text"
-                        data={String.ask}
-                        selected={ask}
-                        placeholder="Select Ask"
-                        onChange={(value) => {
-                            setAsk(value)
-                        }}
-                    />
-                </div>
-                <div className='w-full float-left text-sm mt-[20px]'>
-                    <h1 className='text-sm mb-[20px]'>Company Stage</h1>
-                    <Select
-                        type="text"
-                        data={String.stages}
-                        selected={stage}
-                        placeholder="Select Stage"
-                        onChange={(value) => {
-                            setStage(value)
-                        }}
-                    />
-                </div>
-                <div className='w-full float-left text-sm mt-[20px]'>
                     <h1 className='text-sm mb-[20px]'>Initiative Category</h1>
                     <Select
                         type="text"
@@ -188,16 +156,31 @@ function Information(props) {
                 </div>
 
                 <div className='w-full float-left text-sm mt-[20px]'>
-                    <h1 className='text-sm mb-[20px]'>Industry</h1>
-                    <Select
-                        type="text"
-                        data={String.industries}
-                        selected={industries}
-                        placeholder="Select Industries"
-                        onChange={(value) => {
-                            setIndustries(value)
-                        }}
-                    />
+                    <div className='w-1/2 float-left'>
+                        <h1 className='text-sm mb-[20px]'>Industry</h1>
+                        <Select
+                            type="text"
+                            data={String.industries}
+                            selected={industries}
+                            placeholder="Select Industries"
+                            onChange={(value) => {
+                                setIndustries(value)
+                            }}
+                        />
+                    </div>
+                    <div className='w-1/2 float-left'>
+                        <h1 className='text-sm mb-[20px]'>Sub Industry</h1>
+                        <Select
+                            type="text"
+                            data={String.industries}
+                            selected={industries}
+                            placeholder="Select Industries"
+                            onChange={(value) => {
+                                setIndustries(value)
+                            }}
+                        />
+                    </div>
+
                 </div>
 
                 <div className='w-full float-left text-sm mt-[20px]'>

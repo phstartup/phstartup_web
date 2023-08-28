@@ -89,11 +89,225 @@ const String =  {
         value: 'Others'
     }],
     industries: [{
-        value: "Finance"
+        value: "Technology",
+        sub: [
+            'Software Development',
+            'Artificial Intelligence (AI)',
+            'Machine Learning',
+            'Internet of Things (IoT)',
+            'Cybersecurity',
+            'E-commerce',
+            'Mobile Applications',
+            'Cloud Computing'
+        ]
     }, {
-        value: 'Hotel'
+        value: 'Healthcare',
+        sub: [
+            'Biotechnology',
+            'HealthTech',
+            'Telemedicine',
+            'Medical Devices',
+            'Digital Health',
+            'Health and Wellness',
+        ]
     }, {
-        value: 'Restaurant'
+        value: 'Finance and Fintech',
+        sub: [
+            'Banking and Payments',
+            'Cryptocurrency and Blockchain',
+            'Personal Finance',
+            'Insurtech',
+            'Wealth Management',
+            'Financial Services',
+        ]
+    }, {
+        value: 'E-commerce and Retail',
+        sub: [
+            'Online Marketplaces',
+            'Direct-to-Consumer (D2C)',
+            'Fashion and Apparel',
+            'Food and Grocery Delivery',
+            'Subscription Services',
+            'Retail Technology'
+        ]
+    }, {
+        value: 'Education',
+        sub: [
+            'EdTech',
+            'Online Learning Platforms',
+            'Skill Development',
+            'Language Learning',
+            'Educational Content',
+            'E-learning Tools',
+        ]
+    }, {
+        value: 'Sustainability and Clean Energy',
+        sub: [
+            'Renewable Energy',
+            'Energy Efficiency',
+            'Waste Management',
+            'Sustainable Agriculture',
+            'CleanTech',
+            'Environmental Services',
+        ]
+    }, {
+        value: 'Media and Entertainment',
+        sub: [
+            'Streaming Services',
+            'Digital Media',
+            'Gaming',
+            'Content Creation and Distribution',
+            'Virtual Reality (VR) and Augmented Reality (AR)',
+            'Music and Audio',
+        ]
+    }, {
+        value: 'Travel and Hospitality',
+        sub: [
+            'Travel Tech',
+            'Accommodation and Lodging',
+            'Transportation',
+            'Tourism Services',
+            'Vacation Rentals',
+            'Experiential Travel',
+        ]
+    }, {
+        value: 'Food and Beverage',
+        sub: [
+            'FoodTech',
+            'Food Delivery',
+            'Restaurant Technology',
+            'Specialty Foods',
+            'Beverage Production',
+            'Agriculture Technology (AgTech)',
+        ]
+    }, {
+        value: 'Manufacturing and Hardware',
+        sub: [
+            'Robotics',
+            '3D Printing',
+            'Industrial Automation',
+            'Consumer Electronics',
+            'Wearable Technology',
+            'Hardware Development',
+        ]
+    }, {
+        value: 'Real Estate and Property Technology',
+        sub: [
+            'PropTech',
+            'Real Estate Marketplaces',
+            'Property Management',
+            'Smart Homes',
+            'Construction Technology',
+            'Real Estate Investment',
+        ]
+    }, {
+        value: 'Transportation and Mobility',
+        sub: [
+            'Ride-sharing and Transportation Network Companies',
+            'Electric Vehicles',
+            'Autonomous Vehicles',
+            'Micromobility (e.g., scooters, bikes)',
+            'Logistics and Supply Chain',
+            'Mobility-as-a-Service (MaaS)',
+        ]
+    }, {
+        value: 'HR and Workplace',
+        sub: [
+            'HR Tech',
+            'Talent Acquisition',
+            'Employee Benefits',
+            'Workforce Management',
+            'Employee Engagement',
+            'Workplace Productivity',
+        ]
+    }, {
+        value: 'Social Impact and Non-Profit',
+        sub: [
+            'Social Enterprises',
+            'Non-Profit Organizations',
+            'Impact Investing',
+            'Sustainable Development',
+            'Community Development',
+            'Corporate Social Responsibility (CSR)',
+        ]
+    }, {
+        value: 'Art and Culture',
+        sub: [
+            'ArtTech',
+            'Creative Platforms',
+            'Cultural Experiences',
+            'Art Marketplaces',
+            'Museums and Galleries',
+            'Performing Arts',
+        ]
+    }, {
+        value: 'Legal and Compliance',
+        sub: [
+            'Legal Tech',
+            'Contract Management',
+            'Compliance Solutions',
+            'Intellectual Property',
+            'Legal Services Innovation',
+            'Regulatory Technology (RegTech)',
+        ]
+    }, {
+        value: 'Gaming and Esports',
+        sub: [
+            'Game Development',
+            'Esports Leagues and Tournaments',
+            'Gaming Hardware and Accessories',
+            'Gaming Content and Streaming',
+            'Esports Betting and Fantasy Sports',
+        ]
+    }, {
+        value: 'Agriculture and Food Technology',
+        sub: [
+            'AgTech',
+            'Indoor Farming',
+            'Precision Agriculture',
+            'Vertical Farming',
+            'AgriRobotics',
+            'Agricultural Analytics',
+        ]
+    }, {
+        value: 'B2B SaaS (Software as a Service)',
+        sub: [
+            'Enterprise Software',
+            'Business Intelligence (BI)',
+            'Customer Relationship Management (CRM)',
+            'Project Management',
+            'Marketing Automation',
+            'Collaboration Tools',
+        ]
+    }, {
+        value: 'Robotics and Automation',
+        sub: [
+            'Industrial Robotics',
+            'Robotic Process Automation (RPA)',
+            'Drones and UAVs',
+            'Automation Software',
+            'AI-Powered Robotics',
+            'Warehouse Automation'
+        ]
+    }, {
+        value: 'Investor',
+        sub: [
+            'Angel Investor',
+            'Venture Capitalist',
+            'Private Equity Investor',
+            'Corporate Investor',
+            'Crowdfunding Platform',
+            'Family Office',
+            'Accelerator',
+            'Incubator',
+            'Government Fund',
+            'Strategic Investor',
+            'High Net Worth Individual',
+            'Social Impact Investor',
+            'Technology Investor',
+            'Real Estate Investor',
+            'Retail Investor'
+        ]
     }],
     pitches: [{
         value: '60 Seconds'
@@ -134,11 +348,29 @@ const String =  {
         value: 'Exit'
     }],
     ask: [{
-        value: 'Funding'
+        value: 'Angel Investor'
     }, {
-        value: 'Partnership'
+        value: 'Venture Capital'
     }, {
-        value: 'Network'
+        value: 'Private Equity'
+    }, {
+        value: 'Crowdfunding'
+    }, {
+        value: 'Government Grants'
+    }, {
+        value: 'Debt Financing'
+    }, {
+        value: 'Initial Coin Offering (ICO)'
+    }, {
+        value: 'Market Validation'
+    },{
+        value: 'Revenue Sharing'
+    }, {
+        value: 'Partnerships'
+    }, {
+        value: 'Corporate Investments'
+    }, {
+        value: 'Strategic Alliances'
     }],
     accountTypes: [{
         value: 'Student'

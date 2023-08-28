@@ -5,6 +5,7 @@ import Information from '@/components/mycompany/information';
 import Banner from '@/components/mycompany/Banner';
 import Services from '@/components/mycompany/Services'
 import Pitches from '@/components/mycompany/pitches'
+import Stage from '@/components/mycompany/stage'
 import Team from '@/components/mycompany/team'
 import { useSession } from 'next-auth/react';
 import FetchLoading from '@/components/loading/SpinnerWhole'
@@ -54,6 +55,7 @@ function MyCompany(props) {
                         {
                             data && (
                                 <div className='w-full float-left'>
+                                    <Stage data={data} getData={() => getData()}/>
                                     <Team data={data} getData={() => getData()} />
                                     <Pitches data={data} getData={() => getData()} />
                                     <Services data={data} getData={() => getData()} />
