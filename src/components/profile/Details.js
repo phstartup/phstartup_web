@@ -23,6 +23,10 @@ function Details(props) {
     })
     const { data: session } = useSession()
     const [btnLoading, setBtnLoading] = useState(false)
+    const [gender, setGender] = useState(null)
+    const [attainment, setAttainment] = useState(null)
+    const [course, setCourse] = useState(null)
+    const [courseError, setCourseError] = useState(null)
 
     useEffect(() => {
         if (session && session.user) {
@@ -32,6 +36,11 @@ function Details(props) {
                 setAbout(details.about)
                 setType(details.type)
                 setSocialMedias(details.social_links)
+                setCourse(details.course)
+                setAttainment(details.attainment)
+            }else{
+                setGender('Male')
+                setAttainment('Bachelor')
             }
         }
     }, [])
@@ -47,9 +56,11 @@ function Details(props) {
             details: JSON.stringify({
                 about,
                 type,
-                social_links: socialMedias
+                social_links: socialMedias,
+                attainment,
+                course
             })
-         }, session?.accessToken, (response) => {
+        }, session?.accessToken, (response) => {
             setTimeout(() => {
                 setBtnLoading(false)
                 window.location.reload()
@@ -95,6 +106,60 @@ function Details(props) {
                         size: 2,
                         column: 'About',
                         error: aboutError
+                    }}
+                />
+            </div>
+            <div className='w-full float-left text-sm'>
+                <h1 className='text-sm mb-[20px]'>Gender</h1>
+                <Select
+                    type="text"
+                    data={[{
+                        value: 'Male'
+                    }, {
+                        value: 'Female'
+                    }, {
+                        value: 'Others'
+                    }]}
+                    selected={gender}
+                    placeholder="Select Gender"
+                    onChange={(value) => {
+                        setGender(value)
+                    }}
+                />
+            </div>
+            <div className='w-full float-left text-sm mt-[20px]'>
+                <h1 className='text-sm mb-[20px]'>Highest Education Attainment</h1>
+                <Select
+                    type="text"
+                    data={[{
+                        value: 'Bachelor'
+                    }, {
+                        value: 'Graduate Studies'
+                    }, {
+                        value: 'Doctorate'
+                    }]}
+                    selected={attainment}
+                    placeholder="Select Attainment"
+                    onChange={(value) => {
+                        setAttainment(value)
+                    }}
+                />
+            </div>
+            <div className='w-full float-left text-sm mt-[20px]'>
+                <h1 className='text-sm mb-[20px]'>Field of study</h1>
+                <TextInput
+                    type="text"
+                    placeholder="Field of study of your highest education attainment"
+                    value={course}
+                    onChange={(value, error) => {
+                        setCourse(value)
+                        setCourseError(error)
+                    }}
+                    validation={{
+                        type: 'text',
+                        size: 2,
+                        column: 'Course',
+                        error: courseError
                     }}
                 />
             </div>
