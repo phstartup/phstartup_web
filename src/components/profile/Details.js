@@ -132,6 +132,10 @@ function Details(props) {
                 <Select
                     type="text"
                     data={[{
+                        value: 'Secondary'
+                    }, {
+                        value: 'Tertiary'
+                    }, {
                         value: 'Bachelor'
                     }, {
                         value: 'Graduate Studies'
