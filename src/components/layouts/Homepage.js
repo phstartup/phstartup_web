@@ -20,7 +20,8 @@ const protectedPages = [
 
 const loginRegiser = [
     '/login',
-    '/register'
+    '/register',
+    '/'
 ]
 
 function Homepage({ children }) {
@@ -31,7 +32,7 @@ function Homepage({ children }) {
     useEffect(() => {
         const securedPage = async () => {
             let localSession = await getSession()
-            if (localSession && pathname === '/') {
+            if (localSession && loginRegiser.includes(pathname)) {
                 router.push('/dashboard')
                 setTimeout(() => {
                     setLoading(false)
