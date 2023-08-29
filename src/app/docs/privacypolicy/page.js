@@ -86,7 +86,7 @@ function Page(props) {
                     2. Purpose of Collection
                 </p>
                 <p>
-                    We collect personal information to facilitate the use of PHStartup.org, provide our services, and improve our platform's functionalities. Specifically, we use your personal information for the following purposes:
+                    We collect personal information to facilitate the use of PHStartup.org, provide our services, and improve our platform&apos;s functionalities. Specifically, we use your personal information for the following purposes:
                 </p>
                 <p>
                     a. To create and manage your account on PHStartup.org.
@@ -176,7 +176,7 @@ function Page(props) {
                     1. How We Use Personal Information
                 </p>
                 <p>
-                    PHStartup.org uses your personal information for various purposes to provide and improve our platform's services, enhance user experience, and foster collaboration within the Philippine startup ecosystem. The following are the primary ways we use your personal information:
+                    PHStartup.org uses your personal information for various purposes to provide and improve our platform&apos;s services, enhance user experience, and foster collaboration within the Philippine startup ecosystem. The following are the primary ways we use your personal information:
                 </p>
                 <p>
                     a. Account Management: We use your personal information to create and manage your account on PHStartup.org. This includes verifying your identity, maintaining your account settings, and facilitating your access to our platform.
@@ -191,13 +191,13 @@ function Page(props) {
                     d. Communication: We use your contact information to communicate with you regarding your account, respond to your inquiries, and send important platform-related updates and notifications.
                 </p>
                 <p>
-                    e. Platform Improvements: Your feedback and interactions with PHStartup.org may be used to improve our platform's functionalities, user experience, and services.
+                    e. Platform Improvements: Your feedback and interactions with PHStartup.org may be used to improve our platform&apos;s functionalities, user experience, and services.
                 </p>
                 <p>
                     2. Marketing and Promotional Communications
                 </p>
                 <p>
-                    With your consent, we may use your personal information to send you marketing and promotional communications about PHStartup.org's features, updates, events, and other relevant information. You have the option to manage your communication preferences and opt-out of marketing communications at any time by following the instructions provided in the communication or by contacting us at feedback@phstartup.org.
+                    With your consent, we may use your personal information to send you marketing and promotional communications about PHStartup.org&apos;s features, updates, events, and other relevant information. You have the option to manage your communication preferences and opt-out of marketing communications at any time by following the instructions provided in the communication or by contacting us at feedback@phstartup.org.
                 </p>
                 <p>
                     B. Non-Personal Information
@@ -212,7 +212,7 @@ function Page(props) {
                     a. Analytics: We analyze non-personal information, such as IP addresses, device types, and website usage patterns, to understand user preferences, track user interactions, and identify areas for improvement.
                 </p>
                 <p>
-                    b. Platform Optimization: Non-personal information helps us optimize our platform's functionalities, troubleshoot technical issues, and ensure smooth navigation for users.
+                    b. Platform Optimization: Non-personal information helps us optimize our platform&apos;s functionalities, troubleshoot technical issues, and ensure smooth navigation for users.
                 </p>
                 <p>
                     2. Analytics and Platform Improvement
@@ -242,7 +242,7 @@ function Page(props) {
                     B. Service Providers
                 </p>
                 <p>
-                    PHStartup.org may engage third-party service providers to assist in delivering our services and maintaining our platform's functionality. These service providers have access to personal information solely for the purpose of providing the requested services and are bound by confidentiality agreements. Examples of such service providers include hosting services, IT support, payment processors, and analytics providers.
+                    PHStartup.org may engage third-party service providers to assist in delivering our services and maintaining our platform&apos;s functionality. These service providers have access to personal information solely for the purpose of providing the requested services and are bound by confidentiality agreements. Examples of such service providers include hosting services, IT support, payment processors, and analytics providers.
                 </p>
                 <p>
                     C. Legal Requirements and Protection
@@ -254,7 +254,7 @@ function Page(props) {
                     D. Business Transfers
                 </p>
                 <p>
-                    In the event of a merger, acquisition, sale, or other transfer of all or part of PHStartup.org's assets, personal information may be transferred to the acquiring entity. We will take reasonable steps to ensure that the receiving party adheres to the terms of this Privacy Policy.
+                    In the event of a merger, acquisition, sale, or other transfer of all or part of PHStartup.org&apos;s assets, personal information may be transferred to the acquiring entity. We will take reasonable steps to ensure that the receiving party adheres to the terms of this Privacy Policy.
                 </p>
                 <p>
                     PHStartup.org does not sell, rent, or trade personal information to third parties for their direct marketing purposes.
@@ -368,19 +368,19 @@ function Page(props) {
                     B. Third-Party Services and Applications
                 </p>
                 <p>
-                    PHStartup.org may integrate or offer third-party services, applications, or plugins to enhance user experience and platform functionalities. These third-party services may have their own privacy policies and terms of use. Please be aware that interactions with these third-party services are governed by their respective policies and not by PHStartup.org's Privacy Policy.
+                    PHStartup.org may integrate or offer third-party services, applications, or plugins to enhance user experience and platform functionalities. These third-party services may have their own privacy policies and terms of use. Please be aware that interactions with these third-party services are governed by their respective policies and not by PHStartup.org&apos;s Privacy Policy.
                 </p>
                 <p>
                     We strive to partner with reputable and trusted third-party providers. However, we do not endorse, warrant, or guarantee the quality, safety, or reliability of any third-party services or applications. Users are encouraged to exercise caution and review the terms and policies of third-party providers before using their services through PHStartup.org.
                 </p>
                 <p>
-                    Please note that any data you choose to share with third-party services accessed through PHStartup.org is subject to the third-party's privacy practices and policies. We are not responsible for the privacy practices of third-party services or the content provided by them.
+                    Please note that any data you choose to share with third-party services accessed through PHStartup.org is subject to the third-party&apos;s privacy practices and policies. We are not responsible for the privacy practices of third-party services or the content provided by them.
                 </p>
                 <p>
                     If you encounter any issues or concerns related to third-party links or services on PHStartup.org, please contact us at feedback@phstartup.org.
                 </p>
                 <p>
-                    <strong>VIII. Children's Privacy</strong>
+                    <strong>VIII. Children&apos;s Privacy</strong>
                 </p>
                 <p>
                     A. Age Requirement
@@ -398,7 +398,7 @@ function Page(props) {
                     If you are a parent or legal guardian and become aware that your child under the age of 18 has provided personal information to PHStartup.org without your consent, please contact us at feedback@phstartup.org. We will take appropriate measures to verify the information and, if applicable, delete the information promptly.
                 </p>
                 <p>
-                    We encourage parents and guardians to monitor their children's online activities and participate in their online experiences to ensure their safety and privacy.
+                    We encourage parents and guardians to monitor their children&apos;s online activities and participate in their online experiences to ensure their safety and privacy.
                 </p>
                 <p>
                     <strong>IX. Choices and Rights</strong>
@@ -500,7 +500,7 @@ function Page(props) {
                     If an informal resolution is not possible, any dispute, claim, or cause of action shall be resolved through binding arbitration in accordance with the rules and procedures of a recognized arbitration institution located in the Philippines. The decision of the arbitrator shall be final and binding on both parties.
                 </p>
                 <p>
-                    By using PHStartup.org, you waive any right to participate in a class action lawsuit or class-wide arbitration. You also agree that any claim, dispute, or cause of action shall be brought on an individual basis and not consolidated with any other party's claims, disputes, or causes of action.
+                    By using PHStartup.org, you waive any right to participate in a class action lawsuit or class-wide arbitration. You also agree that any claim, dispute, or cause of action shall be brought on an individual basis and not consolidated with any other party&apos;s claims, disputes, or causes of action.
                 </p>
                 <p>
                     Any arbitration or legal proceedings related to this Privacy Policy must be initiated within one (1) year after the cause of action arises. Failure to bring such proceedings within this time frame shall result in the waiver of such claim or cause of action.
