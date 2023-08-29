@@ -33,10 +33,10 @@ export default class View {
                 })
             }
         }else{
-            return await this.create({
-                ...data,
-                user_id: '0'
-            })
+            // return await this.create({
+            //     ...data,
+            //     user_id: '0'
+            // })
         }
     }
 
