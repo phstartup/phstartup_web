@@ -16,7 +16,6 @@ export default class View {
     }
 
     async createUnique(data, user = null) {
-        console.log('hello')
         if(user){
             let isExist = await this.retrieveFirst({
                 where: {
@@ -33,10 +32,10 @@ export default class View {
                 })
             }
         }else{
-            // return await this.create({
-            //     ...data,
-            //     user_id: '0'
-            // })
+            return await this.create({
+                ...data,
+                user_id: '0'
+            })
         }
     }
 

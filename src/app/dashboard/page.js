@@ -49,23 +49,104 @@ function Page(props) {
   }
   const renderData = () => {
     return (
-      <div className="w-full float-left lg:flex 2xl:flex justify-between">
+      <div className="w-full float-left">
+        <div className="w-full float-left">
+          <TableChart
+            data={fData}
+            header={["Province", "Total", "Percentage"]}
+            footerTitle="View Report"
+            config={{
+              value: '10k',
+              description: 'Audience Summary',
+              percentage: {
+                value: '100%',
+                up: true
+              }
+            }}
+          />
+        </div>
+        <div className="w-full float-left lg:flex 2xl:flex justify-between">
+          <div className="lg:w-[32%] xl:w-[32%] 2xl:w-[32%] sm:w-full xs:w-full md:w-full float-left">
+            <TableChart
+              data={fData}
+              header={["Province", "Total", "Percentage"]}
+              footerTitle="View Report"
+              config={{
+                value: '$100M',
+                description: 'Funding Summary',
+                percentage: {
+                  value: '100%',
+                  up: true
+                }
+              }}
+            />
+          </div>
+          <div className="lg:w-[32%] xl:w-[32%] 2xl:w-[32%] sm:w-full xs:w-full md:w-full float-left">
+            <TableChart
+              data={fData}
+              header={["Province", "Total", "Percentage"]}
+              footerTitle="View Report"
+              config={{
+                value: 100,
+                description: 'Startups',
+                percentage: {
+                  value: '100%',
+                  up: false
+                }
+              }}
+            />
+          </div>
+          <div className="lg:w-[32%] xl:w-[32%] 2xl:w-[32%] sm:w-full xs:w-full md:w-full float-left">
+            <TableChart
+              data={fData}
+              header={["Province", "Total", "Percentage"]}
+              footerTitle="View Report"
+              config={{
+                value: 100,
+                description: 'Investors',
+                percentage: {
+                  value: '100%',
+                  up: true
+                }
+              }}
+            />
+          </div>
+        </div>
 
-        <TableChart
-          title="Total Startups"
-          data={fData}
-          header={["Province", "Total", "Percentage"]}
-          rightTitle={100}
-          footerTitle="View Report"
-        />
 
-        <TableChart
-          title="Funding"
-          data={fData}
-          header={["Province", "Total", "Percentage"]}
-          rightTitle={100}
-          footerTitle="View Report"
-        />
+        <div className="w-full float-left lg:flex 2xl:flex justify-between">
+          <div className="lg:w-[49%] xl:w-[49%] 2xl:w-[49%] sm:w-full xs:w-full md:w-full float-left">
+            <TableChart
+              data={fData}
+              header={["Province", "Total", "Percentage"]}
+              footerTitle="View Report"
+              config={{
+                value: 100,
+                description: 'TBIs',
+                percentage: {
+                  value: '100%',
+                  up: true
+                }
+              }}
+            />
+
+          </div>
+          <div className="lg:w-[49%] xl:w-[49%] 2xl:w-[49%] sm:w-full xs:w-full md:w-full float-left">
+            <TableChart
+              data={fData}
+              header={["Province", "Total", "Percentage"]}
+              footerTitle="View Report"
+              config={{
+                value: 100,
+                description: 'Accelerators',
+                percentage: {
+                  value: '100%',
+                  up: true
+                }
+              }}
+            />
+          </div>
+        </div>
       </div>
     )
   }
@@ -78,36 +159,16 @@ function Page(props) {
           </div>
         )
       }
-
-      <div className='w-full float-left mt-[20px]'>
-        <SimpleComingSoon
-          title="Dashboard"
-          description="Display summary of our startup community in the Philippines."
-        />
+      <div className="w-full float-left mt-[20px]">
+        <div className="float-left w-full">
+          {
+            !loading && renderData()
+          }
+          {
+            loading && renderLoading()
+          }
+        </div>
       </div>
-
-      {/* <div className="w-full float-left mt-[20px]">
-        <div className="float-left w-full">
-          <h1 className="text-lg font-bold mb-[20px]">Your Startup Updates</h1>
-          {
-            !loading && renderData()
-          }
-          {
-            loading && renderLoading()
-          }
-        </div>
-
-        <div className="float-left w-full">
-          <h1 className="text-lg font-bold mb-[20px]">PH Startup Updates</h1>
-          {
-            !loading && renderData()
-          }
-          {
-            loading && renderLoading()
-          }
-        </div>
-
-      </div> */}
 
     </div>
   );
