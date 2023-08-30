@@ -6,9 +6,15 @@ import React, { useState } from 'react';
 
 
 const dropdownMenu = [{
-    title: 'Settings',
-    icon: Settings,
-    route: '/settings'
+    title: 'Last 7 Days'
+}, {
+    title: 'Last Month'
+}, {
+    title: 'Last 3 Months'
+}, {
+    title: 'Last 6 Months'
+}, {
+    title: 'All time'
 }]
 
 function footer(props) {
@@ -23,7 +29,6 @@ function footer(props) {
                             <li
                                 key={index}
                                 onClick={() => {
-                                    router.push(item.route)
                                 }}
                             >
                                 <span className="block px-3 py-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{item.title}</span>
@@ -32,10 +37,6 @@ function footer(props) {
                     }
 
                 </ul>
-                <div className="mb-[20px]">
-                    <span
-                        className="block px-3 cursor-pointer py-3 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</span>
-                </div>
             </div>
 
         )
