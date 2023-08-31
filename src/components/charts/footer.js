@@ -19,16 +19,19 @@ const dropdownMenu = [{
 
 function footer(props) {
     const [dropdown, setDropdown] = useState(false)
+    const [selected, setSelected] = useState(dropdownMenu[0].title)
 
     const renderDropdown = () => {
         return (
-            <div className={"z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-[300px] left-0 bottom-[80px] dark:bg-gray-800 dark:divide-gray-800 border border-gray-200 dark:border-gray-700 " + (dropdown == false ? 'hidden' : '')}>
-                <ul className="text-sm text-gray-700 dark:text-gray-200">
+            <div className={"z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-[300px] left-0 bottom-[80px] dark:bg-gray-900 dark:divide-gray-800 border border-gray-200 dark:border-gray-700 " + (dropdown == false ? 'hidden' : '')}>
+                <ul className="text-xs text-gray-700 dark:text-gray-200">
                     {
                         dropdownMenu && dropdownMenu.map((item, index) => (
                             <li
                                 key={index}
                                 onClick={() => {
+                                    setSelected(item.title)
+                                    setDropdown(false)
                                 }}
                             >
                                 <span className="block px-3 py-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{item.title}</span>
@@ -47,10 +50,12 @@ function footer(props) {
             <div className='relative h-[60px] items-center content-center'>
                 <span 
                     onClick={() => {
-                        setDropdown(!dropdown)
+                        setDropdown(true)
                     }}
                     className='cursor-pointer'>
-                    Last 7 Days
+                    {
+                        selected
+                    }
                     <SvgIcon 
                         classRoom="ml-[5px]"
                         component={ExpandMore} />
