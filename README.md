@@ -1,3 +1,1 @@
 # phstartup_web
-
-#hacktoberfest
